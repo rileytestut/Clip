@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
+		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */; };
 		BFC1F39F22AF0D0E003AC21A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39E22AF0D0E003AC21A /* ViewController.swift */; };
 		BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A022AF0D0E003AC21A /* Main.storyboard */; };
@@ -14,7 +16,53 @@
 		BFC1F3A722AF0D0F003AC21A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A522AF0D0F003AC21A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BF1D5C7422B029DC0062F474 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BFADAFF819AE7BB70050CF31;
+			remoteInfo = Roxas;
+		};
+		BF1D5C7622B029DC0062F474 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BF8624801BB742E700C12EEE;
+			remoteInfo = RoxasTV;
+		};
+		BF1D5C7822B029DC0062F474 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BFADB00319AE7BB80050CF31;
+			remoteInfo = RoxasTests;
+		};
+		BF1D5C7C22B029E80062F474 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BFADAFF719AE7BB70050CF31;
+			remoteInfo = Roxas;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BF1D5C6D22B029190062F474 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Roxas.xcodeproj; path = Dependencies/Roxas/Roxas.xcodeproj; sourceTree = "<group>"; };
 		BFC1F39922AF0D0E003AC21A /* ClipboardManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipboardManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC1F39E22AF0D0E003AC21A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,16 +77,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF1D5C6722B029090062F474 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		BF1D5C6F22B029DB0062F474 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF1D5C7522B029DC0062F474 /* Roxas.framework */,
+				BF1D5C7722B029DC0062F474 /* Roxas.framework */,
+				BF1D5C7922B029DC0062F474 /* RoxasTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BFC1F39022AF0D0E003AC21A = {
 			isa = PBXGroup;
 			children = (
 				BFC1F39B22AF0D0E003AC21A /* ClipboardManager */,
+				BF1D5C6722B029090062F474 /* Dependencies */,
 				BFC1F39A22AF0D0E003AC21A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,10 +142,12 @@
 				BFC1F39522AF0D0E003AC21A /* Sources */,
 				BFC1F39622AF0D0E003AC21A /* Frameworks */,
 				BFC1F39722AF0D0E003AC21A /* Resources */,
+				BF1D5C6D22B029190062F474 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BF1D5C7D22B029E80062F474 /* PBXTargetDependency */,
 			);
 			name = ClipboardManager;
 			productName = ClipboardManager;
@@ -110,12 +180,42 @@
 			mainGroup = BFC1F39022AF0D0E003AC21A;
 			productRefGroup = BFC1F39A22AF0D0E003AC21A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BF1D5C6F22B029DB0062F474 /* Products */;
+					ProjectRef = BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BFC1F39822AF0D0E003AC21A /* ClipboardManager */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BF1D5C7522B029DC0062F474 /* Roxas.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Roxas.framework;
+			remoteRef = BF1D5C7422B029DC0062F474 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF1D5C7722B029DC0062F474 /* Roxas.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Roxas.framework;
+			remoteRef = BF1D5C7622B029DC0062F474 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BF1D5C7922B029DC0062F474 /* RoxasTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RoxasTests.xctest;
+			remoteRef = BF1D5C7822B029DC0062F474 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BFC1F39722AF0D0E003AC21A /* Resources */ = {
@@ -141,6 +241,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF1D5C7D22B029E80062F474 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Roxas;
+			targetProxy = BF1D5C7C22B029E80062F474 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BFC1F3A022AF0D0E003AC21A /* Main.storyboard */ = {
