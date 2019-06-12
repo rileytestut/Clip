@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F203" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PasteboardItem" representedClassName="PasteboardItem" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="representations" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PasteboardItemRepresentation" inverseName="item" inverseEntity="PasteboardItemRepresentation" syncable="YES"/>
+    </entity>
+    <entity name="PasteboardItemRepresentation" representedClassName="PasteboardItemRepresentation" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
+        <attribute name="uti" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItem" inverseName="representations" inverseEntity="PasteboardItem" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PasteboardItem" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="PasteboardItemRepresentation" positionX="-54" positionY="-9" width="128" height="120"/>
+    </elements>
+</model>

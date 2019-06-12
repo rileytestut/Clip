@@ -8,35 +8,8 @@
 
 import UIKit
 import AVFoundation
-import MobileCoreServices
-import UserNotifications
 
 import Roxas
-
-struct PasteboardItem
-{
-    enum Representation: CustomStringConvertible
-    {
-        case text(String)
-        case attributedText(NSAttributedString)
-        case image(UIImage)
-        case url(URL)
-        case other(Any)
-        
-        var description: String {
-            switch self
-            {
-            case .text(let text): return "Text: \(text)"
-            case .attributedText(let attributedText): return "Attributed Text: \(attributedText.string)"
-            case .image(let image): return "Image: \(image.size)"
-            case .url(let url): return "URL: \(url)"
-            case .other(let other): return "Other: \(other)"
-            }
-        }
-    }
-    
-    var representations: [Representation]
-}
 
 class PasteboardMonitor
 {
@@ -110,54 +83,17 @@ private extension PasteboardMonitor
     {
         guard !UIPasteboard.general.hasColors else { return } // Accessing UIPasteboard.items causes crash as of iOS 12.3 if it contains a UIColor.
         
-        for item in UIPasteboard.general.items
-        {
-            var representations = [PasteboardItem.Representation]()
-            
-            for (uti, value) in item
-            {
-                switch (uti, value)
-                {
-                case (let uti as CFString, let string as String) where UTTypeConformsTo(uti, kUTTypeRTF):
-                    guard let data = string.data(using: .utf8) else { continue }
-                    guard let attributedString = try? NSAttributedString(data: data, options: [.documentType : NSAttributedString.DocumentType.rtf], documentAttributes: nil) else { continue }
-                    
-                    representations.append(.attributedText(attributedString))
-                    
-                case (let uti as CFString, let string as String) where UTTypeConformsTo(uti, kUTTypeHTML):
-                    guard let data = string.data(using: .utf8) else { continue }
-                    guard let attributedString = try? NSAttributedString(data: data, options: [.documentType : NSAttributedString.DocumentType.html], documentAttributes: nil) else { continue }
-                    
-                    representations.append(.attributedText(attributedString))
-                    
-                case (let uti as CFString, let string as String) where UTTypeConformsTo(uti, kUTTypeText): representations.append(.text(string))
-                case (let uti as CFString, let url as URL) where UTTypeConformsTo(uti, kUTTypeURL): representations.append(.url(url))
-                case (let uti as CFString, let image as UIImage) where UTTypeConformsTo(uti, kUTTypeImage): representations.append(.image(image))
+        DatabaseManager.shared.persistentContainer.performBackgroundTask { (context) in
+            let pasteboardItems = UIPasteboard.general.items.compactMap { (representations) -> PasteboardItem? in
+                let representations = representations.compactMap { PasteboardItemRepresentation(uti: $0, value: $1, context: context) }
                 
-                default: representations.append(.other(value))
-                }
+                let pasteboardItem = PasteboardItem(representations: representations, context: context)
+                return pasteboardItem
             }
             
-            guard let representation = representations.first(where: { (representation) -> Bool in
-                switch representation
-                {
-                case .text, .url: return true
-                default: return false
-                }
-            }) else { return }
+            print(pasteboardItems)
             
-            let content = UNMutableNotificationContent()
-            content.title = "Clipboard Saved"
-            content.body = String(describing: representation)
-            
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-            
-            let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request) { (error) in
-                if let error = error {
-                    print(error)
-                }
-            }
+            do { try context.save() } catch { print("Error saving pasteboard data.", error) }
         }
     }
 }

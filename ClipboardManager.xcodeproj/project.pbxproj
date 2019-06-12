@@ -11,8 +11,12 @@
 		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
 		BF1D5D4022B07B3F0062F474 /* Blank.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF1D5D3F22B07B3F0062F474 /* Blank.wav */; };
+		BF1D5D4522B0867C0062F474 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4322B0867C0062F474 /* Model.xcdatamodeld */; };
+		BF1D5D4722B0869C0062F474 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4622B0869C0062F474 /* DatabaseManager.swift */; };
+		BF1D5D4922B088F50062F474 /* PasteboardItemRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */; };
+		BF1D5D4B22B094DB0062F474 /* PasteboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */; };
 		BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */; };
-		BFC1F39F22AF0D0E003AC21A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39E22AF0D0E003AC21A /* ViewController.swift */; };
+		BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */; };
 		BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A022AF0D0E003AC21A /* Main.storyboard */; };
 		BFC1F3A422AF0D0F003AC21A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */; };
 		BFC1F3A722AF0D0F003AC21A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A522AF0D0F003AC21A /* LaunchScreen.storyboard */; };
@@ -61,15 +65,29 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF1D5C9C22B042870062F474 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Roxas.xcodeproj; path = Dependencies/Roxas/Roxas.xcodeproj; sourceTree = "<group>"; };
 		BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		BF1D5D3F22B07B3F0062F474 /* Blank.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Blank.wav; sourceTree = "<group>"; };
+		BF1D5D4422B0867C0062F474 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		BF1D5D4622B0869C0062F474 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItemRepresentation.swift; sourceTree = "<group>"; };
+		BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItem.swift; sourceTree = "<group>"; };
 		BFC1F39922AF0D0E003AC21A /* ClipboardManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipboardManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFC1F39E22AF0D0E003AC21A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		BFC1F3A122AF0D0E003AC21A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC1F3A622AF0D0F003AC21A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -139,6 +157,17 @@
 			path = Pasteboard;
 			sourceTree = "<group>";
 		};
+		BF1D5D4222B0865E0062F474 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BF1D5D4322B0867C0062F474 /* Model.xcdatamodeld */,
+				BF1D5D4622B0869C0062F474 /* DatabaseManager.swift */,
+				BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */,
+				BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BFC1F39022AF0D0E003AC21A = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +191,8 @@
 			children = (
 				BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */,
 				BFC1F3A022AF0D0E003AC21A /* Main.storyboard */,
-				BFC1F39E22AF0D0E003AC21A /* ViewController.swift */,
+				BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */,
+				BF1D5D4222B0865E0062F474 /* Model */,
 				BF1D5D4122B083210062F474 /* Pasteboard */,
 				BF1D5C8122B038030062F474 /* Resources */,
 				BF1D5C8522B038FE0062F474 /* Supporting Files */,
@@ -181,6 +211,7 @@
 				BFC1F39622AF0D0E003AC21A /* Frameworks */,
 				BFC1F39722AF0D0E003AC21A /* Resources */,
 				BF1D5C6D22B029190062F474 /* Embed Frameworks */,
+				BF1D5C9C22B042870062F474 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -280,9 +311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1D5D4B22B094DB0062F474 /* PasteboardItem.swift in Sources */,
 				BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */,
-				BFC1F39F22AF0D0E003AC21A /* ViewController.swift in Sources */,
+				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
+				BF1D5D4922B088F50062F474 /* PasteboardItemRepresentation.swift in Sources */,
+				BF1D5D4722B0869C0062F474 /* DatabaseManager.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
+				BF1D5D4522B0867C0062F474 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +528,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BF1D5D4322B0867C0062F474 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BF1D5D4422B0867C0062F474 /* Model.xcdatamodel */,
+			);
+			currentVersion = BF1D5D4422B0867C0062F474 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BFC1F39122AF0D0E003AC21A /* Project object */;
 }

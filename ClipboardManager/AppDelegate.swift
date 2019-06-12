@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(RoxasVersionNumber)
         
+        DatabaseManager.shared.prepare()
+        PasteboardMonitor.shared.start()
+        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
         }
         
