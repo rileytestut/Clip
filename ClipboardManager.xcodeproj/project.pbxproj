@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
 		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
+		BF1D5D4022B07B3F0062F474 /* Blank.wav in Resources */ = {isa = PBXBuildFile; fileRef = BF1D5D3F22B07B3F0062F474 /* Blank.wav */; };
 		BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */; };
 		BFC1F39F22AF0D0E003AC21A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39E22AF0D0E003AC21A /* ViewController.swift */; };
 		BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A022AF0D0E003AC21A /* Main.storyboard */; };
@@ -63,6 +65,8 @@
 
 /* Begin PBXFileReference section */
 		BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Roxas.xcodeproj; path = Dependencies/Roxas/Roxas.xcodeproj; sourceTree = "<group>"; };
+		BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
+		BF1D5D3F22B07B3F0062F474 /* Blank.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Blank.wav; sourceTree = "<group>"; };
 		BFC1F39922AF0D0E003AC21A /* ClipboardManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipboardManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC1F39E22AF0D0E003AC21A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,12 +106,46 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		BF1D5C8122B038030062F474 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */,
+				BF1D5D3F22B07B3F0062F474 /* Blank.wav */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BF1D5C8522B038FE0062F474 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BFC1F3A522AF0D0F003AC21A /* LaunchScreen.storyboard */,
+				BFC1F3A822AF0D0F003AC21A /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BF1D5CDF22B063E00062F474 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF1D5D4122B083210062F474 /* Pasteboard */ = {
+			isa = PBXGroup;
+			children = (
+				BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */,
+			);
+			path = Pasteboard;
+			sourceTree = "<group>";
+		};
 		BFC1F39022AF0D0E003AC21A = {
 			isa = PBXGroup;
 			children = (
 				BFC1F39B22AF0D0E003AC21A /* ClipboardManager */,
 				BF1D5C6722B029090062F474 /* Dependencies */,
 				BFC1F39A22AF0D0E003AC21A /* Products */,
+				BF1D5CDF22B063E00062F474 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,11 +161,11 @@
 			isa = PBXGroup;
 			children = (
 				BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */,
-				BFC1F39E22AF0D0E003AC21A /* ViewController.swift */,
 				BFC1F3A022AF0D0E003AC21A /* Main.storyboard */,
-				BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */,
-				BFC1F3A522AF0D0F003AC21A /* LaunchScreen.storyboard */,
-				BFC1F3A822AF0D0F003AC21A /* Info.plist */,
+				BFC1F39E22AF0D0E003AC21A /* ViewController.swift */,
+				BF1D5D4122B083210062F474 /* Pasteboard */,
+				BF1D5C8122B038030062F474 /* Resources */,
+				BF1D5C8522B038FE0062F474 /* Supporting Files */,
 			);
 			path = ClipboardManager;
 			sourceTree = "<group>";
@@ -166,6 +204,12 @@
 				TargetAttributes = {
 					BFC1F39822AF0D0E003AC21A = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -223,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC1F3A722AF0D0F003AC21A /* LaunchScreen.storyboard in Resources */,
+				BF1D5D4022B07B3F0062F474 /* Blank.wav in Resources */,
 				BFC1F3A422AF0D0F003AC21A /* Assets.xcassets in Resources */,
 				BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */,
 			);
@@ -235,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */,
 				BFC1F39F22AF0D0E003AC21A /* ViewController.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
 			);
@@ -390,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
 				INFOPLIST_FILE = ClipboardManager/Info.plist;
@@ -399,6 +446,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.ClipboardManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -408,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
 				INFOPLIST_FILE = ClipboardManager/Info.plist;
