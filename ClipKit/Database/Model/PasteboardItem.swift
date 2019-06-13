@@ -7,16 +7,15 @@
 //
 
 import CoreData
-import MobileCoreServices
 
 @objc(PasteboardItem)
-class PasteboardItem: NSManagedObject
+public class PasteboardItem: NSManagedObject
 {
     /* Properties */
-    @NSManaged private(set) var date: Date
+    @NSManaged public private(set) var date: Date
     
     /* Relationships */
-    @nonobjc var representations: [PasteboardItemRepresentation] {
+    @nonobjc public var representations: [PasteboardItemRepresentation] {
         return self._representations.array as! [PasteboardItemRepresentation]
     }
     @NSManaged @objc(representations) private var _representations: NSOrderedSet
@@ -26,7 +25,7 @@ class PasteboardItem: NSManagedObject
         super.init(entity: entity, insertInto: context)
     }
     
-    init?(representations: [PasteboardItemRepresentation], context: NSManagedObjectContext)
+    public init?(representations: [PasteboardItemRepresentation], context: NSManagedObjectContext)
     {
         guard !representations.isEmpty else { return nil }
         
@@ -35,7 +34,7 @@ class PasteboardItem: NSManagedObject
         self._representations = NSOrderedSet(array: representations)
     }
     
-    override func awakeFromInsert()
+    override public func awakeFromInsert()
     {
         super.awakeFromInsert()
         
@@ -43,7 +42,7 @@ class PasteboardItem: NSManagedObject
     }
 }
 
-extension PasteboardItem
+public extension PasteboardItem
 {
     @nonobjc class func fetchRequest() -> NSFetchRequest<PasteboardItem>
     {

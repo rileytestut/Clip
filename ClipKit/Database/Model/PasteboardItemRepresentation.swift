@@ -11,24 +11,24 @@ import CoreData
 import MobileCoreServices
 
 @objc(PasteboardItemRepresentation)
-class PasteboardItemRepresentation: NSManagedObject
+public class PasteboardItemRepresentation: NSManagedObject
 {
     /* Properties */
-    @NSManaged private(set) var uti: String
+    @NSManaged public private(set) var uti: String
     
     @NSManaged private var data: Data?
     @NSManaged private var string: String?
     @NSManaged private var url: URL?
     
     /* Relationships */
-    @NSManaged private var item: PasteboardItem?
+    @NSManaged public var item: PasteboardItem?
     
     private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?)
     {
         super.init(entity: entity, insertInto: context)
     }
     
-    init?(uti: String, value: Any, context: NSManagedObjectContext)
+    public init?(uti: String, value: Any, context: NSManagedObjectContext)
     {
         super.init(entity: PasteboardItemRepresentation.entity(), insertInto: nil)
         
@@ -37,6 +37,9 @@ class PasteboardItemRepresentation: NSManagedObject
         switch (uti, value)
         {
         case (let uti as CFString, let string as String) where UTTypeConformsTo(uti, kUTTypeText): self.string = string
+        case (let uti as CFString, let data as Data) where UTTypeConformsTo(uti, kUTTypePlainText): self.string = String(data: data, encoding: .utf8)
+        case (let uti as CFString, let data as Data) where UTTypeConformsTo(uti, kUTTypeText): self.data = data
+            
         case (let uti as CFString, let url as URL) where UTTypeConformsTo(uti, kUTTypeURL): self.url = url
         case (let uti as CFString, let imageData as Data) where UTTypeConformsTo(uti, kUTTypeImage): self.data = imageData
         case (let uti as CFString, let image as UIImage) where UTTypeConformsTo(uti, kUTTypePNG):
@@ -51,6 +54,8 @@ class PasteboardItemRepresentation: NSManagedObject
         default: return nil
         }
         
+        guard (self.string != nil || self.data != nil || self.url != nil) else { return nil }
+        
         context.insert(self)
     }
 }
@@ -63,7 +68,7 @@ extension PasteboardItemRepresentation
     }
 }
 
-extension PasteboardItemRepresentation
+public extension PasteboardItemRepresentation
 {
     var stringValue: String? {
         return self.string
@@ -92,7 +97,7 @@ extension PasteboardItemRepresentation
         default: return nil
         }
         
-        guard let data = self.string?.data(using: .utf8) else { return nil }
+        guard let data = self.data ?? self.string?.data(using: .utf8) else { return nil }
         
         let attributedString = try? NSAttributedString(data: data, options: [.documentType : type], documentAttributes: nil)
         return attributedString

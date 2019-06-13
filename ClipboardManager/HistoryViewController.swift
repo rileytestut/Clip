@@ -9,6 +9,7 @@
 import UIKit
 import MobileCoreServices
 
+import ClipKit
 import Roxas
 
 @objc(ImageClipboardCell)
@@ -26,7 +27,7 @@ class HistoryViewController: UITableViewController
         super.viewDidLoad()
 
         self.tableView.dataSource = self.dataSource
-        self.tableView.prefetchDataSource = self.dataSource
+        self.tableView.prefetchDataSource = self.dataSource        
     }
 }
 

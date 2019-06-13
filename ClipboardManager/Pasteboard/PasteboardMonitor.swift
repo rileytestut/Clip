@@ -9,7 +9,13 @@
 import UIKit
 import AVFoundation
 
+import ClipKit
 import Roxas
+
+let PasteboardMonitorDidChangePasteboard: @convention(c) (CFNotificationCenter?, UnsafeMutableRawPointer?, CFNotificationName?, UnsafeRawPointer?, CFDictionary?) -> Void =
+{ (center, observer, name, object, userInfo) in
+    PasteboardMonitor.shared.didChangePasteboard()
+}
 
 class PasteboardMonitor
 {
@@ -17,9 +23,8 @@ class PasteboardMonitor
     
     private(set) var isStarted = false
     
-    private var player: AVAudioPlayer?
-    private var pollingTimer: Timer?
-    private var previousChangeCount: Int?
+    private let audioEngine = AudioEngine()
+    private let feedbackGenerator = UINotificationFeedbackGenerator()
     
     private init()
     {
@@ -28,72 +33,45 @@ class PasteboardMonitor
 
 extension PasteboardMonitor
 {
-    func start()
+    func start(completionHandler: @escaping (Result<Void, Error>) -> Void)
     {
         guard !self.isStarted else { return }
         
-        self.isStarted = true
-        
-        // Allows us to test in simulator for now before we have full background support.
-        var backgroundTaskID: UIBackgroundTaskIdentifier?
-        backgroundTaskID = UIApplication.shared.beginBackgroundTask {
-            UIApplication.shared.endBackgroundTask(backgroundTaskID!)
-        }
+        DispatchQueue.global().async {
+            do
+            {
+                try self.audioEngine.start()
                 
-        do
-        {
-            // Start silent audio
-            let audioURL = Bundle.main.url(forResource: "Blank", withExtension: "wav")!
-
-            try AVAudioSession.sharedInstance().setCategory(.playback)
-            try AVAudioSession.sharedInstance().setActive(true)
-
-            let player = try AVAudioPlayer(contentsOf: audioURL)
-            player.numberOfLoops = -1
-            player.volume = 0.01
-            player.prepareToPlay()
-            player.play()
-            self.player = player
-
-            print("Playing audio...")
+                self.audioEngine.launchAudioUnitExtension(for: .listenerUnit) { (result) in
+                    switch result
+                    {
+                    case .failure(let error): completionHandler(.failure(error))
+                    case .success:
+                        self.registerForExtensionNotifications()
+                        self.isStarted = true
+                    }
+                }
+            }
+            catch
+            {
+                completionHandler(.failure(error))
+            }
         }
-        catch
-        {
-            print("Failed to configure audio session.", error)
-        }
-        
-        self.previousChangeCount = UIPasteboard.general.changeCount
-        self.pollingTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(PasteboardMonitor.poll), userInfo: nil, repeats: true)
     }
 }
 
 private extension PasteboardMonitor
 {
-    @objc func poll()
+    func registerForExtensionNotifications()
     {
-        print("Polling... ", UIPasteboard.general.changeCount, UIApplication.shared.backgroundTimeRemaining)
-        
-        guard case let changeCount = UIPasteboard.general.changeCount, changeCount != self.previousChangeCount else { return }
-        
-        self.previousChangeCount = changeCount
-        self.pasteboardDidUpdate()
+        let center = CFNotificationCenterGetDarwinNotifyCenter()
+        CFNotificationCenterAddObserver(center, nil, PasteboardMonitorDidChangePasteboard, CFNotificationName.didChangePasteboard.rawValue, nil, .deliverImmediately)
     }
     
-    func pasteboardDidUpdate()
+    func didChangePasteboard()
     {
-        guard !UIPasteboard.general.hasColors else { return } // Accessing UIPasteboard.items causes crash as of iOS 12.3 if it contains a UIColor.
+        DatabaseManager.shared.refresh()
         
-        DatabaseManager.shared.persistentContainer.performBackgroundTask { (context) in
-            let pasteboardItems = UIPasteboard.general.items.compactMap { (representations) -> PasteboardItem? in
-                let representations = representations.compactMap { PasteboardItemRepresentation(uti: $0, value: $1, context: context) }
-                
-                let pasteboardItem = PasteboardItem(representations: representations, context: context)
-                return pasteboardItem
-            }
-            
-            print(pasteboardItems)
-            
-            do { try context.save() } catch { print("Error saving pasteboard data.", error) }
-        }
+        self.feedbackGenerator.notificationOccurred(.success)
     }
 }

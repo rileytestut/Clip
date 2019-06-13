@@ -7,8 +7,10 @@
 //
 
 import UIKit
-import Roxas
 import UserNotifications
+
+import ClipKit
+import Roxas
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,8 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(RoxasVersionNumber)
         
-        DatabaseManager.shared.prepare()
-        PasteboardMonitor.shared.start()
+        func printError<T>(from result: Result<T, Error>, title: String)
+        {
+            guard let error = result.error else { return }
+            print(title, error)
+        }
+        
+        DatabaseManager.shared.prepare() { printError(from: $0, title: "Database Error:") }
+        PasteboardMonitor.shared.start() { printError(from: $0, title: "PasteboardMonitor Error:") }
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
         }
@@ -40,8 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    func applicationWillEnterForeground(_ application: UIApplication)
+    {
+        DatabaseManager.shared.refresh()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -52,4 +61,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 }
-
