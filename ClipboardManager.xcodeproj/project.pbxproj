@@ -10,6 +10,8 @@
 		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
 		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
+		BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */; };
+		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
 		BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */; };
 		BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */; };
 		BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A022AF0D0E003AC21A /* Main.storyboard */; };
@@ -113,6 +115,8 @@
 		BF1D5D4622B0869C0062F474 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItemRepresentation.swift; sourceTree = "<group>"; };
 		BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItem.swift; sourceTree = "<group>"; };
+		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
+		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
 		BFC1F39922AF0D0E003AC21A /* ClipboardManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipboardManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,16 @@
 			path = Pasteboard;
 			sourceTree = "<group>";
 		};
+		BFAC49D722B2EF170011E7C4 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */,
+				BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */,
+				BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		BFC1F39022AF0D0E003AC21A = {
 			isa = PBXGroup;
 			children = (
@@ -246,7 +260,7 @@
 				BFC9E62C22B18D5900974663 /* ClipboardManager.entitlements */,
 				BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */,
 				BFC1F3A022AF0D0E003AC21A /* Main.storyboard */,
-				BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */,
+				BFAC49D722B2EF170011E7C4 /* History */,
 				BF1D5D4122B083210062F474 /* Pasteboard */,
 				BF1D5C8122B038030062F474 /* Resources */,
 				BF1D5C8522B038FE0062F474 /* Supporting Files */,
@@ -474,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFC1F3A722AF0D0F003AC21A /* LaunchScreen.storyboard in Resources */,
+				BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */,
 				BFC9E66B22B1CE5B00974663 /* Silence.m4a in Resources */,
 				BFC1F3A422AF0D0F003AC21A /* Assets.xcassets in Resources */,
 				BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */,
@@ -505,6 +520,7 @@
 				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
 				BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */,
+				BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
