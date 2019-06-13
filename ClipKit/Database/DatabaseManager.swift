@@ -92,6 +92,11 @@ public class DatabaseManager
                     }
                 }
             }
+            catch let error as CocoaError where error.code.rawValue == NSPersistentHistoryTokenExpiredError
+            {
+                self.previousHistoryToken = nil
+                self.refresh()
+            }
             catch
             {
                 print("Failed to fetch change history.", error)
