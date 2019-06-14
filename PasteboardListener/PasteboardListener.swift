@@ -12,11 +12,6 @@ import CoreAudioKit
 
 import ClipKit
 
-extension PasteboardListener
-{
-    public static let didChangePasteboardNotification: CFNotificationName = CFNotificationName("com.rileytestut.ClipboardManager.DidChangePasteboard" as CFString)
-}
-
 @objc(CLIPPasteboardListener)
 public class PasteboardListener: NSObject, NSExtensionRequestHandling
 {
@@ -80,7 +75,7 @@ private extension PasteboardListener
             do { try context.save() } catch { print("Error saving pasteboard data.", error) }
             
             let center = CFNotificationCenterGetDarwinNotifyCenter()
-            CFNotificationCenterPostNotification(center, PasteboardListener.didChangePasteboardNotification, nil, nil, true)
+            CFNotificationCenterPostNotification(center, .didChangePasteboard, nil, nil, true)
             
             let content = UNMutableNotificationContent()
             content.title = NSLocalizedString("Clipboard Saved", comment: "")
