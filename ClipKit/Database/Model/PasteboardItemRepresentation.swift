@@ -159,7 +159,14 @@ public class PasteboardItemRepresentation: NSManagedObject
         
         dispatchGroup.notify(queue: .global()) {
             context.perform {
-                completionHandler(representations)
+                let sortedRepresentations = representations.sorted(by: { (a, b) -> Bool in
+                    guard let indexA = itemProvider.registeredTypeIdentifiers.firstIndex(of: a.uti) else { return false }
+                    guard let indexB = itemProvider.registeredTypeIdentifiers.firstIndex(of: b.uti) else { return false }
+                    
+                    return indexA < indexB
+                })
+                
+                completionHandler(sortedRepresentations)
             }
         }
     }
