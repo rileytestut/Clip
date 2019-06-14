@@ -77,7 +77,7 @@ extension HistoryViewController
 {
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool
     {
-        let supportedActions = [#selector(UIResponderStandardEditActions.copy(_:)), #selector(UIResponderStandardEditActions.delete(_:))]
+        let supportedActions = [#selector(UIResponderStandardEditActions.copy(_:)), #selector(UIResponderStandardEditActions.delete(_:)), #selector(HistoryViewController._share(_:))]
         
         let isSupported = supportedActions.contains(action)
         return isSupported
@@ -97,6 +97,14 @@ extension HistoryViewController
         // Use the main view context so we can undo this operation easily.
         // Saving a context can mess with its undo history, so we only save main context when we enter background.
         item.isMarkedForDeletion = true
+    }
+    
+    @objc func _share(_ sender: Any?)
+    {
+        guard let item = self.selectedItem else { return }
+        
+        let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 

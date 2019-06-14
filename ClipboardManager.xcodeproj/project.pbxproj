@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF0BDE5122B4414A00E1419D /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0BDE5022B4414A00E1419D /* UTI.swift */; };
+		BF0BDE5622B456A600E1419D /* PasteboardItem+ActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0BDE5522B456A600E1419D /* PasteboardItem+ActivityItemSource.swift */; };
 		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
 		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
@@ -113,6 +114,7 @@
 
 /* Begin PBXFileReference section */
 		BF0BDE5022B4414A00E1419D /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
+		BF0BDE5522B456A600E1419D /* PasteboardItem+ActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PasteboardItem+ActivityItemSource.swift"; sourceTree = "<group>"; };
 		BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Roxas.xcodeproj; path = Dependencies/Roxas/Roxas.xcodeproj; sourceTree = "<group>"; };
 		BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		BF1D5D4422B0867C0062F474 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -177,6 +179,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF0BDE5422B4568A00E1419D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BF0BDE5522B456A600E1419D /* PasteboardItem+ActivityItemSource.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		BF1D5C6722B029090062F474 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +280,7 @@
 				BFC1F3A022AF0D0E003AC21A /* Main.storyboard */,
 				BFAC49D722B2EF170011E7C4 /* History */,
 				BF1D5D4122B083210062F474 /* Pasteboard */,
+				BF0BDE5422B4568A00E1419D /* Extensions */,
 				BF1D5C8122B038030062F474 /* Resources */,
 				BF1D5C8522B038FE0062F474 /* Supporting Files */,
 			);
@@ -530,6 +541,7 @@
 				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
 				BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */,
+				BF0BDE5622B456A600E1419D /* PasteboardItem+ActivityItemSource.swift in Sources */,
 				BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

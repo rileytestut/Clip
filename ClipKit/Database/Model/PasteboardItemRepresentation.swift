@@ -182,13 +182,23 @@ extension PasteboardItemRepresentation
 
 public extension PasteboardItemRepresentation
 {
+    var value: Any? {
+        switch self.type
+        {
+        case .text: return self.stringValue
+        case .attributedText: return self.attributedStringValue
+        case .url: return self.urlValue
+        case .image: return self.imageValue
+        }
+    }
+    
     var pasteboardValue: Any? {
         switch self.type
         {
         case .text: return self.stringValue
         case .attributedText: return self.data
         case .url: return self.urlValue
-        case .image: return self.imageValue
+        case .image: return self.data
         }
     }
     
@@ -203,7 +213,11 @@ public extension PasteboardItemRepresentation
     
     var urlValue: URL? {
         return self.url
-    }    
+    }
+    
+    var dataValue: Data? {
+        return self.data
+    }
     
     var attributedStringValue: NSAttributedString? {
         let type: NSAttributedString.DocumentType
