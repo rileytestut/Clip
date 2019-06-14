@@ -49,7 +49,7 @@ private extension HistoryViewController
         let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \PasteboardItem.date, ascending: false)]
         fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.relationshipKeyPathsForPrefetching = ["representations"]
+        fetchRequest.relationshipKeyPathsForPrefetching = [#keyPath(PasteboardItem.preferredRepresentation)]
         
         let dataSource = RSTFetchedResultsTableViewPrefetchingDataSource<PasteboardItem, UIImage>(fetchRequest: fetchRequest, managedObjectContext: DatabaseManager.shared.persistentContainer.viewContext)
         dataSource.cellConfigurationHandler = { (cell, item, indexPath) in
@@ -66,22 +66,28 @@ private extension HistoryViewController
                 cell.dateLabel.text = self.dateComponentsFormatter.string(from: item.date, to: Date())
             }
             
-            if let _ = item.representations.first(where: { UTTypeConformsTo($0.uti as CFString, kUTTypeImage) })
+            if let representation = item.preferredRepresentation
             {
-                cell.titleLabel.text = NSLocalizedString("Image", comment: "")
-                cell.contentLabel.isHidden = true
-                cell.contentImageView.isHidden = false
-                cell.contentImageView.isIndicatingActivity = true
-            }
-            else if let representation = item.representations.first(where: { UTTypeConformsTo($0.uti as CFString, kUTTypePlainText) })
-            {
-                cell.titleLabel.text = NSLocalizedString("Text", comment: "")
-                cell.contentLabel.text = representation.stringValue
-            }
-            else if let representation = item.representations.first(where: { UTTypeConformsTo($0.uti as CFString, kUTTypeURL) })
-            {
-                cell.titleLabel.text = NSLocalizedString("URL", comment: "")
-                cell.contentLabel.text = representation.urlValue?.absoluteString
+                switch representation.type
+                {
+                case .text:
+                    cell.titleLabel.text = NSLocalizedString("Text", comment: "")
+                    cell.contentLabel.text = representation.stringValue
+                    
+                case .attributedText:
+                    cell.titleLabel.text = NSLocalizedString("Text", comment: "")
+                    cell.contentLabel.text = representation.attributedStringValue?.string
+                    
+                case .url:
+                    cell.titleLabel.text = NSLocalizedString("URL", comment: "")
+                    cell.contentLabel.text = representation.urlValue?.absoluteString
+                    
+                case .image:
+                    cell.titleLabel.text = NSLocalizedString("Image", comment: "")
+                    cell.contentLabel.isHidden = true
+                    cell.contentImageView.isHidden = false
+                    cell.contentImageView.isIndicatingActivity = true
+                }
             }
             else
             {
@@ -91,10 +97,10 @@ private extension HistoryViewController
         }
         
         dataSource.prefetchHandler = { (item, indexPath, completionHandler) in
-            guard let representation = item.representations.first(where: { UTTypeConformsTo($0.uti as CFString, kUTTypeImage) }) else { return nil }
+            guard let representation = item.preferredRepresentation, representation.type == .image else { return nil }
             
             return RSTBlockOperation() { (operation) in
-                guard let image = representation.imageValue?.resizing(toFill: CGSize(width: 300, height: 300)) else { return completionHandler(nil, nil) }
+                guard let image = representation.imageValue?.resizing(toFill: CGSize(width: 500, height: 500)) else { return completionHandler(nil, nil) }
                 completionHandler(image, nil)
             }
         }
@@ -139,7 +145,7 @@ extension HistoryViewController
         let portraitScreenHeight = UIScreen.main.coordinateSpace.convert(UIScreen.main.bounds, to: UIScreen.main.fixedCoordinateSpace).height
         let maximumHeight: CGFloat
         
-        if let _ = item.representations.first(where: { UTTypeConformsTo($0.uti as CFString, kUTTypeImage) })
+        if item.preferredRepresentation?.type == .image
         {
             maximumHeight = portraitScreenHeight / 2
         }

@@ -7,6 +7,20 @@
 //
 
 import CoreData
+import MobileCoreServices
+
+private extension PasteboardItemRepresentation.RepresentationType
+{
+    var priority: Int {
+        switch self
+        {
+        case .attributedText: return 0
+        case .text: return 1
+        case .url: return 2
+        case .image: return 3
+        }
+    }
+}
 
 @objc(PasteboardItem)
 public class PasteboardItem: NSManagedObject
@@ -20,6 +34,8 @@ public class PasteboardItem: NSManagedObject
     }
     @NSManaged @objc(representations) private var _representations: NSOrderedSet
     
+    @NSManaged public var preferredRepresentation: PasteboardItemRepresentation?
+    
     private override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?)
     {
         super.init(entity: entity, insertInto: context)
@@ -32,6 +48,15 @@ public class PasteboardItem: NSManagedObject
         super.init(entity: PasteboardItem.entity(), insertInto: context)
         
         self._representations = NSOrderedSet(array: representations)
+        
+        let prioritizedRepresentationTypes = PasteboardItemRepresentation.RepresentationType.allCases.sorted { $0.priority > $1.priority }
+        for type in prioritizedRepresentationTypes
+        {
+            guard let representation = representations.first(where: { $0.type == type }) else { continue }
+            
+            self.preferredRepresentation = representation
+            break
+        }
     }
     
     override public func awakeFromInsert()

@@ -55,6 +55,8 @@ private extension PasteboardListener
     
     @objc func poll()
     {
+        print(UIPasteboard.general.changeCount)
+        
         guard case let changeCount = UIPasteboard.general.changeCount, changeCount != self.previousChangeCount else { return }
         
         self.previousChangeCount = changeCount
@@ -67,34 +69,31 @@ private extension PasteboardListener
         
         print("Did update pasteboard!")
         
-        let content = UNMutableNotificationContent()
-        content.title = "Clipboard Saved"
-        content.body = UIPasteboard.general.string ?? "Unknown Type"
+        guard let itemProvider = UIPasteboard.general.itemProviders.first else { return }
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-        
-        let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                print(error)
-            }
-        }
-        
-        DatabaseManager.shared.persistentContainer.performBackgroundTask { (context) in
-            let pasteboardItems = UIPasteboard.general.items.compactMap { (representations) -> PasteboardItem? in
-                let representations = representations.compactMap { PasteboardItemRepresentation(uti: $0, value: $1, context: context) }
-                
-                let pasteboardItem = PasteboardItem(representations: representations, context: context)
-                return pasteboardItem
-            }
-            
-            print(pasteboardItems)
+        let context = DatabaseManager.shared.persistentContainer.newBackgroundContext()
+        PasteboardItemRepresentation.representations(for: itemProvider, in: context) { (representations) in
+            guard let pasteboardItem = PasteboardItem(representations: representations, context: context) else { return }
+            print(pasteboardItem)
             
             context.transactionAuthor = "com.rileytestut.ClipboardManager.PasteboardListener"
             do { try context.save() } catch { print("Error saving pasteboard data.", error) }
             
             let center = CFNotificationCenterGetDarwinNotifyCenter()
             CFNotificationCenterPostNotification(center, PasteboardListener.didChangePasteboardNotification, nil, nil, true)
+            
+            let content = UNMutableNotificationContent()
+            content.title = NSLocalizedString("Clipboard Saved", comment: "")
+            content.body = pasteboardItem.preferredRepresentation?.stringValue ?? pasteboardItem.preferredRepresentation?.attributedStringValue?.string ?? pasteboardItem.preferredRepresentation?.urlValue?.absoluteString ?? ""
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { (error) in
+                if let error = error {
+                    print(error)
+                }
+            }
         }
     }
 }
