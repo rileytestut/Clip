@@ -23,6 +23,8 @@ class HistoryViewController: UITableViewController
     
     private let _undoManager = UndoManager()
     
+    private var updateTimer: Timer?
+    
     private lazy var dateComponentsFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
@@ -51,6 +53,9 @@ class HistoryViewController: UITableViewController
         DatabaseManager.shared.persistentContainer.viewContext.undoManager = self.undoManager
         
         NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        self.startUpdating()
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -119,19 +124,12 @@ private extension HistoryViewController
         fetchRequest.relationshipKeyPathsForPrefetching = [#keyPath(PasteboardItem.preferredRepresentation)]
         
         let dataSource = RSTFetchedResultsTableViewPrefetchingDataSource<PasteboardItem, UIImage>(fetchRequest: fetchRequest, managedObjectContext: DatabaseManager.shared.persistentContainer.viewContext)
-        dataSource.cellConfigurationHandler = { (cell, item, indexPath) in
+        dataSource.cellConfigurationHandler = { [weak self] (cell, item, indexPath) in
             let cell = cell as! ClippingTableViewCell
             cell.contentLabel.isHidden = false
             cell.contentImageView.isHidden = true
             
-            if Date().timeIntervalSince(item.date) < 5
-            {
-                cell.dateLabel.text = NSLocalizedString("now", comment: "")
-            }
-            else
-            {
-                cell.dateLabel.text = self.dateComponentsFormatter.string(from: item.date, to: Date())
-            }
+            self?.updateDate(for: cell, item: item)
             
             if let representation = item.preferredRepresentation
             {
@@ -192,6 +190,18 @@ private extension HistoryViewController
         return dataSource
     }
     
+    func updateDate(for cell: ClippingTableViewCell, item: PasteboardItem)
+    {
+        if Date().timeIntervalSince(item.date) < 2
+        {
+            cell.dateLabel.text = NSLocalizedString("now", comment: "")
+        }
+        else
+        {
+            cell.dateLabel.text = self.dateComponentsFormatter.string(from: item.date, to: Date())
+        }
+    }
+    
     func showMenu(at indexPath: IndexPath)
     {
         guard let cell = self.tableView.cellForRow(at: indexPath) as? ClippingTableViewCell else { return }
@@ -205,6 +215,27 @@ private extension HistoryViewController
         
         UIMenuController.shared.setTargetRect(targetRect, in: cell)
         UIMenuController.shared.setMenuVisible(true, animated: true)
+    }
+    
+    func startUpdating()
+    {
+        self.updateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
+            guard let self = self else { return }
+            
+            for indexPath in self.tableView.indexPathsForVisibleRows ?? []
+            {
+                guard let cell = self.tableView.cellForRow(at: indexPath) as? ClippingTableViewCell else { continue }
+                
+                let item = self.dataSource.item(at: indexPath)
+                self.updateDate(for: cell, item: item)
+            }
+        }
+    }
+    
+    func stopUpdating()
+    {
+        self.updateTimer?.invalidate()
+        self.updateTimer = nil
     }
 }
 
@@ -226,6 +257,13 @@ private extension HistoryViewController
         }
         
         self.undoManager?.removeAllActions()
+        
+        self.stopUpdating()
+    }
+    
+    @objc func willEnterForeground(_ notification: Notification)
+    {
+        self.startUpdating()
     }
 }
 
