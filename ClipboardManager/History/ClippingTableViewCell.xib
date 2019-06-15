@@ -80,6 +80,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.26735941320000001" green="0.19444333650000001" blue="0.14629795200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
+                <outlet property="bottomConstraint" destination="LRr-HV-NWu" id="biA-rf-uaC"/>
                 <outlet property="clippingView" destination="3fg-c6-MSF" id="NJy-JL-YgY"/>
                 <outlet property="contentImageView" destination="A9I-Tq-Vqw" id="9Tg-3N-7pg"/>
                 <outlet property="contentLabel" destination="4Ic-XD-ZD7" id="woG-Jk-cKt"/>

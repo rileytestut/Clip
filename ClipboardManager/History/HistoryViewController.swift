@@ -14,16 +14,17 @@ import Roxas
 
 class HistoryViewController: UITableViewController
 {
-    private lazy var dataSource = self.makeDataSource()
+    private var dataSource: RSTFetchedResultsTableViewPrefetchingDataSource<PasteboardItem, UIImage>!
+    
+    private let _undoManager = UndoManager()
     
     private var prototypeCell: ClippingTableViewCell!
     private var cachedHeights = [NSManagedObjectID: CGFloat]()
     
     private weak var selectedItem: PasteboardItem?
     
-    private let _undoManager = UndoManager()
-    
     private var updateTimer: Timer?
+    private var fetchLimitSettingObservation: NSKeyValueObservation?
     
     private lazy var dateComponentsFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
@@ -41,8 +42,7 @@ class HistoryViewController: UITableViewController
     {
         super.viewDidLoad()
         
-        self.tableView.dataSource = self.dataSource
-        self.tableView.prefetchDataSource = self.dataSource
+        self.updateDataSource()
         
         self.tableView.contentInset.top = 8
         self.tableView.estimatedRowHeight = 0
@@ -54,6 +54,10 @@ class HistoryViewController: UITableViewController
         
         NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        self.fetchLimitSettingObservation = UserDefaults.standard.observe(\.historyLimit) { [weak self] (defaults, change) in
+            self?.updateDataSource()
+        }
         
         self.startUpdating()
     }
@@ -117,9 +121,7 @@ private extension HistoryViewController
 {
     func makeDataSource() -> RSTFetchedResultsTableViewPrefetchingDataSource<PasteboardItem, UIImage>
     {
-        let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>
-        fetchRequest.predicate = NSPredicate(format: "%K == NO", #keyPath(PasteboardItem.isMarkedForDeletion))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \PasteboardItem.date, ascending: false)]
+        let fetchRequest = PasteboardItem.historyFetchRequest()
         fetchRequest.returnsObjectsAsFaults = false
         fetchRequest.relationshipKeyPathsForPrefetching = [#keyPath(PasteboardItem.preferredRepresentation)]
         
@@ -159,6 +161,16 @@ private extension HistoryViewController
                 cell.titleLabel.text = NSLocalizedString("Unknown", comment: "")
                 cell.contentLabel.isHidden = true
             }
+            
+            if indexPath.row < UserDefaults.standard.historyLimit.rawValue
+            {
+                cell.bottomConstraint.priority = .required
+            }
+            else
+            {
+                // Make it not required so we can collapse the cell to a height of 0 without auto layout errors.
+                cell.bottomConstraint.priority = UILayoutPriority(999)
+            }
         }
         
         dataSource.prefetchHandler = { (item, indexPath, completionHandler) in
@@ -190,6 +202,18 @@ private extension HistoryViewController
         return dataSource
     }
     
+    func updateDataSource()
+    {
+        self.stopUpdating()
+        
+        self.dataSource = self.makeDataSource()
+        self.tableView.dataSource = self.dataSource
+        self.tableView.prefetchDataSource = self.dataSource
+        self.tableView.reloadData()
+        
+        self.startUpdating()
+    }
+    
     func updateDate(for cell: ClippingTableViewCell, item: PasteboardItem)
     {
         if Date().timeIntervalSince(item.date) < 2
@@ -219,6 +243,8 @@ private extension HistoryViewController
     
     func startUpdating()
     {
+        self.stopUpdating()
+        
         self.updateTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] (timer) in
             guard let self = self else { return }
             
@@ -265,12 +291,20 @@ private extension HistoryViewController
     {
         self.startUpdating()
     }
+    
+    @IBAction func unwindToHistoryViewController(_ segue: UIStoryboardSegue)
+    {
+    }
 }
 
 extension HistoryViewController
 {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
+        // It's far *far* easier to simply set row height to 0 for cells beyond history limit
+        // than to actually limit fetched results to the correct number live (with insertions and deletions).
+        guard indexPath.row < UserDefaults.standard.historyLimit.rawValue else { return 0.0 }
+        
         let item = self.dataSource.item(at: indexPath)
         
         if let height = self.cachedHeights[item.objectID]
@@ -307,4 +341,3 @@ extension HistoryViewController
         self.showMenu(at: indexPath)
     }
 }
-

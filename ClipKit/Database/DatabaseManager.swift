@@ -120,15 +120,29 @@ public class DatabaseManager
                 catch { print("Failed to delete persistent distory.", error) }
             }
             
-            let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>
-            fetchRequest.predicate = NSPredicate(format: "%K == YES", #keyPath(PasteboardItem.isMarkedForDeletion))
-            
             do
             {
-                let deletedPasteboardItems = try context.fetch(fetchRequest)
-                deletedPasteboardItems.forEach { context.delete($0) }
+                let fetchRequest = PasteboardItem.historyFetchRequest() as! NSFetchRequest<NSManagedObjectID>
+                fetchRequest.resultType = .managedObjectIDResultType
                 
-                try context.save()
+                let objectIDs = try context.fetch(fetchRequest)
+                
+                let deletionFetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<NSFetchRequestResult>
+                deletionFetchRequest.predicate = NSPredicate(format: "NOT (SELF IN %@)", objectIDs)
+                
+                let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: deletionFetchRequest)
+                batchDeleteRequest.resultType = .resultTypeObjectIDs
+                
+                guard
+                    let result = try context.execute(batchDeleteRequest) as? NSBatchDeleteResult,
+                    let deletedObjectIDs = result.result as? [NSManagedObjectID]
+                else { return }
+                
+                let changes = [NSDeletedObjectsKey: deletedObjectIDs]
+                
+                DispatchQueue.main.async {
+                    NSManagedObjectContext.mergeChanges(fromRemoteContextSave: changes, into: [DatabaseManager.shared.persistentContainer.viewContext])
+                }
             }
             catch
             {

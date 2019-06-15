@@ -18,6 +18,8 @@ class ClippingTableViewCell: UITableViewCell
     @IBOutlet var contentLabel: UILabel!
     @IBOutlet var contentImageView: UIImageView!
     
+    @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()

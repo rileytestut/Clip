@@ -27,6 +27,8 @@ public class PasteboardListener: NSObject, NSExtensionRequestHandling
     {
         print("Beginning Request...")
         
+        UserDefaults.standard.registerAppDefaults()
+        
         DatabaseManager.shared.persistentContainer.shouldAddStoresAsynchronously = true
         DatabaseManager.shared.prepare { (result) in
             switch result
