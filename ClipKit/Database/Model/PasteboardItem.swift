@@ -27,6 +27,7 @@ public class PasteboardItem: NSManagedObject
 {
     /* Properties */
     @NSManaged public private(set) var date: Date
+    @NSManaged public var isMarkedForDeletion: Bool
     
     /* Relationships */
     @nonobjc public var representations: [PasteboardItemRepresentation] {

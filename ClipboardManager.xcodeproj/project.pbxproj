@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF0BDE5122B4414A00E1419D /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0BDE5022B4414A00E1419D /* UTI.swift */; };
 		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
 		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF0BDE5022B4414A00E1419D /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
 		BF1D5C6E22B029DB0062F474 /* Roxas.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Roxas.xcodeproj; path = Dependencies/Roxas/Roxas.xcodeproj; sourceTree = "<group>"; };
 		BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardMonitor.swift; sourceTree = "<group>"; };
 		BF1D5D4422B0867C0062F474 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				BFC9E65222B1A22700974663 /* ClipKit.h */,
+				BF0BDE5022B4414A00E1419D /* UTI.swift */,
 				BFC9E67022B1DE0A00974663 /* Database */,
 				BFC9E67322B2C6C500974663 /* Extensions */,
 				BFC9E65322B1A22700974663 /* Info.plist */,
@@ -547,6 +550,7 @@
 				BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */,
 				BFC9E66222B1B03900974663 /* DatabaseManager.swift in Sources */,
 				BFC9E67722B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift in Sources */,
+				BF0BDE5122B4414A00E1419D /* UTI.swift in Sources */,
 				BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */,
 				BFC9E66522B1B04000974663 /* Model.xcdatamodeld in Sources */,
 				BFC9E67222B2C4C500974663 /* Result+Conveniences.swift in Sources */,

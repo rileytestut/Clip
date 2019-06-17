@@ -65,6 +65,7 @@ private extension PasteboardListener
         print("Did update pasteboard!")
         
         guard let itemProvider = UIPasteboard.general.itemProviders.first else { return }
+        guard !itemProvider.registeredTypeIdentifiers.contains(UTI.clipping) else { return } // Ignore copies that we made from the app.
         
         let context = DatabaseManager.shared.persistentContainer.newBackgroundContext()
         PasteboardItemRepresentation.representations(for: itemProvider, in: context) { (representations) in

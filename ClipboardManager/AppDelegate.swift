@@ -49,6 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Audio extension hack to access pasteboard doesn't work in simulator, so for testing just start background task.
         RSTBeginBackgroundTask("com.rileytestut.ClipboardManager.simulatorBackgroundTask")
         #endif
+        
+        DatabaseManager.shared.purge()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication)

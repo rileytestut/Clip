@@ -61,9 +61,11 @@ public class DatabaseManager
     {
         self.persistentContainer.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         
-        self.persistentContainer.loadPersistentStores { (description, error) in
+        self.persistentContainer.loadPersistentStores { (description, error) in            
             let result = Result(description, error).map { _ in () }
             completionHandler(result)
+            
+            self.purge()
         }
     }
     
@@ -80,6 +82,10 @@ public class DatabaseManager
                 else { return }
                 
                 DispatchQueue.main.async {
+                    
+                    self.persistentContainer.viewContext.undoManager?.disableUndoRegistration()
+                    defer { self.persistentContainer.viewContext.undoManager?.enableUndoRegistration() }
+                    
                     for transaction in transactions
                     {
                         self.persistentContainer.viewContext.mergeChanges(fromContextDidSave: transaction.objectIDNotification())
@@ -88,7 +94,6 @@ public class DatabaseManager
                     if let token = transactions.last?.token
                     {
                         self.previousHistoryToken = token
-                        self.purgeHistory(before: token)
                     }
                 }
             }
@@ -102,19 +107,33 @@ public class DatabaseManager
                 print("Failed to fetch change history.", error)
             }
         }
-        
     }
-}
-
-private extension DatabaseManager
-{
-    func purgeHistory(before token: NSPersistentHistoryToken)
+    
+    public func purge()
     {
         DatabaseManager.shared.persistentContainer.performBackgroundTask { (context) in
-            let deleteHistoryRequest = NSPersistentHistoryChangeRequest.deleteHistory(before: token)
+            if let token = self.previousHistoryToken
+            {
+                let deleteHistoryRequest = NSPersistentHistoryChangeRequest.deleteHistory(before: token)
+                
+                do { try context.execute(deleteHistoryRequest) }
+                catch { print("Failed to delete persistent distory.", error) }
+            }
             
-            do { try context.execute(deleteHistoryRequest) }
-            catch { print("Failed to delete persistent distory.", error) }
+            let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>
+            fetchRequest.predicate = NSPredicate(format: "%K == YES", #keyPath(PasteboardItem.isMarkedForDeletion))
+            
+            do
+            {
+                let deletedPasteboardItems = try context.fetch(fetchRequest)
+                deletedPasteboardItems.forEach { context.delete($0) }
+                
+                try context.save()
+            }
+            catch
+            {
+                print("Failed to delete pasteboard items.", error)
+            }
         }
     }
 }

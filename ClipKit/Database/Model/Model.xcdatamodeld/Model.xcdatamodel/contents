@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F203" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="PasteboardItem" representedClassName="PasteboardItem" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isMarkedForDeletion" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="preferredRepresentation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItemRepresentation" inverseName="preferringItem" inverseEntity="PasteboardItemRepresentation" syncable="YES"/>
         <relationship name="representations" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PasteboardItemRepresentation" inverseName="item" inverseEntity="PasteboardItemRepresentation" syncable="YES"/>
     </entity>
@@ -15,7 +16,7 @@
         <relationship name="preferringItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItem" inverseName="preferredRepresentation" inverseEntity="PasteboardItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PasteboardItem" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="PasteboardItem" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="PasteboardItemRepresentation" positionX="-54" positionY="-9" width="128" height="150"/>
     </elements>
 </model>
