@@ -55,7 +55,7 @@ class HistoryViewController: UITableViewController
         NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
         
-        self.fetchLimitSettingObservation = UserDefaults.standard.observe(\.historyLimit) { [weak self] (defaults, change) in
+        self.fetchLimitSettingObservation = UserDefaults.shared.observe(\.historyLimit) { [weak self] (defaults, change) in
             self?.updateDataSource()
         }
         
@@ -162,7 +162,7 @@ private extension HistoryViewController
                 cell.contentLabel.isHidden = true
             }
             
-            if indexPath.row < UserDefaults.standard.historyLimit.rawValue
+            if indexPath.row < UserDefaults.shared.historyLimit.rawValue
             {
                 cell.bottomConstraint.priority = .required
             }
@@ -303,7 +303,7 @@ extension HistoryViewController
     {
         // It's far *far* easier to simply set row height to 0 for cells beyond history limit
         // than to actually limit fetched results to the correct number live (with insertions and deletions).
-        guard indexPath.row < UserDefaults.standard.historyLimit.rawValue else { return 0.0 }
+        guard indexPath.row < UserDefaults.shared.historyLimit.rawValue else { return 0.0 }
         
         let item = self.dataSource.item(at: indexPath)
         

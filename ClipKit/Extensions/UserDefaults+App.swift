@@ -17,14 +17,18 @@ import Foundation
 }
 
 public extension UserDefaults
-{    
+{
+    static let shared = UserDefaults(suiteName: "group.com.rileytestut.ClipboardManager")!
+    
     @NSManaged var historyLimit: HistoryLimit
+    @NSManaged var maximumClippingSize: Int
 }
 
 public extension UserDefaults
 {
     func registerAppDefaults()
     {
-        self.register(defaults: [#keyPath(UserDefaults.historyLimit): HistoryLimit._25.rawValue])
+        self.register(defaults: [#keyPath(UserDefaults.historyLimit): HistoryLimit._25.rawValue,
+                                 #keyPath(UserDefaults.maximumClippingSize): 10 * .bytesPerMegabyte])
     }
 }

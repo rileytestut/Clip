@@ -38,15 +38,15 @@ public class DatabaseManager
     private var previousHistoryToken: NSPersistentHistoryToken? {
         set {
             guard let value = newValue else {
-                UserDefaults.standard.previousHistoryToken = nil
+                UserDefaults.shared.previousHistoryToken = nil
                 return
             }
             
             let data = try? NSKeyedArchiver.archivedData(withRootObject: value, requiringSecureCoding: true)
-            UserDefaults.standard.previousHistoryToken = data
+            UserDefaults.shared.previousHistoryToken = data
         }
         get {
-            guard let data = UserDefaults.standard.previousHistoryToken else { return nil }
+            guard let data = UserDefaults.shared.previousHistoryToken else { return nil }
             
             let token = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSPersistentHistoryToken.self, from: data)
             return token

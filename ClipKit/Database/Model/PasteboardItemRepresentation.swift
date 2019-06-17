@@ -123,6 +123,8 @@ public class PasteboardItemRepresentation: NSManagedObject
                     {
                     case .failure(let error): print(error)
                     case .success(let data):
+                        guard data.count <= UserDefaults.shared.maximumClippingSize else { break }
+                        
                         let representation = PasteboardItemRepresentation(uti: uti as String, data: data, type: .image, context: context)
                         representations.append(representation)
                     }

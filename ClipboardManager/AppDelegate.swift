@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(RoxasVersionNumber)
         
-        UserDefaults.standard.registerAppDefaults()
+        UserDefaults.shared.registerAppDefaults()
         
         func printError<T>(from result: Result<T, Error>, title: String)
         {

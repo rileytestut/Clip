@@ -80,7 +80,7 @@ public extension PasteboardItem
         let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>
         fetchRequest.predicate = NSPredicate(format: "%K == NO", #keyPath(PasteboardItem.isMarkedForDeletion))
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \PasteboardItem.date, ascending: false)]
-        fetchRequest.fetchLimit = UserDefaults.standard.historyLimit.rawValue
+        fetchRequest.fetchLimit = UserDefaults.shared.historyLimit.rawValue
         return fetchRequest
     }
 }
