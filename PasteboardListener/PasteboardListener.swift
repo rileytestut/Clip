@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import CoreAudioKit
+import CoreData
 
 import ClipKit
 
@@ -73,6 +74,30 @@ private extension PasteboardListener
         PasteboardItemRepresentation.representations(for: itemProvider, in: context) { (representations) in
             guard let pasteboardItem = PasteboardItem(representations: representations, context: context) else { return }
             print(pasteboardItem)
+            
+            do
+            {
+                let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>
+                fetchRequest.predicate = NSPredicate(format: "%K == NO", #keyPath(PasteboardItem.isMarkedForDeletion))
+                fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \PasteboardItem.date, ascending: false)]
+                fetchRequest.relationshipKeyPathsForPrefetching = ["representations"]
+                fetchRequest.includesPendingChanges = false
+                fetchRequest.fetchLimit = 1
+                
+                if let previousItem = try context.fetch(fetchRequest).first
+                {
+                    let representations = pasteboardItem.representations.reduce(into: [:], { ($0[$1.type] = $1.value as? NSObject) })
+                    let previousRepresentations = previousItem.representations.reduce(into: [:], { ($0[$1.type] = $1.value as? NSObject) })
+                    
+                    guard representations != previousRepresentations else {
+                        return
+                    }
+                }
+            }
+            catch
+            {
+                print("Failed to fetch previous pasteboard item.", error)
+            }
             
             context.transactionAuthor = "com.rileytestut.ClipboardManager.PasteboardListener"
             do { try context.save() } catch { print("Error saving pasteboard data.", error) }
