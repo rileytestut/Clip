@@ -164,12 +164,12 @@ private extension HistoryViewController
             
             if indexPath.row < UserDefaults.shared.historyLimit.rawValue
             {
-                cell.bottomConstraint.priority = .required
+                cell.bottomConstraint.isActive = true
             }
             else
             {
-                // Make it not required so we can collapse the cell to a height of 0 without auto layout errors.
-                cell.bottomConstraint.priority = UILayoutPriority(999)
+                // Make it not active so we can collapse the cell to a height of 0 without auto layout errors.
+                cell.bottomConstraint.isActive = false
             }
         }
         
