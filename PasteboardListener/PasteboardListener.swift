@@ -16,8 +16,12 @@ import ClipKit
 @objc(CLIPPasteboardListener)
 public class PasteboardListener: NSObject, NSExtensionRequestHandling
 {
+    static let shared = PasteboardListener()
+    
     private var pollingTimer: Timer?
     private var previousChangeCount: Int?
+    
+    var isListening = false
     
     deinit
     {
@@ -26,6 +30,10 @@ public class PasteboardListener: NSObject, NSExtensionRequestHandling
     
     public func beginRequest(with context: NSExtensionContext)
     {
+        guard self === PasteboardListener.shared else {
+            return PasteboardListener.shared.beginRequest(with: context)
+        }
+        
         print("Beginning Request...")
         
         UserDefaults.shared.registerAppDefaults()
@@ -45,6 +53,10 @@ private extension PasteboardListener
 {
     func start()
     {
+        guard !self.isListening else { return }
+        
+        self.isListening = true
+        
         DispatchQueue.main.async {
             self.previousChangeCount = UIPasteboard.general.changeCount
             self.pollingTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(PasteboardListener.poll), userInfo: nil, repeats: true)
