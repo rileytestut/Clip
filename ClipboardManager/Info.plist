@@ -60,5 +60,9 @@
 			<string>com.rileytestut.ClipboardManager.Clipping</string>
 		</dict>
 	</array>
+	<key>ALTAppGroups</key>
+	<array>
+		<string>group.com.rileytestut.ClipboardManager</string>
+	</array>
 </dict>
 </plist>

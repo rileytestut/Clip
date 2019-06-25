@@ -18,7 +18,7 @@ import Foundation
 
 public extension UserDefaults
 {
-    static let shared = UserDefaults(suiteName: "group.com.rileytestut.ClipboardManager")!
+    static let shared = UserDefaults(suiteName: Bundle.main.appGroups[0])!
     
     @NSManaged var historyLimit: HistoryLimit
     @NSManaged var maximumClippingSize: Int

@@ -55,5 +55,9 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.AudioUnit</string>
 	</dict>
+	<key>ALTAppGroups</key>
+	<array>
+		<string>group.com.rileytestut.ClipboardManager</string>
+	</array>
 </dict>
 </plist>
