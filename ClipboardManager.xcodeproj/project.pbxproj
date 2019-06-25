@@ -14,6 +14,7 @@
 		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
 		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
+		BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */; };
 		BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9EE022B81C980042C873 /* Int+Bytes.swift */; };
 		BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */; };
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
@@ -126,6 +127,7 @@
 		BF1D5D4622B0869C0062F474 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItemRepresentation.swift; sourceTree = "<group>"; };
 		BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItem.swift; sourceTree = "<group>"; };
+		BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Vibration.swift"; sourceTree = "<group>"; };
 		BF7B9EE022B81C980042C873 /* Int+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bytes.swift"; sourceTree = "<group>"; };
 		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				BF0BDE5522B456A600E1419D /* PasteboardItem+ActivityItemSource.swift */,
+				BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 			files = (
 				BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */,
 				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
+				BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
 				BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */,
 				BF0BDE5622B456A600E1419D /* PasteboardItem+ActivityItemSource.swift in Sources */,

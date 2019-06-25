@@ -80,6 +80,6 @@ private extension PasteboardMonitor
     {
         DatabaseManager.shared.refresh()
         
-        self.feedbackGenerator.notificationOccurred(.success)
+        UIDevice.current.vibrate()
     }
 }
