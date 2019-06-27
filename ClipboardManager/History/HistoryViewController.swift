@@ -38,6 +38,10 @@ class HistoryViewController: UITableViewController
         return _undoManager
     }
     
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -76,9 +80,11 @@ class HistoryViewController: UITableViewController
         self.resignFirstResponder()
     }
     
-    override var canBecomeFirstResponder: Bool
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
     {
-        return true
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        self.cachedHeights.removeAll()
     }
 }
 
