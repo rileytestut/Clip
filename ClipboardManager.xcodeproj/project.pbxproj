@@ -17,6 +17,7 @@
 		BF50E7D922C2BF010070E17B /* Bundle+AppGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */; };
 		BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */; };
 		BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9EE022B81C980042C873 /* Int+Bytes.swift */; };
+		BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */; };
 		BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */; };
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
 		BFAC49E022B40EC90011E7C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */; };
@@ -131,6 +132,7 @@
 		BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppGroups.swift"; sourceTree = "<group>"; };
 		BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Vibration.swift"; sourceTree = "<group>"; };
 		BF7B9EE022B81C980042C873 /* Int+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bytes.swift"; sourceTree = "<group>"; };
+		BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMonitor.swift; sourceTree = "<group>"; };
 		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
 		BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -296,6 +298,7 @@
 			children = (
 				BFC9E62C22B18D5900974663 /* ClipboardManager.entitlements */,
 				BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */,
+				BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */,
 				BFC1F3A022AF0D0E003AC21A /* Main.storyboard */,
 				BFAC49D722B2EF170011E7C4 /* History */,
 				BF0BDE6622B4871400E1419D /* Settings */,
@@ -561,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */,
+				BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */,
 				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
 				BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,

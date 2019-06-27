@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
         }
         
+        ApplicationMonitor.shared.start()
+        
         return true
     }
 
