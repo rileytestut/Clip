@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         DatabaseManager.shared.prepare() { printError(from: $0, title: "Database Error:") }
-        PasteboardMonitor.shared.start() { printError(from: $0, title: "PasteboardMonitor Error:") }
         
+        UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
         }
         
@@ -68,5 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate
+{
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
     }
 }

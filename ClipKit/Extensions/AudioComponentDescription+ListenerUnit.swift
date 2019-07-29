@@ -16,3 +16,17 @@ public extension AudioComponentDescription
                                                         componentFlags: 0,
                                                         componentFlagsMask: 0)
 }
+
+// Conforming types we don't own to protocols we also don't own, always a Good Idea™️.
+extension AudioComponentDescription: Equatable
+{
+    public static func == (lhs: AudioComponentDescription, rhs: AudioComponentDescription) -> Bool
+    {
+        return
+            lhs.componentType == rhs.componentType &&
+            lhs.componentSubType == rhs.componentSubType &&
+            lhs.componentManufacturer == rhs.componentManufacturer &&
+            lhs.componentFlags == rhs.componentFlags &&
+            lhs.componentFlagsMask == rhs.componentFlagsMask
+    }
+}
