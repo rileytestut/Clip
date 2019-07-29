@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ClipboardManager
+//  Clip
 //
 //  Created by Riley Testut on 6/10/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         #if targetEnvironment(simulator)
         // Audio extension hack to access pasteboard doesn't work in simulator, so for testing just start background task.
-        RSTBeginBackgroundTask("com.rileytestut.ClipboardManager.simulatorBackgroundTask")
+        RSTBeginBackgroundTask("com.rileytestut.Clip.simulatorBackgroundTask")
         #endif
         
         DatabaseManager.shared.purge()

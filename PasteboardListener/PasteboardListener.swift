@@ -126,7 +126,7 @@ private extension PasteboardListener
                 print("Failed to fetch previous pasteboard item.", error)
             }
             
-            context.transactionAuthor = "com.rileytestut.ClipboardManager.PasteboardListener"
+            context.transactionAuthor = "com.rileytestut.Clip.PasteboardListener"
             do { try context.save() } catch { print("Error saving pasteboard data.", error) }
             
             let center = CFNotificationCenterGetDarwinNotifyCenter()

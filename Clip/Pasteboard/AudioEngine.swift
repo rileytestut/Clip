@@ -1,6 +1,6 @@
 //
 //  AudioEngine.swift
-//  ClipboardManager
+//  Clip
 //
 //  Created by Riley Testut on 6/12/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.
@@ -35,7 +35,7 @@ class AudioEngine
     private let player: AVAudioPlayerNode
     private let audioFile: AVAudioFile
     
-    private let queue = DispatchQueue(label: "com.rileytestut.ClipboardManager.AudioEngine")
+    private let queue = DispatchQueue(label: "com.rileytestut.Clip.AudioEngine")
     
     private var audioUnitExtension: AVAudioUnit?
         

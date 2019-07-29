@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.rileytestut.ClipboardManager</string>
+		<string>group.com.rileytestut.Clip</string>
 	</array>
 	<key>inter-app-audio</key>
 	<true/>

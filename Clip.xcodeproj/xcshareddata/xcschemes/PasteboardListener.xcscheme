@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1020"
+   wasCreatedForAppExtension = "YES"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +15,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BFC9E63222B18E5700974663"
+               BuildableName = "PasteboardListener.appex"
+               BlueprintName = "PasteboardListener"
+               ReferencedContainer = "container:Clip.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "BFC1F39822AF0D0E003AC21A"
-               BuildableName = "ClipboardManager.app"
-               BlueprintName = "ClipboardManager"
-               ReferencedContainer = "container:ClipboardManager.xcodeproj">
+               BuildableName = "Clip.app"
+               BlueprintName = "Clip"
+               ReferencedContainer = "container:Clip.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +47,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BFC1F39822AF0D0E003AC21A"
-            BuildableName = "ClipboardManager.app"
-            BlueprintName = "ClipboardManager"
-            ReferencedContainer = "container:ClipboardManager.xcodeproj">
+            BlueprintIdentifier = "BFC9E63222B18E5700974663"
+            BuildableName = "PasteboardListener.appex"
+            BlueprintName = "PasteboardListener"
+            ReferencedContainer = "container:Clip.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -49,7 +64,6 @@
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
-      stopOnEveryMainThreadCheckerIssue = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
@@ -57,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BFC1F39822AF0D0E003AC21A"
-            BuildableName = "ClipboardManager.app"
-            BlueprintName = "ClipboardManager"
-            ReferencedContainer = "container:ClipboardManager.xcodeproj">
+            BuildableName = "Clip.app"
+            BlueprintName = "Clip"
+            ReferencedContainer = "container:Clip.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,15 +84,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
+      debugDocumentVersioning = "YES"
+      launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BFC1F39822AF0D0E003AC21A"
-            BuildableName = "ClipboardManager.app"
-            BlueprintName = "ClipboardManager"
-            ReferencedContainer = "container:ClipboardManager.xcodeproj">
+            BuildableName = "Clip.app"
+            BlueprintName = "Clip"
+            ReferencedContainer = "container:Clip.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

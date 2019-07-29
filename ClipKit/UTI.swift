@@ -10,5 +10,5 @@ import Foundation
 
 public struct UTI
 {
-    public static let clipping = "com.rileytestut.ClipboardManager.Clipping"
+    public static let clipping = "com.rileytestut.Clip.Clipping"
 }

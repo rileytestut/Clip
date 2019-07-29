@@ -138,14 +138,14 @@
 		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
 		BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		BFC1F39922AF0D0E003AC21A /* ClipboardManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipboardManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFC1F39922AF0D0E003AC21A /* Clip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		BFC1F3A122AF0D0E003AC21A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFC1F3A622AF0D0F003AC21A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFC1F3A822AF0D0F003AC21A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFC9E62C22B18D5900974663 /* ClipboardManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipboardManager.entitlements; sourceTree = "<group>"; };
+		BFC9E62C22B18D5900974663 /* Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clip.entitlements; sourceTree = "<group>"; };
 		BFC9E63322B18E5700974663 /* PasteboardListener.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PasteboardListener.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC9E63822B18E5700974663 /* PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardListener.swift; sourceTree = "<group>"; };
 		BFC9E63D22B18E5700974663 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 		BFC1F39022AF0D0E003AC21A = {
 			isa = PBXGroup;
 			children = (
-				BFC1F39B22AF0D0E003AC21A /* ClipboardManager */,
+				BFC1F39B22AF0D0E003AC21A /* Clip */,
 				BFC9E65122B1A22700974663 /* ClipKit */,
 				BFC9E63422B18E5700974663 /* PasteboardListener */,
 				BF1D5C6722B029090062F474 /* Dependencies */,
@@ -291,17 +291,17 @@
 		BFC1F39A22AF0D0E003AC21A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BFC1F39922AF0D0E003AC21A /* ClipboardManager.app */,
+				BFC1F39922AF0D0E003AC21A /* Clip.app */,
 				BFC9E63322B18E5700974663 /* PasteboardListener.appex */,
 				BFC9E65022B1A22700974663 /* ClipKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BFC1F39B22AF0D0E003AC21A /* ClipboardManager */ = {
+		BFC1F39B22AF0D0E003AC21A /* Clip */ = {
 			isa = PBXGroup;
 			children = (
-				BFC9E62C22B18D5900974663 /* ClipboardManager.entitlements */,
+				BFC9E62C22B18D5900974663 /* Clip.entitlements */,
 				BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */,
 				BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */,
 				BFC1F3A022AF0D0E003AC21A /* Main.storyboard */,
@@ -313,7 +313,7 @@
 				BF1D5C8122B038030062F474 /* Resources */,
 				BF1D5C8522B038FE0062F474 /* Supporting Files */,
 			);
-			path = ClipboardManager;
+			path = Clip;
 			sourceTree = "<group>";
 		};
 		BFC9E63422B18E5700974663 /* PasteboardListener */ = {
@@ -394,9 +394,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		BFC1F39822AF0D0E003AC21A /* ClipboardManager */ = {
+		BFC1F39822AF0D0E003AC21A /* Clip */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BFC1F3AB22AF0D0F003AC21A /* Build configuration list for PBXNativeTarget "ClipboardManager" */;
+			buildConfigurationList = BFC1F3AB22AF0D0F003AC21A /* Build configuration list for PBXNativeTarget "Clip" */;
 			buildPhases = (
 				BFC1F39522AF0D0E003AC21A /* Sources */,
 				BFC1F39622AF0D0E003AC21A /* Frameworks */,
@@ -411,9 +411,9 @@
 				BFC9E64022B18E5700974663 /* PBXTargetDependency */,
 				BFC9E65622B1A22700974663 /* PBXTargetDependency */,
 			);
-			name = ClipboardManager;
+			name = Clip;
 			productName = ClipboardManager;
-			productReference = BFC1F39922AF0D0E003AC21A /* ClipboardManager.app */;
+			productReference = BFC1F39922AF0D0E003AC21A /* Clip.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BFC9E63222B18E5700974663 /* PasteboardListener */ = {
@@ -493,7 +493,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BFC1F39422AF0D0E003AC21A /* Build configuration list for PBXProject "ClipboardManager" */;
+			buildConfigurationList = BFC1F39422AF0D0E003AC21A /* Build configuration list for PBXProject "Clip" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -512,7 +512,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				BFC1F39822AF0D0E003AC21A /* ClipboardManager */,
+				BFC1F39822AF0D0E003AC21A /* Clip */,
 				BFC9E63222B18E5700974663 /* PasteboardListener */,
 				BFC9E64F22B1A22700974663 /* ClipKit */,
 			);
@@ -781,15 +781,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ClipboardManager/ClipboardManager.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Clip/Clip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
-				INFOPLIST_FILE = ClipboardManager/Info.plist;
+				INFOPLIST_FILE = Clip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.ClipboardManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -803,15 +803,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ClipboardManager/ClipboardManager.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Clip/Clip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
-				INFOPLIST_FILE = ClipboardManager/Info.plist;
+				INFOPLIST_FILE = Clip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.ClipboardManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -830,7 +830,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.ClipboardManager.PasteboardListener;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.PasteboardListener;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -850,7 +850,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.ClipboardManager.PasteboardListener;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.PasteboardListener;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -922,7 +922,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BFC1F39422AF0D0E003AC21A /* Build configuration list for PBXProject "ClipboardManager" */ = {
+		BFC1F39422AF0D0E003AC21A /* Build configuration list for PBXProject "Clip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFC1F3A922AF0D0F003AC21A /* Debug */,
@@ -931,7 +931,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BFC1F3AB22AF0D0F003AC21A /* Build configuration list for PBXNativeTarget "ClipboardManager" */ = {
+		BFC1F3AB22AF0D0F003AC21A /* Build configuration list for PBXNativeTarget "Clip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BFC1F3AC22AF0D0F003AC21A /* Debug */,

@@ -1,6 +1,6 @@
 //
 //  UIColor+Clip.swift
-//  ClipboardManager
+//  Clip
 //
 //  Created by Riley Testut on 7/29/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.

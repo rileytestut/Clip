@@ -1,6 +1,6 @@
 //
 //  PasteboardItem.swift
-//  ClipboardManager
+//  Clip
 //
 //  Created by Riley Testut on 6/11/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.

@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="1889" y="116"/>
         </scene>
-        <!--Clipboard History-->
+        <!--Clip-->
         <scene sceneID="05K-82-Num">
             <objects>
-                <tableViewController id="fd0-Ck-KzX" customClass="HistoryViewController" customModule="ClipboardManager" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="fd0-Ck-KzX" customClass="HistoryViewController" customModule="Clip" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="y1F-1W-Tvt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                             <outlet property="delegate" destination="fd0-Ck-KzX" id="7Z3-Si-ipA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Clipboard History" id="KPM-hY-RHG">
+                    <navigationItem key="navigationItem" title="Clip" id="KPM-hY-RHG">
                         <barButtonItem key="rightBarButtonItem" image="Settings" id="IaP-Ad-9rj">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -57,7 +57,7 @@
         <!--Settings-->
         <scene sceneID="eeF-sn-zd0">
             <objects>
-                <tableViewController id="xUa-Vn-Yd7" customClass="SettingsViewController" customModule="ClipboardManager" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xUa-Vn-Yd7" customClass="SettingsViewController" customModule="Clip" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="1BY-e2-gP7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

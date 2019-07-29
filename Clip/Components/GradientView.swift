@@ -1,6 +1,6 @@
 //
 //  GradientView.swift
-//  ClipboardManager
+//  Clip
 //
 //  Created by Riley Testut on 7/27/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.

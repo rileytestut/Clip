@@ -10,5 +10,5 @@ import CoreFoundation
 
 public extension CFNotificationName
 {
-    static let didChangePasteboard: CFNotificationName = CFNotificationName("com.rileytestut.ClipboardManager.DidChangePasteboard" as CFString)
+    static let didChangePasteboard: CFNotificationName = CFNotificationName("com.rileytestut.Clip.DidChangePasteboard" as CFString)
 }

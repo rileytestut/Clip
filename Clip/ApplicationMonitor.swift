@@ -1,6 +1,6 @@
 //
 //  ApplicationMonitor.swift
-//  ClipboardManager
+//  Clip
 //
 //  Created by Riley Testut on 6/27/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.
@@ -12,7 +12,7 @@ import UserNotifications
 
 private enum UserNotification: String
 {
-    case appStoppedRunning = "com.rileytestut.ClipboardManager.AppStoppedRunning"
+    case appStoppedRunning = "com.rileytestut.Clip.AppStoppedRunning"
 }
 
 class ApplicationMonitor
@@ -128,7 +128,7 @@ private extension ApplicationMonitor
             #endif
             
             // Begin background task to reduce chance of us being terminated while audio session is interrupted.
-            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "com.rileytestut.ClipboardManager.delayTermination") {
+            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "com.rileytestut.Clip.delayTermination") {
                 guard let backgroundTaskID = self.backgroundTaskID else { return }
                 UIApplication.shared.endBackgroundTask(backgroundTaskID)
             }

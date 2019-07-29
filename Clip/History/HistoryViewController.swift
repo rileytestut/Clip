@@ -1,6 +1,6 @@
 //
 //  HistoryViewController.swift
-//  ClipboardManager
+//  Clip
 //
 //  Created by Riley Testut on 6/10/19.
 //  Copyright © 2019 Riley Testut. All rights reserved.
