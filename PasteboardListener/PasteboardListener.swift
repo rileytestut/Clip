@@ -67,9 +67,24 @@ private extension PasteboardListener
     {
         print(UIPasteboard.general.changeCount)
         
-        guard case let changeCount = UIPasteboard.general.changeCount, changeCount != self.previousChangeCount else { return }
+        let changeCount = UIPasteboard.general.changeCount
         
+        guard changeCount != self.previousChangeCount else { return }
         self.previousChangeCount = changeCount
+        
+        guard changeCount != 0 else {
+            #if DEBUG
+            let content = UNMutableNotificationContent()
+            content.title = NSLocalizedString("An Error Occured", comment: "")
+            content.body = NSLocalizedString("UIKit is reporting change count of 0.", comment: "")
+            
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request)
+            #endif
+            
+            return
+        }
+        
         self.pasteboardDidUpdate()
     }
     
