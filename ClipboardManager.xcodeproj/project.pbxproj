@@ -45,6 +45,8 @@
 		BFC9E67722B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67622B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift */; };
 		BFC9E67822B2C7F700974663 /* ListenerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E66E22B1D47100974663 /* ListenerUnit.swift */; };
 		BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */; };
+		BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B1D22EF7B5000F74113 /* GradientView.swift */; };
+		BFDB5B2222EF8E0F00F74113 /* UIColor+Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +160,8 @@
 		BFC9E67422B2C6DA00974663 /* String+OSType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OSType.swift"; sourceTree = "<group>"; };
 		BFC9E67622B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioComponentDescription+ListenerUnit.swift"; sourceTree = "<group>"; };
 		BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CFNotification+PasteboardListener.swift"; sourceTree = "<group>"; };
+		BFDB5B1D22EF7B5000F74113 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Clip.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,7 @@
 			children = (
 				BF0BDE5522B456A600E1419D /* PasteboardItem+ActivityItemSource.swift */,
 				BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */,
+				BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				BFAC49D722B2EF170011E7C4 /* History */,
 				BF0BDE6622B4871400E1419D /* Settings */,
 				BF1D5D4122B083210062F474 /* Pasteboard */,
+				BFDB5B2322EF8F9600F74113 /* Components */,
 				BF0BDE5422B4568A00E1419D /* Extensions */,
 				BF1D5C8122B038030062F474 /* Resources */,
 				BF1D5C8522B038FE0062F474 /* Supporting Files */,
@@ -364,6 +370,14 @@
 				BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BFDB5B2322EF8F9600F74113 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BFDB5B1D22EF7B5000F74113 /* GradientView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -564,7 +578,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */,
+				BFDB5B2222EF8E0F00F74113 /* UIColor+Clip.swift in Sources */,
 				BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */,
+				BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */,
 				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
 				BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,

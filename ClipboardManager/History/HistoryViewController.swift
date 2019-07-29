@@ -19,10 +19,13 @@ class HistoryViewController: UITableViewController
     private let _undoManager = UndoManager()
     
     private var prototypeCell: ClippingTableViewCell!
+    private var navigationBarMaskView: UIView!
+    private var navigationBarGradientView: GradientView!
+    
+    private var didAddInitialLayoutConstraints = false
     private var cachedHeights = [NSManagedObjectID: CGFloat]()
     
     private weak var selectedItem: PasteboardItem?
-    
     private var updateTimer: Timer?
     private var fetchLimitSettingObservation: NSKeyValueObservation?
     
@@ -46,6 +49,10 @@ class HistoryViewController: UITableViewController
     {
         super.viewDidLoad()
         
+        self.extendedLayoutIncludesOpaqueBars = true
+        
+        self.tableView.backgroundView = self.makeGradientView()
+        
         self.updateDataSource()
         
         self.tableView.contentInset.top = 8
@@ -61,6 +68,21 @@ class HistoryViewController: UITableViewController
         
         self.fetchLimitSettingObservation = UserDefaults.shared.observe(\.historyLimit) { [weak self] (defaults, change) in
             self?.updateDataSource()
+        }
+        
+        self.navigationBarGradientView = self.makeGradientView()
+        self.navigationBarGradientView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.navigationBarMaskView = UIView()
+        self.navigationBarMaskView.clipsToBounds = true
+        self.navigationBarMaskView.translatesAutoresizingMaskIntoConstraints = false
+        self.navigationBarMaskView.addSubview(self.navigationBarGradientView)
+        
+        if let navigationBar = self.navigationController?.navigationBar
+        {
+            navigationBar.shadowImage = UIImage()
+            navigationBar.setBackgroundImage(nil, for: .default)
+            navigationBar.insertSubview(self.navigationBarMaskView, at: 1)
         }
         
         self.startUpdating()
@@ -85,6 +107,26 @@ class HistoryViewController: UITableViewController
         super.viewWillTransition(to: size, with: coordinator)
         
         self.cachedHeights.removeAll()
+    }
+    
+    override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+        
+        if let navigationBar = self.navigationController?.navigationBar, !self.didAddInitialLayoutConstraints
+        {
+            self.didAddInitialLayoutConstraints = true
+            
+            NSLayoutConstraint.activate([self.navigationBarGradientView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                                         self.navigationBarGradientView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                                         self.navigationBarGradientView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                                         self.navigationBarGradientView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
+            
+            NSLayoutConstraint.activate([self.navigationBarMaskView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor),
+                                         self.navigationBarMaskView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
+                                         self.navigationBarMaskView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                                         self.navigationBarMaskView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)])
+        }
     }
 }
 
@@ -205,7 +247,27 @@ private extension HistoryViewController
             }
         }
         
+        let placeholderView = RSTPlaceholderView()
+        placeholderView.textLabel.text = NSLocalizedString("No Clippings", comment: "")
+        placeholderView.textLabel.textColor = .white
+        placeholderView.detailTextLabel.text = NSLocalizedString("Items that you've copied to the clipboard will appear here.", comment: "")
+        placeholderView.detailTextLabel.textColor = .white
+        
+        let vibrancyView = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: .dark)))
+        vibrancyView.contentView.addSubview(placeholderView, pinningEdgesWith: .zero)
+        
+        let gradientView = self.makeGradientView()
+        gradientView.addSubview(vibrancyView, pinningEdgesWith: .zero)
+        dataSource.placeholderView = gradientView
+        
         return dataSource
+    }
+    
+    func makeGradientView() -> GradientView
+    {
+        let gradientView = GradientView()
+        gradientView.colors = [.clipLightPink, .clipPink]
+        return gradientView
     }
     
     func updateDataSource()

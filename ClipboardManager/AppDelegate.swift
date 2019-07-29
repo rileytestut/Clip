@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(RoxasVersionNumber)
         
+        self.window?.tintColor = .clipPink
+        
         UserDefaults.shared.registerAppDefaults()
         
         func printError<T>(from result: Result<T, Error>, title: String)
