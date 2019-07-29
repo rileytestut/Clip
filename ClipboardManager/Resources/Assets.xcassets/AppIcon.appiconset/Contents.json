@@ -33,13 +33,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "ClipboardIcon@2x.png",
+      "filename" : "ClipIcon@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "ClipboardIcon@3x.png",
+      "filename" : "ClipIcon@3x.png",
       "scale" : "3x"
     },
     {
