@@ -128,6 +128,24 @@ class HistoryViewController: UITableViewController
                                          self.navigationBarMaskView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)])
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        guard segue.identifier == "showSettings" else { return }
+        guard let sender = sender as? UIBarButtonItem else { return }
+        
+        let maximumWidth = self.view.bounds.width - 20
+        
+        let settingsViewController = segue.destination as! SettingsViewController
+        settingsViewController.view.widthAnchor.constraint(lessThanOrEqualToConstant: maximumWidth).isActive = true
+        
+        settingsViewController.view.layoutIfNeeded()
+        
+        settingsViewController.preferredContentSize = settingsViewController.tableView.contentSize
+        
+        settingsViewController.popoverPresentationController?.delegate = self
+        settingsViewController.popoverPresentationController?.barButtonItem = sender
+    }
 }
 
 extension HistoryViewController
@@ -407,5 +425,13 @@ extension HistoryViewController
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         self.showMenu(at: indexPath)
+    }
+}
+
+extension HistoryViewController: UIPopoverPresentationControllerDelegate
+{
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle
+    {
+        return .none
     }
 }

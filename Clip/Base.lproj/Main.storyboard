@@ -45,7 +45,9 @@
                         <barButtonItem key="rightBarButtonItem" image="Settings" id="IaP-Ad-9rj">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="0pc-Vg-MRJ" kind="presentation" id="als-oI-auQ"/>
+                                <segue destination="xUa-Vn-Yd7" kind="popoverPresentation" identifier="showSettings" popoverAnchorBarButtonItem="IaP-Ad-9rj" id="fMU-im-zh7">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -217,4 +219,7 @@
     <resources>
         <image name="Settings" width="22" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fMU-im-zh7"/>
+    </inferredMetricsTieBreakers>
 </document>
