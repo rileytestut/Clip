@@ -10,8 +10,26 @@ import UIKit
 import UserNotifications
 import CoreAudioKit
 import CoreData
+import ImageIO
 
 import ClipKit
+
+import Roxas
+
+extension PasteboardListener
+{
+    private enum Error: LocalizedError
+    {
+        case unsupportedImageFormat
+        
+        var errorDescription: String? {
+            switch self
+            {
+            case .unsupportedImageFormat: return NSLocalizedString("The image is in an unsupported format.", comment: "")
+            }
+        }
+    }
+}
 
 @objc(CLIPPasteboardListener)
 public class PasteboardListener: NSObject, NSExtensionRequestHandling
@@ -126,6 +144,8 @@ private extension PasteboardListener
                 print("Failed to fetch previous pasteboard item.", error)
             }
             
+            guard let preferredRepresentation = pasteboardItem.preferredRepresentation else { return }
+            
             context.transactionAuthor = "com.rileytestut.Clip.PasteboardListener"
             do { try context.save() } catch { print("Error saving pasteboard data.", error) }
             
@@ -134,17 +154,55 @@ private extension PasteboardListener
             
             let content = UNMutableNotificationContent()
             content.title = NSLocalizedString("Clipboard Saved", comment: "")
-            content.body = pasteboardItem.preferredRepresentation?.stringValue ?? pasteboardItem.preferredRepresentation?.attributedStringValue?.string ?? pasteboardItem.preferredRepresentation?.urlValue?.absoluteString ?? ""
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
-            
-            let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: trigger)
+            switch preferredRepresentation.type
+            {
+            case .text, .attributedText, .url:
+                content.body = pasteboardItem.preferredRepresentation?.stringValue ?? pasteboardItem.preferredRepresentation?.attributedStringValue?.string ?? pasteboardItem.preferredRepresentation?.urlValue?.absoluteString ?? ""
+                
+            case .image:
+                guard let data = preferredRepresentation.dataValue else { return }
+                
+                let temporaryURL = FileManager.default.uniqueTemporaryURL()
+                
+                do
+                {
+                    try self.writeThumbnailData(data, to: temporaryURL, uti: preferredRepresentation.uti)
+                    
+                    let attachment = try UNNotificationAttachment(identifier: "", url: temporaryURL, options: [UNNotificationAttachmentOptionsTypeHintKey: preferredRepresentation.uti])
+                    content.attachments = [attachment]
+                }
+                catch
+                {
+                    print("Failed to load image data.", error)
+                    
+                    content.body = NSLocalizedString("Image", comment: "")
+                }
+            }
+                        
+            let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: nil)
             UNUserNotificationCenter.current().add(request) { (error) in
                 if let error = error {
                     print(error)
                 }
             }
         }
+    }
+    
+    func writeThumbnailData(_ data: Data, to fileURL: URL, uti: String) throws
+    {
+        guard let imageSource = CGImageSourceCreateWithData(data as CFData, nil) else { throw Error.unsupportedImageFormat }
+        
+        let thumbnailOptions: [CFString: Any] = [kCGImageSourceThumbnailMaxPixelSize: 640,
+                                                 kCGImageSourceCreateThumbnailFromImageAlways: true,
+                                                 kCGImageSourceCreateThumbnailWithTransform: true]
+        
+        guard let thumbnail = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, thumbnailOptions as CFDictionary) else { throw Error.unsupportedImageFormat }
+        
+        guard let destination = CGImageDestinationCreateWithURL(fileURL as CFURL, uti as CFString, 1, nil) else { throw Error.unsupportedImageFormat }
+        CGImageDestinationAddImage(destination, thumbnail, nil);
+        
+        guard CGImageDestinationFinalize(destination) else { throw Error.unsupportedImageFormat }
     }
 }
 
