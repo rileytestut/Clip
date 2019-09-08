@@ -134,17 +134,15 @@ class HistoryViewController: UITableViewController
         guard segue.identifier == "showSettings" else { return }
         guard let sender = sender as? UIBarButtonItem else { return }
         
-        let maximumWidth = self.view.bounds.width - 20
+        let navigationController = segue.destination as! UINavigationController
         
-        let settingsViewController = segue.destination as! SettingsViewController
-        settingsViewController.view.widthAnchor.constraint(lessThanOrEqualToConstant: maximumWidth).isActive = true
-        
+        let settingsViewController = navigationController.viewControllers[0] as! SettingsViewController
         settingsViewController.view.layoutIfNeeded()
         
-        settingsViewController.preferredContentSize = settingsViewController.tableView.contentSize
+        navigationController.preferredContentSize = settingsViewController.tableView.contentSize
         
-        settingsViewController.popoverPresentationController?.delegate = self
-        settingsViewController.popoverPresentationController?.barButtonItem = sender
+        navigationController.popoverPresentationController?.delegate = self
+        navigationController.popoverPresentationController?.barButtonItem = sender
     }
 }
 
