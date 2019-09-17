@@ -15,6 +15,17 @@ private enum UserNotification: String
     case appStoppedRunning = "com.rileytestut.Clip.AppStoppedRunning"
 }
 
+private extension CFNotificationName
+{
+    static let altstoreRequestAppState: CFNotificationName = CFNotificationName("com.altstore.RequestAppState.com.rileytestut.Clip" as CFString)
+    static let altstoreAppIsRunning: CFNotificationName = CFNotificationName("com.altstore.AppState.Running.com.rileytestut.Clip" as CFString)
+}
+
+private let ReceivedApplicationState: @convention(c) (CFNotificationCenter?, UnsafeMutableRawPointer?, CFNotificationName?, UnsafeRawPointer?, CFDictionary?) -> Void =
+{ (center, observer, name, object, userInfo) in
+    ApplicationMonitor.shared.receivedApplicationStateRequest()
+}
+
 class ApplicationMonitor
 {
     static let shared = ApplicationMonitor()
@@ -71,6 +82,9 @@ private extension ApplicationMonitor
 {
     func registerForNotifications()
     {
+        let center = CFNotificationCenterGetDarwinNotifyCenter()
+        CFNotificationCenterAddObserver(center, nil, ReceivedApplicationState, CFNotificationName.altstoreRequestAppState.rawValue, nil, .deliverImmediately)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ApplicationMonitor.audioSessionWasInterrupted(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
     }
     
@@ -145,5 +159,13 @@ private extension ApplicationMonitor
             
         @unknown default: break
         }
+    }
+    
+    func receivedApplicationStateRequest()
+    {
+        guard UIApplication.shared.applicationState != .background else { return }
+        
+        let center = CFNotificationCenterGetDarwinNotifyCenter()
+        CFNotificationCenterPostNotification(center!, CFNotificationName(CFNotificationName.altstoreAppIsRunning.rawValue), nil, nil, true)
     }
 }
