@@ -14,7 +14,15 @@
 		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
 		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
+		BF44C939233ED15200D8950B /* UIPasteboard+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF44C938233ED15200D8950B /* UIPasteboard+Swizzle.swift */; };
 		BF50E7D922C2BF010070E17B /* Bundle+AppGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */; };
+		BF69A5302395C79700CF838A /* IntentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BF69A52F2395C79700CF838A /* IntentHandler.m */; };
+		BF69A5342395C79700CF838A /* SiriClipboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF69A52C2395C79700CF838A /* SiriClipboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BF69A5402395D44600CF838A /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A53F2395D44600CF838A /* UserNotifications.framework */; };
+		BF69A5422395D44700CF838A /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A5412395D44700CF838A /* UserNotificationsUI.framework */; };
+		BF69A5452395D44700CF838A /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF69A5442395D44700CF838A /* NotificationViewController.swift */; };
+		BF69A5482395D44700CF838A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF69A5462395D44700CF838A /* MainInterface.storyboard */; };
+		BF69A54C2395D44700CF838A /* NotificationClipboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF69A53E2395D44600CF838A /* NotificationClipboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */; };
 		BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9EE022B81C980042C873 /* Int+Bytes.swift */; };
 		BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */; };
@@ -22,6 +30,9 @@
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
 		BFAC49E022B40EC90011E7C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */; };
 		BFAC49E122B40ECE0011E7C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */; };
+		BFB7556423985ADE003F6243 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */; };
+		BFB7556723985CA4003F6243 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B1D22EF7B5000F74113 /* GradientView.swift */; };
+		BFB7556823985CD0003F6243 /* UIColor+Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */; };
 		BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */; };
 		BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */; };
 		BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A022AF0D0E003AC21A /* Main.storyboard */; };
@@ -45,8 +56,11 @@
 		BFC9E67722B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67622B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift */; };
 		BFC9E67822B2C7F700974663 /* ListenerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E66E22B1D47100974663 /* ListenerUnit.swift */; };
 		BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */; };
+		BFD205FC236A6A0E009BD181 /* CLPPasteboardReader.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD205FB236A6A0E009BD181 /* CLPPasteboardReader.m */; };
+		BFD20603236A6E84009BD181 /* CLPPasteboardReader.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD205FB236A6A0E009BD181 /* CLPPasteboardReader.m */; };
 		BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B1D22EF7B5000F74113 /* GradientView.swift */; };
 		BFDB5B2222EF8E0F00F74113 /* UIColor+Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */; };
+		BFEF44AE2398693300095A92 /* ForwardingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +91,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = BFADAFF719AE7BB70050CF31;
 			remoteInfo = Roxas;
+		};
+		BF69A5322395C79700CF838A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFC1F39122AF0D0E003AC21A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF69A52B2395C79700CF838A;
+			remoteInfo = SiriClipboard;
+		};
+		BF69A54A2395D44700CF838A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFC1F39122AF0D0E003AC21A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF69A53D2395D44600CF838A;
+			remoteInfo = NotificationClipboard;
 		};
 		BFC9E63F22B18E5700974663 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -113,7 +141,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				BF69A5342395C79700CF838A /* SiriClipboard.appex in Embed App Extensions */,
 				BFC9E64122B18E5700974663 /* PasteboardListener.appex in Embed App Extensions */,
+				BF69A54C2395D44700CF838A /* NotificationClipboard.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,7 +161,19 @@
 		BF1D5D4622B0869C0062F474 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItemRepresentation.swift; sourceTree = "<group>"; };
 		BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItem.swift; sourceTree = "<group>"; };
+		BF250E452396145300DFC4D5 /* NotificationClipboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationClipboard.entitlements; sourceTree = "<group>"; };
+		BF44C938233ED15200D8950B /* UIPasteboard+Swizzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPasteboard+Swizzle.swift"; sourceTree = "<group>"; };
 		BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppGroups.swift"; sourceTree = "<group>"; };
+		BF69A52C2395C79700CF838A /* SiriClipboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SiriClipboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF69A52E2395C79700CF838A /* IntentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntentHandler.h; sourceTree = "<group>"; };
+		BF69A52F2395C79700CF838A /* IntentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntentHandler.m; sourceTree = "<group>"; };
+		BF69A5312395C79700CF838A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF69A53E2395D44600CF838A /* NotificationClipboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationClipboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF69A53F2395D44600CF838A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		BF69A5412395D44700CF838A /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		BF69A5442395D44700CF838A /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		BF69A5472395D44700CF838A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		BF69A5492395D44700CF838A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Vibration.swift"; sourceTree = "<group>"; };
 		BF7B9EE022B81C980042C873 /* Int+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bytes.swift"; sourceTree = "<group>"; };
 		BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMonitor.swift; sourceTree = "<group>"; };
@@ -160,11 +202,32 @@
 		BFC9E67422B2C6DA00974663 /* String+OSType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OSType.swift"; sourceTree = "<group>"; };
 		BFC9E67622B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioComponentDescription+ListenerUnit.swift"; sourceTree = "<group>"; };
 		BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CFNotification+PasteboardListener.swift"; sourceTree = "<group>"; };
+		BFD205F9236A6A0D009BD181 /* Clip-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Clip-Bridging-Header.h"; sourceTree = "<group>"; };
+		BFD205FA236A6A0E009BD181 /* CLPPasteboardReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CLPPasteboardReader.h; sourceTree = "<group>"; };
+		BFD205FB236A6A0E009BD181 /* CLPPasteboardReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CLPPasteboardReader.m; sourceTree = "<group>"; };
+		BFD205FF236A6E76009BD181 /* PasteboardListener-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PasteboardListener-Bridging-Header.h"; sourceTree = "<group>"; };
 		BFDB5B1D22EF7B5000F74113 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Clip.swift"; sourceTree = "<group>"; };
+		BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardingNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BF69A5292395C79700CF838A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF69A53B2395D44600CF838A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF69A5422395D44700CF838A /* UserNotificationsUI.framework in Frameworks */,
+				BF69A5402395D44600CF838A /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFC1F39622AF0D0E003AC21A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,6 +316,8 @@
 			isa = PBXGroup;
 			children = (
 				BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */,
+				BF69A53F2395D44600CF838A /* UserNotifications.framework */,
+				BF69A5412395D44700CF838A /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -264,6 +329,27 @@
 				BFC9E64922B1974700974663 /* AudioEngine.swift */,
 			);
 			path = Pasteboard;
+			sourceTree = "<group>";
+		};
+		BF69A52D2395C79700CF838A /* SiriClipboard */ = {
+			isa = PBXGroup;
+			children = (
+				BF69A52E2395C79700CF838A /* IntentHandler.h */,
+				BF69A52F2395C79700CF838A /* IntentHandler.m */,
+				BF69A5312395C79700CF838A /* Info.plist */,
+			);
+			path = SiriClipboard;
+			sourceTree = "<group>";
+		};
+		BF69A5432395D44700CF838A /* NotificationClipboard */ = {
+			isa = PBXGroup;
+			children = (
+				BF250E452396145300DFC4D5 /* NotificationClipboard.entitlements */,
+				BF69A5442395D44700CF838A /* NotificationViewController.swift */,
+				BF69A5462395D44700CF838A /* MainInterface.storyboard */,
+				BF69A5492395D44700CF838A /* Info.plist */,
+			);
+			path = NotificationClipboard;
 			sourceTree = "<group>";
 		};
 		BFAC49D722B2EF170011E7C4 /* History */ = {
@@ -283,6 +369,8 @@
 				BFC9E65122B1A22700974663 /* ClipKit */,
 				BFC9E63422B18E5700974663 /* PasteboardListener */,
 				BF1D5C6722B029090062F474 /* Dependencies */,
+				BF69A52D2395C79700CF838A /* SiriClipboard */,
+				BF69A5432395D44700CF838A /* NotificationClipboard */,
 				BFC1F39A22AF0D0E003AC21A /* Products */,
 				BF1D5CDF22B063E00062F474 /* Frameworks */,
 			);
@@ -294,6 +382,8 @@
 				BFC1F39922AF0D0E003AC21A /* Clip.app */,
 				BFC9E63322B18E5700974663 /* PasteboardListener.appex */,
 				BFC9E65022B1A22700974663 /* ClipKit.framework */,
+				BF69A52C2395C79700CF838A /* SiriClipboard.appex */,
+				BF69A53E2395D44600CF838A /* NotificationClipboard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,6 +394,8 @@
 				BFC9E62C22B18D5900974663 /* Clip.entitlements */,
 				BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */,
 				BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */,
+				BFD205FA236A6A0E009BD181 /* CLPPasteboardReader.h */,
+				BFD205FB236A6A0E009BD181 /* CLPPasteboardReader.m */,
 				BFC1F3A022AF0D0E003AC21A /* Main.storyboard */,
 				BFAC49D722B2EF170011E7C4 /* History */,
 				BF0BDE6622B4871400E1419D /* Settings */,
@@ -312,6 +404,7 @@
 				BF0BDE5422B4568A00E1419D /* Extensions */,
 				BF1D5C8122B038030062F474 /* Resources */,
 				BF1D5C8522B038FE0062F474 /* Supporting Files */,
+				BFD205F9236A6A0D009BD181 /* Clip-Bridging-Header.h */,
 			);
 			path = Clip;
 			sourceTree = "<group>";
@@ -321,8 +414,10 @@
 			children = (
 				BFC9E64522B18E5F00974663 /* PasteboardListener.entitlements */,
 				BFC9E63822B18E5700974663 /* PasteboardListener.swift */,
+				BF44C938233ED15200D8950B /* UIPasteboard+Swizzle.swift */,
 				BFC9E66E22B1D47100974663 /* ListenerUnit.swift */,
 				BFC9E63D22B18E5700974663 /* Info.plist */,
+				BFD205FF236A6E76009BD181 /* PasteboardListener-Bridging-Header.h */,
 			);
 			path = PasteboardListener;
 			sourceTree = "<group>";
@@ -376,6 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				BFDB5B1D22EF7B5000F74113 /* GradientView.swift */,
+				BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -394,6 +490,40 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		BF69A52B2395C79700CF838A /* SiriClipboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF69A5392395C79700CF838A /* Build configuration list for PBXNativeTarget "SiriClipboard" */;
+			buildPhases = (
+				BF69A5282395C79700CF838A /* Sources */,
+				BF69A5292395C79700CF838A /* Frameworks */,
+				BF69A52A2395C79700CF838A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SiriClipboard;
+			productName = SiriClipboard;
+			productReference = BF69A52C2395C79700CF838A /* SiriClipboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		BF69A53D2395D44600CF838A /* NotificationClipboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF69A54D2395D44700CF838A /* Build configuration list for PBXNativeTarget "NotificationClipboard" */;
+			buildPhases = (
+				BF69A53A2395D44600CF838A /* Sources */,
+				BF69A53B2395D44600CF838A /* Frameworks */,
+				BF69A53C2395D44600CF838A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationClipboard;
+			productName = NotificationClipboard;
+			productReference = BF69A53E2395D44600CF838A /* NotificationClipboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		BFC1F39822AF0D0E003AC21A /* Clip */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFC1F3AB22AF0D0F003AC21A /* Build configuration list for PBXNativeTarget "Clip" */;
@@ -410,6 +540,8 @@
 				BF1D5C7D22B029E80062F474 /* PBXTargetDependency */,
 				BFC9E64022B18E5700974663 /* PBXTargetDependency */,
 				BFC9E65622B1A22700974663 /* PBXTargetDependency */,
+				BF69A5332395C79700CF838A /* PBXTargetDependency */,
+				BF69A54B2395D44700CF838A /* PBXTargetDependency */,
 			);
 			name = Clip;
 			productName = ClipboardManager;
@@ -457,13 +589,19 @@
 		BFC1F39122AF0D0E003AC21A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Riley Testut";
 				TargetAttributes = {
+					BF69A52B2395C79700CF838A = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					BF69A53D2395D44600CF838A = {
+						CreatedOnToolsVersion = 11.3;
+					};
 					BFC1F39822AF0D0E003AC21A = {
 						CreatedOnToolsVersion = 10.2.1;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1120;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -478,6 +616,7 @@
 					};
 					BFC9E63222B18E5700974663 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1120;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -515,6 +654,8 @@
 				BFC1F39822AF0D0E003AC21A /* Clip */,
 				BFC9E63222B18E5700974663 /* PasteboardListener */,
 				BFC9E64F22B1A22700974663 /* ClipKit */,
+				BF69A52B2395C79700CF838A /* SiriClipboard */,
+				BF69A53D2395D44600CF838A /* NotificationClipboard */,
 			);
 		};
 /* End PBXProject section */
@@ -544,6 +685,22 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BF69A52A2395C79700CF838A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF69A53C2395D44600CF838A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFB7556423985ADE003F6243 /* Assets.xcassets in Resources */,
+				BF69A5482395D44700CF838A /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFC1F39722AF0D0E003AC21A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -573,6 +730,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BF69A5282395C79700CF838A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF69A5302395C79700CF838A /* IntentHandler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF69A53A2395D44600CF838A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFB7556823985CD0003F6243 /* UIColor+Clip.swift in Sources */,
+				BFB7556723985CA4003F6243 /* GradientView.swift in Sources */,
+				BF69A5452395D44700CF838A /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFC1F39522AF0D0E003AC21A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -585,9 +760,11 @@
 				BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
 				BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */,
+				BFEF44AE2398693300095A92 /* ForwardingNavigationController.swift in Sources */,
 				BF0BDE5622B456A600E1419D /* PasteboardItem+ActivityItemSource.swift in Sources */,
 				BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */,
 				BF0BDE5A22B4771300E1419D /* SettingsViewController.swift in Sources */,
+				BFD205FC236A6A0E009BD181 /* CLPPasteboardReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,8 +772,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF44C939233ED15200D8950B /* UIPasteboard+Swizzle.swift in Sources */,
 				BFC9E63922B18E5700974663 /* PasteboardListener.swift in Sources */,
 				BFC9E67822B2C7F700974663 /* ListenerUnit.swift in Sources */,
+				BFD20603236A6E84009BD181 /* CLPPasteboardReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +806,16 @@
 			name = Roxas;
 			targetProxy = BF1D5C7C22B029E80062F474 /* PBXContainerItemProxy */;
 		};
+		BF69A5332395C79700CF838A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF69A52B2395C79700CF838A /* SiriClipboard */;
+			targetProxy = BF69A5322395C79700CF838A /* PBXContainerItemProxy */;
+		};
+		BF69A54B2395D44700CF838A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF69A53D2395D44600CF838A /* NotificationClipboard */;
+			targetProxy = BF69A54A2395D44700CF838A /* PBXContainerItemProxy */;
+		};
 		BFC9E64022B18E5700974663 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BFC9E63222B18E5700974663 /* PasteboardListener */;
@@ -640,6 +829,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BF69A5462395D44700CF838A /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF69A5472395D44700CF838A /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		BFC1F3A022AF0D0E003AC21A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -659,6 +856,86 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BF69A5352395C79700CF838A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				INFOPLIST_FILE = SiriClipboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.SiriClipboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF69A5362395C79700CF838A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				INFOPLIST_FILE = SiriClipboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.SiriClipboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BF69A54E2395D44700CF838A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationClipboard/NotificationClipboard.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				INFOPLIST_FILE = NotificationClipboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.NotificationClipboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF69A54F2395D44700CF838A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationClipboard/NotificationClipboard.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				INFOPLIST_FILE = NotificationClipboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.NotificationClipboard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		BFC1F3A922AF0D0F003AC21A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -791,6 +1068,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Clip/Clip-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -813,6 +1091,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Clip/Clip-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -821,6 +1100,7 @@
 		BFC9E64322B18E5700974663 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PasteboardListener/PasteboardListener.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
@@ -833,6 +1113,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.PasteboardListener;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PasteboardListener/PasteboardListener-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -841,6 +1123,7 @@
 		BFC9E64422B18E5700974663 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PasteboardListener/PasteboardListener.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
@@ -853,6 +1136,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.PasteboardListener;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "PasteboardListener/PasteboardListener-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -922,6 +1206,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BF69A5392395C79700CF838A /* Build configuration list for PBXNativeTarget "SiriClipboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF69A5352395C79700CF838A /* Debug */,
+				BF69A5362395C79700CF838A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF69A54D2395D44700CF838A /* Build configuration list for PBXNativeTarget "NotificationClipboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF69A54E2395D44700CF838A /* Debug */,
+				BF69A54F2395D44700CF838A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BFC1F39422AF0D0E003AC21A /* Build configuration list for PBXProject "Clip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

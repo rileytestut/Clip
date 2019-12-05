@@ -45,6 +45,10 @@ class HistoryViewController: UITableViewController
         return true
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -78,11 +82,28 @@ class HistoryViewController: UITableViewController
         self.navigationBarMaskView.translatesAutoresizingMaskIntoConstraints = false
         self.navigationBarMaskView.addSubview(self.navigationBarGradientView)
         
+        /*
         if let navigationBar = self.navigationController?.navigationBar
         {
             navigationBar.shadowImage = UIImage()
             navigationBar.setBackgroundImage(nil, for: .default)
-            navigationBar.insertSubview(self.navigationBarMaskView, at: 1)
+            navigationBar.insertSubview(self.navigationBarMaskView, at:0)
+        }
+ */
+        
+        if let navigationBar = self.navigationController?.navigationBar
+        {
+            if #available(iOS 13.0, *) {
+                let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
+                navigationBar.standardAppearance.titleTextAttributes = attributes
+                navigationBar.scrollEdgeAppearance?.titleTextAttributes = attributes
+                navigationBar.standardAppearance.largeTitleTextAttributes = attributes
+                navigationBar.scrollEdgeAppearance?.largeTitleTextAttributes = attributes
+                navigationBar.standardAppearance.configureWithOpaqueBackground()
+                navigationBar.standardAppearance.backgroundColor = .clipLightPink
+            } else {
+                // Fallback on earlier versions
+            }
         }
         
         self.startUpdating()
@@ -113,6 +134,7 @@ class HistoryViewController: UITableViewController
     {
         super.viewDidLayoutSubviews()
         
+        /*
         if let navigationBar = self.navigationController?.navigationBar, !self.didAddInitialLayoutConstraints
         {
             self.didAddInitialLayoutConstraints = true
@@ -127,6 +149,7 @@ class HistoryViewController: UITableViewController
                                          self.navigationBarMaskView.topAnchor.constraint(equalTo: self.view.topAnchor),
                                          self.navigationBarMaskView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)])
         }
+ */
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

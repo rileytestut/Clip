@@ -18,7 +18,10 @@ import Foundation
 
 public extension UserDefaults
 {
-    static let shared = UserDefaults(suiteName: Bundle.main.appGroups[0])!
+    static var shared: UserDefaults {
+        let appGroups = Bundle.main.appGroups
+        return UserDefaults(suiteName: appGroups[0])!
+    }
     
     @NSManaged var historyLimit: HistoryLimit
     @NSManaged var maximumClippingSize: Int

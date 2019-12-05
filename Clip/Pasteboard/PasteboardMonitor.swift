@@ -32,18 +32,10 @@ extension PasteboardMonitor
         guard !self.isStarted else { return }
         self.isStarted = true
         
-        ApplicationMonitor.shared.audioEngine.launchAudioUnitExtension(for: .listenerUnit) { (result) in
-            switch result
-            {
-            case .failure(let error):
-                self.isStarted = false
-                completionHandler(.failure(error))
-                
-            case .success:
-                self.registerForNotifications()                
-                completionHandler(.success(()))
-            }
-        }
+        CLPPasteboardReader.checkPasteboard()
+        
+        self.registerForNotifications()
+        completionHandler(.success(()))
     }
     
     func copy(_ pasteboardItem: PasteboardItem)
@@ -62,22 +54,28 @@ private extension PasteboardMonitor
         let center = CFNotificationCenterGetDarwinNotifyCenter()
         CFNotificationCenterAddObserver(center, nil, PasteboardMonitorDidChangePasteboard, CFNotificationName.didChangePasteboard.rawValue, nil, .deliverImmediately)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(PasteboardMonitor.audioUnitExtensionDidStop(_:)), name: Notification.Name(String(kAudioComponentInstanceInvalidationNotification)), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(PasteboardMonitor.audioSessionWasInterrupted(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
-        NotificationCenter.default.addObserver(self, selector: #selector(PasteboardMonitor.applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        let PBServerConnection = NSClassFromString("PBServerConnection") as AnyObject
+        PBServerConnection.beginListeningToPasteboardChangeNotifications!()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(PasteboardMonitor.pasteboardDidUpdate), name: Notification.Name("com.apple.pasteboard.changed"), object: nil)
     }
     
-    func relaunchAudioUnitExtension()
+    @objc func pasteboardDidUpdate()
     {
-        ApplicationMonitor.shared.audioEngine.launchAudioUnitExtension(for: .listenerUnit) { (result) in
-            guard let error = result.error else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            UIDevice.current.vibrate()
             
             let content = UNMutableNotificationContent()
-            content.title = NSLocalizedString("Failed to Resume Monitoring Clipboard", comment: "")
-            content.body = error.localizedDescription
+            content.title = NSLocalizedString("Clipboard Changed", comment: "")
+            content.body = NSLocalizedString("Swipe down to save to Clip.", comment: "")
+            content.categoryIdentifier = "myNotificationCategory"
             
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
-            UNUserNotificationCenter.current().add(request)
+            let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request) { (error) in
+                if let error = error {
+                    print(error)
+                }
+            }
         }
     }
 }
@@ -88,36 +86,6 @@ private extension PasteboardMonitor
     {
         DatabaseManager.shared.refresh()
         
-        UIDevice.current.vibrate()
-    }
-    
-    @objc func audioUnitExtensionDidStop(_ notification: Notification)
-    {
-        guard let audioUnit = notification.object as? AUAudioUnit, audioUnit.componentDescription == .listenerUnit else { return }
-        
-        print("Restarting audio unit extension...")
-        
-        self.relaunchAudioUnitExtension()
-    }
-    
-    @objc func audioSessionWasInterrupted(_ notification: Notification)
-    {
-        guard
-            let userInfo = notification.userInfo,
-            let rawType = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
-            let type = AVAudioSession.InterruptionType(rawValue: rawType)
-        else { return }
-        
-        switch type
-        {
-        case .began: break
-        case .ended: self.relaunchAudioUnitExtension()
-        @unknown default: break
-        }
-    }
-    
-    @objc func applicationWillEnterForeground(_ notification: Notification)
-    {
-        self.relaunchAudioUnitExtension()
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: ["ClipboardChanged"])
     }
 }

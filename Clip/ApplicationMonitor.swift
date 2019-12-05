@@ -89,7 +89,7 @@ private extension ApplicationMonitor
     }
     
     func scheduleApplicationQuitNotification()
-    {
+    {        
         let delay = 5 as TimeInterval
         
         let content = UNMutableNotificationContent()
