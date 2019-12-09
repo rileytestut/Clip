@@ -65,17 +65,25 @@ private extension PasteboardMonitor
     
     @objc func pasteboardDidUpdate()
     {
-        UIDevice.current.vibrate()
-        
-        let content = UNMutableNotificationContent()
-        content.categoryIdentifier = UNNotificationCategory.clipboardReaderIdentifier
-        content.title = NSLocalizedString("Clipboard Changed", comment: "")
-        content.body = NSLocalizedString("Swipe down to save to Clip.", comment: "")
-        
-        let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: nil)
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                print(error)
+        DispatchQueue.main.async {
+            if UIApplication.shared.applicationState != .background
+            {
+                // Don't present notifications for items copied from within Clip.
+                guard !UIPasteboard.general.contains(pasteboardTypes: [UTI.clipping]) else { return }
+            }
+            
+            UIDevice.current.vibrate()
+            
+            let content = UNMutableNotificationContent()
+            content.categoryIdentifier = UNNotificationCategory.clipboardReaderIdentifier
+            content.title = NSLocalizedString("Clipboard Changed", comment: "")
+            content.body = NSLocalizedString("Swipe down to save to Clip.", comment: "")
+            
+            let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request) { (error) in
+                if let error = error {
+                    print(error)
+                }
             }
         }
     }
