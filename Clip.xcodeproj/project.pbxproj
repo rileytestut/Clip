@@ -21,14 +21,16 @@
 		BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */; };
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
 		BFAC49E022B40EC90011E7C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */; };
-		BFAC49E122B40ECE0011E7C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */; };
+		BFC176FD2399BC4F0058AC51 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A53F2395D44600CF838A /* UserNotifications.framework */; };
+		BFC176FE2399BC4F0058AC51 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A5412395D44700CF838A /* UserNotificationsUI.framework */; };
+		BFC177012399BC4F0058AC51 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC177002399BC4F0058AC51 /* NotificationViewController.swift */; };
+		BFC177042399BC4F0058AC51 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC177022399BC4F0058AC51 /* MainInterface.storyboard */; };
+		BFC177082399BC4F0058AC51 /* ClipboardReader.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BFC176FC2399BC4F0058AC51 /* ClipboardReader.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */; };
 		BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */; };
 		BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A022AF0D0E003AC21A /* Main.storyboard */; };
 		BFC1F3A422AF0D0F003AC21A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */; };
 		BFC1F3A722AF0D0F003AC21A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A522AF0D0F003AC21A /* LaunchScreen.storyboard */; };
-		BFC9E63922B18E5700974663 /* PasteboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E63822B18E5700974663 /* PasteboardListener.swift */; };
-		BFC9E64122B18E5700974663 /* PasteboardListener.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BFC9E63322B18E5700974663 /* PasteboardListener.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E64922B1974700974663 /* AudioEngine.swift */; };
 		BFC9E65422B1A22700974663 /* ClipKit.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC9E65222B1A22700974663 /* ClipKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC9E65722B1A22700974663 /* ClipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9E65022B1A22700974663 /* ClipKit.framework */; };
@@ -38,12 +40,8 @@
 		BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */; };
 		BFC9E66522B1B04000974663 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4322B0867C0062F474 /* Model.xcdatamodeld */; };
 		BFC9E66622B1B1E600974663 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
-		BFC9E66722B1B1F200974663 /* ClipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9E65022B1A22700974663 /* ClipKit.framework */; };
 		BFC9E66B22B1CE5B00974663 /* Silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = BFC9E66A22B1CE5B00974663 /* Silence.m4a */; };
 		BFC9E67222B2C4C500974663 /* Result+Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67122B2C4C400974663 /* Result+Conveniences.swift */; };
-		BFC9E67522B2C6DA00974663 /* String+OSType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67422B2C6DA00974663 /* String+OSType.swift */; };
-		BFC9E67722B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67622B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift */; };
-		BFC9E67822B2C7F700974663 /* ListenerUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E66E22B1D47100974663 /* ListenerUnit.swift */; };
 		BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */; };
 		BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B1D22EF7B5000F74113 /* GradientView.swift */; };
 		BFDB5B2222EF8E0F00F74113 /* UIColor+Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */; };
@@ -78,12 +76,12 @@
 			remoteGlobalIDString = BFADAFF719AE7BB70050CF31;
 			remoteInfo = Roxas;
 		};
-		BFC9E63F22B18E5700974663 /* PBXContainerItemProxy */ = {
+		BFC177062399BC4F0058AC51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFC1F39122AF0D0E003AC21A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = BFC9E63222B18E5700974663;
-			remoteInfo = PasteboardListener;
+			remoteGlobalIDString = BFC176FB2399BC4F0058AC51;
+			remoteInfo = ClipboardReader;
 		};
 		BFC9E65522B1A22700974663 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -113,7 +111,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BFC9E64122B18E5700974663 /* PasteboardListener.appex in Embed App Extensions */,
+				BFC177082399BC4F0058AC51 /* ClipboardReader.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,12 +130,19 @@
 		BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItemRepresentation.swift; sourceTree = "<group>"; };
 		BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItem.swift; sourceTree = "<group>"; };
 		BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppGroups.swift"; sourceTree = "<group>"; };
+		BF69A53F2395D44600CF838A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		BF69A5412395D44700CF838A /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Vibration.swift"; sourceTree = "<group>"; };
 		BF7B9EE022B81C980042C873 /* Int+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bytes.swift"; sourceTree = "<group>"; };
 		BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMonitor.swift; sourceTree = "<group>"; };
 		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
 		BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		BFC176FC2399BC4F0058AC51 /* ClipboardReader.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClipboardReader.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFC177002399BC4F0058AC51 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		BFC177032399BC4F0058AC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		BFC177052399BC4F0058AC51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFC1770C2399BCF90058AC51 /* ClipboardReader.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ClipboardReader.entitlements; sourceTree = "<group>"; };
 		BFC1F39922AF0D0E003AC21A /* Clip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFC1F39E22AF0D0E003AC21A /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -146,25 +151,27 @@
 		BFC1F3A622AF0D0F003AC21A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFC1F3A822AF0D0F003AC21A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC9E62C22B18D5900974663 /* Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clip.entitlements; sourceTree = "<group>"; };
-		BFC9E63322B18E5700974663 /* PasteboardListener.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PasteboardListener.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFC9E63822B18E5700974663 /* PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardListener.swift; sourceTree = "<group>"; };
-		BFC9E63D22B18E5700974663 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BFC9E64522B18E5F00974663 /* PasteboardListener.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PasteboardListener.entitlements; sourceTree = "<group>"; };
 		BFC9E64922B1974700974663 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		BFC9E65022B1A22700974663 /* ClipKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ClipKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC9E65222B1A22700974663 /* ClipKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClipKit.h; sourceTree = "<group>"; };
 		BFC9E65322B1A22700974663 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC9E66A22B1CE5B00974663 /* Silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Silence.m4a; sourceTree = "<group>"; };
-		BFC9E66E22B1D47100974663 /* ListenerUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerUnit.swift; sourceTree = "<group>"; };
 		BFC9E67122B2C4C400974663 /* Result+Conveniences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Conveniences.swift"; sourceTree = "<group>"; };
-		BFC9E67422B2C6DA00974663 /* String+OSType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+OSType.swift"; sourceTree = "<group>"; };
-		BFC9E67622B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioComponentDescription+ListenerUnit.swift"; sourceTree = "<group>"; };
 		BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CFNotification+PasteboardListener.swift"; sourceTree = "<group>"; };
 		BFDB5B1D22EF7B5000F74113 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Clip.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BFC176F92399BC4F0058AC51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFC176FE2399BC4F0058AC51 /* UserNotificationsUI.framework in Frameworks */,
+				BFC176FD2399BC4F0058AC51 /* UserNotifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFC1F39622AF0D0E003AC21A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,15 +179,6 @@
 				BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */,
 				BFC9E65722B1A22700974663 /* ClipKit.framework in Frameworks */,
 				BFAC49E022B40EC90011E7C4 /* AudioToolbox.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BFC9E63022B18E5700974663 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BFC9E66722B1B1F200974663 /* ClipKit.framework in Frameworks */,
-				BFAC49E122B40ECE0011E7C4 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */,
+				BF69A53F2395D44600CF838A /* UserNotifications.framework */,
+				BF69A5412395D44700CF838A /* UserNotificationsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,12 +276,23 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		BFC176FF2399BC4F0058AC51 /* ClipboardReader */ = {
+			isa = PBXGroup;
+			children = (
+				BFC1770C2399BCF90058AC51 /* ClipboardReader.entitlements */,
+				BFC177002399BC4F0058AC51 /* NotificationViewController.swift */,
+				BFC177022399BC4F0058AC51 /* MainInterface.storyboard */,
+				BFC177052399BC4F0058AC51 /* Info.plist */,
+			);
+			path = ClipboardReader;
+			sourceTree = "<group>";
+		};
 		BFC1F39022AF0D0E003AC21A = {
 			isa = PBXGroup;
 			children = (
 				BFC1F39B22AF0D0E003AC21A /* Clip */,
 				BFC9E65122B1A22700974663 /* ClipKit */,
-				BFC9E63422B18E5700974663 /* PasteboardListener */,
+				BFC176FF2399BC4F0058AC51 /* ClipboardReader */,
 				BF1D5C6722B029090062F474 /* Dependencies */,
 				BFC1F39A22AF0D0E003AC21A /* Products */,
 				BF1D5CDF22B063E00062F474 /* Frameworks */,
@@ -292,8 +303,8 @@
 			isa = PBXGroup;
 			children = (
 				BFC1F39922AF0D0E003AC21A /* Clip.app */,
-				BFC9E63322B18E5700974663 /* PasteboardListener.appex */,
 				BFC9E65022B1A22700974663 /* ClipKit.framework */,
+				BFC176FC2399BC4F0058AC51 /* ClipboardReader.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,17 +325,6 @@
 				BF1D5C8522B038FE0062F474 /* Supporting Files */,
 			);
 			path = Clip;
-			sourceTree = "<group>";
-		};
-		BFC9E63422B18E5700974663 /* PasteboardListener */ = {
-			isa = PBXGroup;
-			children = (
-				BFC9E64522B18E5F00974663 /* PasteboardListener.entitlements */,
-				BFC9E63822B18E5700974663 /* PasteboardListener.swift */,
-				BFC9E66E22B1D47100974663 /* ListenerUnit.swift */,
-				BFC9E63D22B18E5700974663 /* Info.plist */,
-			);
-			path = PasteboardListener;
 			sourceTree = "<group>";
 		};
 		BFC9E65122B1A22700974663 /* ClipKit */ = {
@@ -351,9 +351,7 @@
 		BFC9E67322B2C6C500974663 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				BFC9E67622B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift */,
 				BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */,
-				BFC9E67422B2C6DA00974663 /* String+OSType.swift */,
 				BFC9E67122B2C4C400974663 /* Result+Conveniences.swift */,
 				BF0BDE5722B4757100E1419D /* UserDefaults+App.swift */,
 				BF7B9EE022B81C980042C873 /* Int+Bytes.swift */,
@@ -394,6 +392,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		BFC176FB2399BC4F0058AC51 /* ClipboardReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFC177092399BC4F0058AC51 /* Build configuration list for PBXNativeTarget "ClipboardReader" */;
+			buildPhases = (
+				BFC176F82399BC4F0058AC51 /* Sources */,
+				BFC176F92399BC4F0058AC51 /* Frameworks */,
+				BFC176FA2399BC4F0058AC51 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClipboardReader;
+			productName = ClipboardReader;
+			productReference = BFC176FC2399BC4F0058AC51 /* ClipboardReader.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		BFC1F39822AF0D0E003AC21A /* Clip */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BFC1F3AB22AF0D0F003AC21A /* Build configuration list for PBXNativeTarget "Clip" */;
@@ -408,30 +423,13 @@
 			);
 			dependencies = (
 				BF1D5C7D22B029E80062F474 /* PBXTargetDependency */,
-				BFC9E64022B18E5700974663 /* PBXTargetDependency */,
 				BFC9E65622B1A22700974663 /* PBXTargetDependency */,
+				BFC177072399BC4F0058AC51 /* PBXTargetDependency */,
 			);
 			name = Clip;
 			productName = ClipboardManager;
 			productReference = BFC1F39922AF0D0E003AC21A /* Clip.app */;
 			productType = "com.apple.product-type.application";
-		};
-		BFC9E63222B18E5700974663 /* PasteboardListener */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BFC9E64222B18E5700974663 /* Build configuration list for PBXNativeTarget "PasteboardListener" */;
-			buildPhases = (
-				BFC9E62F22B18E5700974663 /* Sources */,
-				BFC9E63022B18E5700974663 /* Frameworks */,
-				BFC9E63122B18E5700974663 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PasteboardListener;
-			productName = PasteboardListener;
-			productReference = BFC9E63322B18E5700974663 /* PasteboardListener.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		BFC9E64F22B1A22700974663 /* ClipKit */ = {
 			isa = PBXNativeTarget;
@@ -457,29 +455,21 @@
 		BFC1F39122AF0D0E003AC21A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Riley Testut";
 				TargetAttributes = {
+					BFC176FB2399BC4F0058AC51 = {
+						CreatedOnToolsVersion = 11.1;
+					};
 					BFC1F39822AF0D0E003AC21A = {
 						CreatedOnToolsVersion = 10.2.1;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1120;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
 							com.apple.BackgroundModes = {
-								enabled = 1;
-							};
-							com.apple.InterAppAudio = {
-								enabled = 1;
-							};
-						};
-					};
-					BFC9E63222B18E5700974663 = {
-						CreatedOnToolsVersion = 10.2.1;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
 							com.apple.InterAppAudio = {
@@ -513,8 +503,8 @@
 			projectRoot = "";
 			targets = (
 				BFC1F39822AF0D0E003AC21A /* Clip */,
-				BFC9E63222B18E5700974663 /* PasteboardListener */,
 				BFC9E64F22B1A22700974663 /* ClipKit */,
+				BFC176FB2399BC4F0058AC51 /* ClipboardReader */,
 			);
 		};
 /* End PBXProject section */
@@ -544,6 +534,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BFC176FA2399BC4F0058AC51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFC177042399BC4F0058AC51 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFC1F39722AF0D0E003AC21A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,13 +551,6 @@
 				BFC9E66B22B1CE5B00974663 /* Silence.m4a in Resources */,
 				BFC1F3A422AF0D0F003AC21A /* Assets.xcassets in Resources */,
 				BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BFC9E63122B18E5700974663 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +564,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BFC176F82399BC4F0058AC51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFC177012399BC4F0058AC51 /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BFC1F39522AF0D0E003AC21A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -591,15 +590,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BFC9E62F22B18E5700974663 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BFC9E63922B18E5700974663 /* PasteboardListener.swift in Sources */,
-				BFC9E67822B2C7F700974663 /* ListenerUnit.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BFC9E64C22B1A22700974663 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -607,13 +597,11 @@
 				BF0BDE5E22B47D4900E1419D /* UserDefaults+App.swift in Sources */,
 				BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */,
 				BFC9E66222B1B03900974663 /* DatabaseManager.swift in Sources */,
-				BFC9E67722B2C78F00974663 /* AudioComponentDescription+ListenerUnit.swift in Sources */,
 				BF0BDE5122B4414A00E1419D /* UTI.swift in Sources */,
 				BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */,
 				BFC9E66522B1B04000974663 /* Model.xcdatamodeld in Sources */,
 				BFC9E67222B2C4C500974663 /* Result+Conveniences.swift in Sources */,
 				BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */,
-				BFC9E67522B2C6DA00974663 /* String+OSType.swift in Sources */,
 				BFC9E66322B1B03C00974663 /* PasteboardItem.swift in Sources */,
 				BF50E7D922C2BF010070E17B /* Bundle+AppGroups.swift in Sources */,
 			);
@@ -627,10 +615,10 @@
 			name = Roxas;
 			targetProxy = BF1D5C7C22B029E80062F474 /* PBXContainerItemProxy */;
 		};
-		BFC9E64022B18E5700974663 /* PBXTargetDependency */ = {
+		BFC177072399BC4F0058AC51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BFC9E63222B18E5700974663 /* PasteboardListener */;
-			targetProxy = BFC9E63F22B18E5700974663 /* PBXContainerItemProxy */;
+			target = BFC176FB2399BC4F0058AC51 /* ClipboardReader */;
+			targetProxy = BFC177062399BC4F0058AC51 /* PBXContainerItemProxy */;
 		};
 		BFC9E65622B1A22700974663 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -640,6 +628,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BFC177022399BC4F0058AC51 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BFC177032399BC4F0058AC51 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		BFC1F3A022AF0D0E003AC21A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -659,6 +655,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BFC1770A2399BC4F0058AC51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ClipboardReader/ClipboardReader.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				INFOPLIST_FILE = ClipboardReader/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.ClipboardReader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BFC1770B2399BC4F0058AC51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ClipboardReader/ClipboardReader.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XVY5G3U44;
+				INFOPLIST_FILE = ClipboardReader/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.ClipboardReader;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		BFC1F3A922AF0D0F003AC21A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -783,6 +819,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Clip/Clip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
 				INFOPLIST_FILE = Clip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -805,6 +842,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Clip/Clip.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 6XVY5G3U44;
 				INFOPLIST_FILE = Clip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -815,46 +853,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		BFC9E64322B18E5700974663 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = PasteboardListener/PasteboardListener.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6XVY5G3U44;
-				INFOPLIST_FILE = PasteboardListener/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.PasteboardListener;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		BFC9E64422B18E5700974663 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = PasteboardListener/PasteboardListener.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6XVY5G3U44;
-				INFOPLIST_FILE = PasteboardListener/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip.PasteboardListener;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -922,6 +920,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BFC177092399BC4F0058AC51 /* Build configuration list for PBXNativeTarget "ClipboardReader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFC1770A2399BC4F0058AC51 /* Debug */,
+				BFC1770B2399BC4F0058AC51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BFC1F39422AF0D0E003AC21A /* Build configuration list for PBXProject "Clip" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -936,15 +943,6 @@
 			buildConfigurations = (
 				BFC1F3AC22AF0D0F003AC21A /* Debug */,
 				BFC1F3AD22AF0D0F003AC21A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BFC9E64222B18E5700974663 /* Build configuration list for PBXNativeTarget "PasteboardListener" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BFC9E64322B18E5700974663 /* Debug */,
-				BFC9E64422B18E5700974663 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -6,7 +6,5 @@
 	<array>
 		<string>group.com.rileytestut.Clip</string>
 	</array>
-	<key>inter-app-audio</key>
-	<true/>
 </dict>
 </plist>

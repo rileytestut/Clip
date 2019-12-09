@@ -12,6 +12,11 @@ import UserNotifications
 import ClipKit
 import Roxas
 
+extension UNNotificationCategory
+{
+    static let clipboardReaderIdentifier = "ClipboardReader"
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
         // Override point for customization after application launch.
-        
         print(RoxasVersionNumber)
         
         self.window?.tintColor = .clipPink
@@ -35,11 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         DatabaseManager.shared.prepare() { printError(from: $0, title: "Database Error:") }
         
-        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
-        }
-        
         ApplicationMonitor.shared.start()
+        
+        self.registerForNotifications()
         
         return true
     }
@@ -75,7 +77,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate
 {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+    private func registerForNotifications()
+    {
+        let category = UNNotificationCategory(identifier: UNNotificationCategory.clipboardReaderIdentifier, actions: [], intentIdentifiers: [])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+        
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
+        }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
         completionHandler(.alert)
     }
 }

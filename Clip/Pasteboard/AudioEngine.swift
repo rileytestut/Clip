@@ -12,21 +12,6 @@ import UserNotifications
 
 import ClipKit
 
-extension AudioEngine
-{
-    enum Error: LocalizedError
-    {
-        case extensionNotFound
-        
-        var errorDescription: String? {
-            switch self
-            {
-            case .extensionNotFound: return NSLocalizedString("Extension could not be found.", comment: "")
-            }
-        }
-    }
-}
-
 class AudioEngine
 {
     private(set) var isPlaying = false
@@ -37,8 +22,6 @@ class AudioEngine
     
     private let queue = DispatchQueue(label: "com.rileytestut.Clip.AudioEngine")
     
-    private var audioUnitExtension: AVAudioUnit?
-        
     init()
     {
         self.audioEngine = AVAudioEngine()
@@ -98,60 +81,6 @@ extension AudioEngine
             self.audioEngine.stop()
             
             self.isPlaying = false
-        }
-    }
-    
-    func launchAudioUnitExtension(for componentDescription: AudioComponentDescription, completionHandler: @escaping (Result<AVAudioUnitComponent, Swift.Error>) -> Void)
-    {
-        self.queue.async {
-            if !self.audioEngine.isRunning
-            {
-                do { try self.audioEngine.start() }
-                catch { return completionHandler(.failure(error)) }
-            }
-            
-            DispatchQueue.global().async {
-                let availableExtensions = AVAudioUnitComponentManager.shared().components(matching: componentDescription)
-                print(availableExtensions.map { $0.audioComponentDescription })
-                
-                guard let component = availableExtensions.first else { return completionHandler(.failure(Error.extensionNotFound)) }
-                
-                self.queue.async {
-                    self.player.pause()
-                    
-                    if let audioUnit = self.audioUnitExtension
-                    {
-                        self.audioEngine.disconnectNodeInput(audioUnit)
-                        self.audioEngine.disconnectNodeInput(self.audioEngine.mainMixerNode)
-                        
-                        self.audioEngine.connect(self.player, to: self.audioEngine.mainMixerNode, format: self.audioFile.processingFormat)
-                        
-                        self.audioEngine.detach(audioUnit)
-                        self.audioUnitExtension = nil
-                    }
-                    
-                    AVAudioUnit.instantiate(with: component.audioComponentDescription, options: []) { (audioUnit, error) in
-                        self.queue.async {
-                            guard let audioUnit = audioUnit else { return }
-                            
-                            self.audioUnitExtension = audioUnit
-                            self.audioEngine.attach(audioUnit)
-                            
-                            self.audioEngine.disconnectNodeInput(self.audioEngine.mainMixerNode)
-                            
-                            self.audioEngine.connect(self.player, to: audioUnit, format: self.audioFile.processingFormat)
-                            self.audioEngine.connect(audioUnit, to: self.audioEngine.mainMixerNode, format: self.audioFile.processingFormat)
-                            
-                            if self.isPlaying
-                            {
-                                self.player.play()
-                            }
-                            
-                            completionHandler(.success(component))
-                        }
-                    }
-                }
-            }
         }
     }
 }
