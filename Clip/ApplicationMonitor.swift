@@ -138,7 +138,7 @@ private extension ApplicationMonitor
         {
         case .began:
             #if DEBUG
-            self.sendNotification(title: "App No Longer Running", message: "Audio Session Interrupted")
+            self.sendNotification(title: "DEBUG", message: "Audio Session Interrupted")
             #endif
             
             // Begin background task to reduce chance of us being terminated while audio session is interrupted.
@@ -149,7 +149,7 @@ private extension ApplicationMonitor
             
         case .ended:
             #if DEBUG
-            self.sendNotification(title: "App Resumed Running", message: "Audio Session Resumed")
+            self.sendNotification(title: "DEBUG", message: "Audio Session Resumed")
             #endif
             
             if let backgroundTaskID = self.backgroundTaskID
