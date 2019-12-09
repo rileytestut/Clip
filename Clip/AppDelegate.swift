@@ -91,4 +91,31 @@ extension AppDelegate: UNUserNotificationCenterDelegate
     {
         completionHandler(.alert)
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
+    {
+        guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
+        
+        // Delay until next run loop so UIPasteboard no longer returns nil items due to being in background.
+        DispatchQueue.main.async {
+            DatabaseManager.shared.savePasteboard { (result) in
+                switch result
+                {
+                case .success: break
+                case .failure(PasteboardError.duplicateItem): break
+                    
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        let alertController = UIAlertController(title: NSLocalizedString("Failed to Save Clipboard", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+                        alertController.addAction(.ok)
+                        self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+                    }
+                }
+                
+                print("Save clipboard with result:", result)
+                
+                completionHandler()
+            }
+        }
+    }
 }
