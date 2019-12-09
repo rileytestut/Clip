@@ -45,6 +45,10 @@ class HistoryViewController: UITableViewController
         return true
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -80,9 +84,28 @@ class HistoryViewController: UITableViewController
         
         if let navigationBar = self.navigationController?.navigationBar
         {
-            navigationBar.shadowImage = UIImage()
-            navigationBar.setBackgroundImage(nil, for: .default)
-            navigationBar.insertSubview(self.navigationBarMaskView, at: 1)
+            if #available(iOS 13.0, *)
+            {
+                let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.white]
+                
+                let standardAppearance = navigationBar.standardAppearance
+                standardAppearance.configureWithOpaqueBackground()
+                standardAppearance.backgroundColor = .clipLightPink
+                standardAppearance.titleTextAttributes = attributes
+                standardAppearance.largeTitleTextAttributes = attributes
+                standardAppearance.shadowImage = nil
+                
+                let scrollEdgeAppearance = navigationBar.scrollEdgeAppearance
+                scrollEdgeAppearance?.configureWithTransparentBackground()
+                scrollEdgeAppearance?.titleTextAttributes = attributes
+                scrollEdgeAppearance?.largeTitleTextAttributes = attributes
+            }
+            else
+            {
+                navigationBar.shadowImage = UIImage()
+                navigationBar.setBackgroundImage(nil, for: .default)
+                navigationBar.insertSubview(self.navigationBarMaskView, at: 1)
+            }
         }
         
         self.startUpdating()
@@ -113,19 +136,23 @@ class HistoryViewController: UITableViewController
     {
         super.viewDidLayoutSubviews()
         
-        if let navigationBar = self.navigationController?.navigationBar, !self.didAddInitialLayoutConstraints
+        if #available(iOS 13.0, *) {}
+        else
         {
-            self.didAddInitialLayoutConstraints = true
-            
-            NSLayoutConstraint.activate([self.navigationBarGradientView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                                         self.navigationBarGradientView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                                         self.navigationBarGradientView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                                         self.navigationBarGradientView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
-            
-            NSLayoutConstraint.activate([self.navigationBarMaskView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor),
-                                         self.navigationBarMaskView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
-                                         self.navigationBarMaskView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                                         self.navigationBarMaskView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)])
+            if let navigationBar = self.navigationController?.navigationBar, !self.didAddInitialLayoutConstraints
+            {
+                self.didAddInitialLayoutConstraints = true
+                
+                NSLayoutConstraint.activate([self.navigationBarGradientView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                                             self.navigationBarGradientView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                                             self.navigationBarGradientView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                                             self.navigationBarGradientView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
+                
+                NSLayoutConstraint.activate([self.navigationBarMaskView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor),
+                                             self.navigationBarMaskView.trailingAnchor.constraint(equalTo: navigationBar.trailingAnchor),
+                                             self.navigationBarMaskView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                                             self.navigationBarMaskView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor)])
+            }
         }
     }
     

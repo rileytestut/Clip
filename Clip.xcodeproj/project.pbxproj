@@ -45,6 +45,7 @@
 		BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */; };
 		BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B1D22EF7B5000F74113 /* GradientView.swift */; };
 		BFDB5B2222EF8E0F00F74113 /* UIColor+Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */; };
+		BFEF44AE2398693300095A92 /* ForwardingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CFNotification+PasteboardListener.swift"; sourceTree = "<group>"; };
 		BFDB5B1D22EF7B5000F74113 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Clip.swift"; sourceTree = "<group>"; };
+		BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardingNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				BFDB5B1D22EF7B5000F74113 /* GradientView.swift */,
+				BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
 				BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */,
+				BFEF44AE2398693300095A92 /* ForwardingNavigationController.swift in Sources */,
 				BF0BDE5622B456A600E1419D /* PasteboardItem+ActivityItemSource.swift in Sources */,
 				BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */,
 				BF0BDE5A22B4771300E1419D /* SettingsViewController.swift in Sources */,
