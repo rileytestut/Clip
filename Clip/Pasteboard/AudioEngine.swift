@@ -44,6 +44,9 @@ class AudioEngine
         {
             fatalError("Error. \(error)")
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(AudioEngine.audioSessionWasInterrupted(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
+        NotificationCenter.default.addObserver(self, selector: #selector(AudioEngine.applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 }
 
@@ -83,6 +86,12 @@ extension AudioEngine
             self.isPlaying = false
         }
     }
+    
+    func reset() throws
+    {
+        self.stop()
+        try self.start()
+    }
 }
 
 private extension AudioEngine
@@ -94,6 +103,47 @@ private extension AudioEngine
                 guard self.isPlaying else { return }
                 self.scheduleAudioFile()
             }
+        }
+    }
+    
+    @objc func audioSessionWasInterrupted(_ notification: Notification)
+    {
+        guard
+            let userInfo = notification.userInfo,
+            let rawType = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSession.InterruptionType(rawValue: rawType)
+        else { return }
+        
+        switch type
+        {
+        case .began:
+            self.stop()
+                
+        case .ended:
+            do
+            {
+                try self.reset()
+            }
+            catch
+            {
+                print("Failed to reset AudioEngine after AVAudioSession interruption.", error)
+            }
+            
+        @unknown default: break
+        }
+    }
+    
+    @objc private func applicationWillEnterForeground(_ notification: Notification)
+    {
+        guard !self.isPlaying else { return }
+        
+        do
+        {
+            try self.reset()
+        }
+        catch
+        {
+            print("Failed to reset AudioEngine upon returning to foreground.", error)
         }
     }
 }
