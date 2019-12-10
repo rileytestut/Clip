@@ -94,6 +94,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
+        guard response.notification.request.content.categoryIdentifier == UNNotificationCategory.clipboardReaderIdentifier else { return }
         guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
         
         // Delay until next run loop so UIPasteboard no longer returns nil items due to being in background.
