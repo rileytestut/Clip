@@ -72,7 +72,12 @@ private extension PasteboardMonitor
                 guard !UIPasteboard.general.contains(pasteboardTypes: [UTI.clipping]) else { return }
             }
             
-            UIDevice.current.vibrate()
+            UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+                if settings.soundSetting == .enabled
+                {
+                    UIDevice.current.vibrate()
+                }
+            }            
             
             let content = UNMutableNotificationContent()
             content.categoryIdentifier = UNNotificationCategory.clipboardReaderIdentifier
