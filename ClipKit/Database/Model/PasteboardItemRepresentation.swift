@@ -207,15 +207,21 @@ public extension PasteboardItemRepresentation
     var pasteboardValue: Any? {
         switch self.type
         {
-        case .text: return self.stringValue
+        case .text: return self.string
         case .attributedText: return self.data
-        case .url: return self.urlValue
+        case .url: return self.url
         case .image: return self.data
         }
     }
     
     var stringValue: String? {
-        return self.string
+        switch self.type
+        {
+        case .text: return self.string
+        case .attributedText: return self.attributedStringValue?.string
+        case .url: return self.urlValue?.absoluteString
+        case .image: return nil
+        }
     }
     
     var imageValue: UIImage? {
