@@ -18,6 +18,8 @@
 		BF50E7D922C2BF010070E17B /* Bundle+AppGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */; };
 		BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */; };
 		BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9EE022B81C980042C873 /* Int+Bytes.swift */; };
+		BFA2DF65247DD2B200E31E4D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFA2DF64247DD2B200E31E4D /* Colors.xcassets */; };
+		BFA2DF69247DD31500E31E4D /* UIColor+Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DF68247DD31500E31E4D /* UIColor+Clip.swift */; };
 		BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */; };
 		BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */; };
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
@@ -45,7 +47,6 @@
 		BFC9E67222B2C4C500974663 /* Result+Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67122B2C4C400974663 /* Result+Conveniences.swift */; };
 		BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */; };
 		BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B1D22EF7B5000F74113 /* GradientView.swift */; };
-		BFDB5B2222EF8E0F00F74113 /* UIColor+Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */; };
 		BFEF44AE2398693300095A92 /* ForwardingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,8 @@
 		BF69A5412395D44700CF838A /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Vibration.swift"; sourceTree = "<group>"; };
 		BF7B9EE022B81C980042C873 /* Int+Bytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Bytes.swift"; sourceTree = "<group>"; };
+		BFA2DF64247DD2B200E31E4D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		BFA2DF68247DD31500E31E4D /* UIColor+Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Clip.swift"; sourceTree = "<group>"; };
 		BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMonitor.swift; sourceTree = "<group>"; };
 		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,7 +165,6 @@
 		BFC9E67122B2C4C400974663 /* Result+Conveniences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Conveniences.swift"; sourceTree = "<group>"; };
 		BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CFNotification+PasteboardListener.swift"; sourceTree = "<group>"; };
 		BFDB5B1D22EF7B5000F74113 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Clip.swift"; sourceTree = "<group>"; };
 		BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardingNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,7 +204,6 @@
 			children = (
 				BF0BDE5522B456A600E1419D /* PasteboardItem+ActivityItemSource.swift */,
 				BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */,
-				BFDB5B2122EF8E0F00F74113 /* UIColor+Clip.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -268,6 +269,14 @@
 				BFC9E64922B1974700974663 /* AudioEngine.swift */,
 			);
 			path = Pasteboard;
+			sourceTree = "<group>";
+		};
+		BFA2DF63247DD2A500E31E4D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BFA2DF64247DD2B200E31E4D /* Colors.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		BFAC49D722B2EF170011E7C4 /* History */ = {
@@ -338,6 +347,7 @@
 				BF0BDE5022B4414A00E1419D /* UTI.swift */,
 				BFC9E67022B1DE0A00974663 /* Database */,
 				BFC9E67322B2C6C500974663 /* Extensions */,
+				BFA2DF63247DD2A500E31E4D /* Resources */,
 				BFC9E65322B1A22700974663 /* Info.plist */,
 			);
 			path = ClipKit;
@@ -361,6 +371,7 @@
 				BF7B9EE022B81C980042C873 /* Int+Bytes.swift */,
 				BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */,
 				BF235BC0247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift */,
+				BFA2DF68247DD31500E31E4D /* UIColor+Clip.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -564,6 +575,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA2DF65247DD2B200E31E4D /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,7 +595,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */,
-				BFDB5B2222EF8E0F00F74113 /* UIColor+Clip.swift in Sources */,
 				BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */,
 				BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */,
 				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
@@ -601,6 +612,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA2DF69247DD31500E31E4D /* UIColor+Clip.swift in Sources */,
 				BF0BDE5E22B47D4900E1419D /* UserDefaults+App.swift in Sources */,
 				BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */,
 				BFC9E66222B1B03900974663 /* DatabaseManager.swift in Sources */,
