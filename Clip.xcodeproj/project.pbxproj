@@ -14,6 +14,7 @@
 		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
 		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
+		BF235BC1247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF235BC0247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift */; };
 		BF50E7D922C2BF010070E17B /* Bundle+AppGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */; };
 		BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF770E6122BC767A002A40FE /* UIDevice+Vibration.swift */; };
 		BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9EE022B81C980042C873 /* Int+Bytes.swift */; };
@@ -130,6 +131,7 @@
 		BF1D5D4622B0869C0062F474 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItemRepresentation.swift; sourceTree = "<group>"; };
 		BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteboardItem.swift; sourceTree = "<group>"; };
+		BF235BC0247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPasteboard+PasteboardItem.swift"; sourceTree = "<group>"; };
 		BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppGroups.swift"; sourceTree = "<group>"; };
 		BF69A53F2395D44600CF838A /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		BF69A5412395D44700CF838A /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
@@ -358,6 +360,7 @@
 				BF0BDE5722B4757100E1419D /* UserDefaults+App.swift */,
 				BF7B9EE022B81C980042C873 /* Int+Bytes.swift */,
 				BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */,
+				BF235BC0247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */,
 				BFC9E66222B1B03900974663 /* DatabaseManager.swift in Sources */,
 				BF0BDE5122B4414A00E1419D /* UTI.swift in Sources */,
+				BF235BC1247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift in Sources */,
 				BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */,
 				BFC9E66522B1B04000974663 /* Model.xcdatamodeld in Sources */,
 				BFC9E67222B2C4C500974663 /* Result+Conveniences.swift in Sources */,

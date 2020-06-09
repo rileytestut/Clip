@@ -187,7 +187,7 @@ extension HistoryViewController
     {
         guard let item = self.selectedItem else { return }
         
-        ApplicationMonitor.shared.pasteboardMonitor.copy(item)
+        UIPasteboard.general.copy(item)
     }
     
     @objc override func delete(_ sender: Any?)

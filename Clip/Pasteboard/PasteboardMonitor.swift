@@ -35,14 +35,6 @@ extension PasteboardMonitor
         self.registerForNotifications()
         completionHandler(.success(()))
     }
-    
-    func copy(_ pasteboardItem: PasteboardItem)
-    {
-        var representations = pasteboardItem.representations.reduce(into: [:]) { $0[$1.uti] = $1.pasteboardValue }
-        representations[UTI.clipping] = [:]
-        
-        UIPasteboard.general.setItems([representations], options: [:])
-    }
 }
 
 private extension PasteboardMonitor
