@@ -226,22 +226,14 @@ private extension HistoryViewController
             
             if let representation = item.preferredRepresentation
             {
+                cell.titleLabel.text = representation.type.localizedName
+                
                 switch representation.type
                 {
-                case .text:
-                    cell.titleLabel.text = NSLocalizedString("Text", comment: "")
-                    cell.contentLabel.text = representation.stringValue
-                    
-                case .attributedText:
-                    cell.titleLabel.text = NSLocalizedString("Text", comment: "")
-                    cell.contentLabel.text = representation.attributedStringValue?.string
-                    
-                case .url:
-                    cell.titleLabel.text = NSLocalizedString("URL", comment: "")
-                    cell.contentLabel.text = representation.urlValue?.absoluteString
-                    
+                case .text: cell.contentLabel.text = representation.stringValue
+                case .attributedText: cell.contentLabel.text = representation.attributedStringValue?.string
+                case .url: cell.contentLabel.text = representation.urlValue?.absoluteString
                 case .image:
-                    cell.titleLabel.text = NSLocalizedString("Image", comment: "")
                     cell.contentLabel.isHidden = true
                     cell.contentImageView.isHidden = false
                     cell.contentImageView.isIndicatingActivity = true

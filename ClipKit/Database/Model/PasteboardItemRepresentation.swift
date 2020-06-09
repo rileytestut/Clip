@@ -18,6 +18,16 @@ extension PasteboardItemRepresentation
         case attributedText
         case url
         case image
+        
+        public var localizedName: String {
+            switch self
+            {
+            case .text: return NSLocalizedString("Text", comment: "")
+            case .attributedText: return NSLocalizedString("Text", comment: "")
+            case .url: return NSLocalizedString("URL", comment: "")
+            case .image: return NSLocalizedString("Image", comment: "")
+            }
+        }
     }
 }
 
