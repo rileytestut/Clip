@@ -84,3 +84,31 @@ public extension PasteboardItem
         return fetchRequest
     }
 }
+
+// SwiftUI
+extension PasteboardItem
+{
+    class func make(item: NSItemProviderWriting, date: Date = Date(), context: NSManagedObjectContext) -> PasteboardItem
+    {
+        let itemProvider = NSItemProvider(object: item)
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        let childContext = DatabaseManager.shared.persistentContainer.newBackgroundContext()
+        var objectID: NSManagedObjectID!
+        
+        PasteboardItemRepresentation.representations(for: itemProvider, in: childContext) { (representations) in
+            let item = PasteboardItem(representations: representations, context: childContext)!
+            item.date = date
+            
+            try! childContext.obtainPermanentIDs(for: [item])
+            objectID = item.objectID
+            
+            try! childContext.save()
+            semaphore.signal()
+        }
+        semaphore.wait()
+                
+        let pasteboardItem = context.object(with: objectID) as! PasteboardItem
+        return pasteboardItem
+    }
+}
