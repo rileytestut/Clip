@@ -131,6 +131,9 @@ public class DatabaseManager
     
     public func purge()
     {
+        // In-memory contexts don't support history tracking.
+        guard let description = DatabaseManager.shared.persistentContainer.persistentStoreDescriptions.first, description.type != NSInMemoryStoreType else { return }
+        
         DatabaseManager.shared.persistentContainer.performBackgroundTask { (context) in
             if let token = self.previousHistoryToken
             {

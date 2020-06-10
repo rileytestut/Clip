@@ -20,9 +20,12 @@
 		BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9EE022B81C980042C873 /* Int+Bytes.swift */; };
 		BF7E6FE3247C4FCD0058F4D4 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6FE2247C4FCD0058F4D4 /* KeyboardViewController.swift */; };
 		BF7E6FE7247C4FCD0058F4D4 /* ClipBoard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF7E6FE0247C4FCD0058F4D4 /* ClipBoard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BFA2DF60247DD21F00E31E4D /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6FF0247C50540058F4D4 /* Keyboard.swift */; };
+		BFA2DF61247DD23800E31E4D /* ClippingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6FF2247C518D0058F4D4 /* ClippingCell.swift */; };
 		BFA2DF62247DD23C00E31E4D /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB807247C5D1F0090B43B /* Blur.swift */; };
 		BFA2DF65247DD2B200E31E4D /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFA2DF64247DD2B200E31E4D /* Colors.xcassets */; };
 		BFA2DF69247DD31500E31E4D /* UIColor+Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DF68247DD31500E31E4D /* UIColor+Clip.swift */; };
+		BFA2DF6B247DE47900E31E4D /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA2DF6A247DE47900E31E4D /* Preview.swift */; };
 		BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */; };
 		BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */; };
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
@@ -89,6 +92,13 @@
 			remoteGlobalIDString = BF7E6FDF247C4FCD0058F4D4;
 			remoteInfo = ClipBoard;
 		};
+		BFAD46CC24905E9400451D6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFC1F39122AF0D0E003AC21A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFC9E64F22B1A22700974663;
+			remoteInfo = ClipKit;
+		};
 		BFC177062399BC4F0058AC51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFC1F39122AF0D0E003AC21A /* Project object */;
@@ -154,8 +164,11 @@
 		BF7E6FE0247C4FCD0058F4D4 /* ClipBoard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClipBoard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF7E6FE2247C4FCD0058F4D4 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		BF7E6FE4247C4FCD0058F4D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF7E6FF0247C50540058F4D4 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		BF7E6FF2247C518D0058F4D4 /* ClippingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingCell.swift; sourceTree = "<group>"; };
 		BFA2DF64247DD2B200E31E4D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		BFA2DF68247DD31500E31E4D /* UIColor+Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Clip.swift"; sourceTree = "<group>"; };
+		BFA2DF6A247DE47900E31E4D /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
 		BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationMonitor.swift; sourceTree = "<group>"; };
 		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
@@ -307,6 +320,9 @@
 		BF7E6FEF247C50480058F4D4 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				BFA2DF6A247DE47900E31E4D /* Preview.swift */,
+				BF7E6FF0247C50540058F4D4 /* Keyboard.swift */,
+				BF7E6FF2247C518D0058F4D4 /* ClippingCell.swift */,
 				BF0AB807247C5D1F0090B43B /* Blur.swift */,
 			);
 			path = SwiftUI;
@@ -463,6 +479,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BFAD46CD24905E9400451D6F /* PBXTargetDependency */,
 			);
 			name = ClipBoard;
 			productName = ClipBoard;
@@ -691,12 +708,15 @@
 				BFC9E66222B1B03900974663 /* DatabaseManager.swift in Sources */,
 				BF0BDE5122B4414A00E1419D /* UTI.swift in Sources */,
 				BF235BC1247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift in Sources */,
+				BFA2DF61247DD23800E31E4D /* ClippingCell.swift in Sources */,
 				BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */,
 				BFC9E66522B1B04000974663 /* Model.xcdatamodeld in Sources */,
 				BFC9E67222B2C4C500974663 /* Result+Conveniences.swift in Sources */,
+				BFA2DF6B247DE47900E31E4D /* Preview.swift in Sources */,
 				BFA2DF62247DD23C00E31E4D /* Blur.swift in Sources */,
 				BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */,
 				BFC9E66322B1B03C00974663 /* PasteboardItem.swift in Sources */,
+				BFA2DF60247DD21F00E31E4D /* Keyboard.swift in Sources */,
 				BF50E7D922C2BF010070E17B /* Bundle+AppGroups.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,6 +733,11 @@
 			isa = PBXTargetDependency;
 			target = BF7E6FDF247C4FCD0058F4D4 /* ClipBoard */;
 			targetProxy = BF7E6FE5247C4FCD0058F4D4 /* PBXContainerItemProxy */;
+		};
+		BFAD46CD24905E9400451D6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFC9E64F22B1A22700974663 /* ClipKit */;
+			targetProxy = BFAD46CC24905E9400451D6F /* PBXContainerItemProxy */;
 		};
 		BFC177072399BC4F0058AC51 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
