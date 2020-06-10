@@ -15,21 +15,40 @@ import Roxas
 public struct Keyboard: View
 {
     private let inputViewController: UIInputViewController?
+    private let needsInputModeSwitchKey: Bool
     
     @FetchRequest(fetchRequest: PasteboardItem.historyFetchRequest())
     private var pasteboardItems: FetchedResults<PasteboardItem>
     
-    public init(inputViewController: UIInputViewController?)
+    public init(inputViewController: UIInputViewController?,
+                needsInputModeSwitchKey: Bool? = nil)
     {
         self.inputViewController = inputViewController
+        self.needsInputModeSwitchKey = needsInputModeSwitchKey ?? inputViewController?.needsInputModeSwitchKey ?? false
     }
     
     public var body: some View {
-        List(self.pasteboardItems, id: \.objectID) { (pasteboardItem) in
-            Button(action: { self.paste(pasteboardItem) }) {
-                ClippingCell(pasteboardItem: pasteboardItem)
+        ZStack(alignment: .bottomLeading) {
+            List(self.pasteboardItems, id: \.objectID) { (pasteboardItem) in
+                Button(action: { self.paste(pasteboardItem) }) {
+                    ClippingCell(pasteboardItem: pasteboardItem)
+                }
+                .buttonStyle(PlainButtonStyle())
             }
-            .buttonStyle(PlainButtonStyle())
+            
+            if self.needsInputModeSwitchKey
+            {
+                SwitchKeyboardButton(inputViewController: self.inputViewController,
+                                     tintColor: .clipPink,
+                                     configuration: .init(textStyle: .title2))
+                    .fixedSize()
+                    .padding(.horizontal, 4)
+                    .padding(.vertical, 8)
+                    .background(Blur())
+                    .blurStyle(.extraLight)
+                    .clipShape(Circle())
+                    .offset(x: 8, y: -8)
+            }
         }
         .edgesIgnoringSafeArea(.all)
         .onAppear {

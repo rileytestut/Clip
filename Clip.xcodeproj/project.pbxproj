@@ -31,6 +31,7 @@
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
 		BFAC49E022B40EC90011E7C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */; };
 		BFAD46C92490588800451D6F /* UIInputView+Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD46C82490588800451D6F /* UIInputView+Click.swift */; };
+		BFAD46CB249058DE00451D6F /* SwitchKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD46CA249058DE00451D6F /* SwitchKeyboardButton.swift */; };
 		BFC176FD2399BC4F0058AC51 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A53F2395D44600CF838A /* UserNotifications.framework */; };
 		BFC176FE2399BC4F0058AC51 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A5412395D44700CF838A /* UserNotificationsUI.framework */; };
 		BFC177012399BC4F0058AC51 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC177002399BC4F0058AC51 /* NotificationViewController.swift */; };
@@ -175,6 +176,7 @@
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
 		BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		BFAD46C82490588800451D6F /* UIInputView+Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIInputView+Click.swift"; sourceTree = "<group>"; };
+		BFAD46CA249058DE00451D6F /* SwitchKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchKeyboardButton.swift; sourceTree = "<group>"; };
 		BFC176FC2399BC4F0058AC51 /* ClipboardReader.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClipboardReader.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC177002399BC4F0058AC51 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		BFC177032399BC4F0058AC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				BFA2DF6A247DE47900E31E4D /* Preview.swift */,
 				BF7E6FF0247C50540058F4D4 /* Keyboard.swift */,
 				BF7E6FF2247C518D0058F4D4 /* ClippingCell.swift */,
+				BFAD46CA249058DE00451D6F /* SwitchKeyboardButton.swift */,
 				BF0AB807247C5D1F0090B43B /* Blur.swift */,
 			);
 			path = SwiftUI;
@@ -715,6 +718,7 @@
 				BFA2DF61247DD23800E31E4D /* ClippingCell.swift in Sources */,
 				BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */,
 				BFC9E66522B1B04000974663 /* Model.xcdatamodeld in Sources */,
+				BFAD46CB249058DE00451D6F /* SwitchKeyboardButton.swift in Sources */,
 				BFC9E67222B2C4C500974663 /* Result+Conveniences.swift in Sources */,
 				BFA2DF6B247DE47900E31E4D /* Preview.swift in Sources */,
 				BFA2DF62247DD23C00E31E4D /* Blur.swift in Sources */,
