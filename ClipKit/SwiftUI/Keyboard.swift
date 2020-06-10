@@ -29,11 +29,26 @@ public struct Keyboard: View
     
     public var body: some View {
         ZStack(alignment: .bottomLeading) {
-            List(self.pasteboardItems, id: \.objectID) { (pasteboardItem) in
-                Button(action: { self.paste(pasteboardItem) }) {
-                    ClippingCell(pasteboardItem: pasteboardItem)
+            
+            if self.pasteboardItems.isEmpty
+            {
+                VStack(spacing: 16) {
+                    Text("No Clippings")
+                        .font(.title)
+                    Text("Items that you've copied to the clipboard will appear here.")
+                        .font(.body)
                 }
-                .buttonStyle(PlainButtonStyle())
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .padding()
+            }
+            else
+            {
+                List(self.pasteboardItems, id: \.objectID) { (pasteboardItem) in
+                    Button(action: { self.paste(pasteboardItem) }) {
+                        ClippingCell(pasteboardItem: pasteboardItem)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
             }
             
             if self.needsInputModeSwitchKey
