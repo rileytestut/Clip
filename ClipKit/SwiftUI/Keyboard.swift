@@ -16,21 +16,43 @@ public struct Keyboard: View
 {
     private let inputViewController: UIInputViewController?
     private let needsInputModeSwitchKey: Bool
+    private let hasFullAccess: Bool
     
     @FetchRequest(fetchRequest: PasteboardItem.historyFetchRequest())
     private var pasteboardItems: FetchedResults<PasteboardItem>
     
     public init(inputViewController: UIInputViewController?,
-                needsInputModeSwitchKey: Bool? = nil)
+                needsInputModeSwitchKey: Bool? = nil,
+                hasFullAccess: Bool? = nil)
     {
         self.inputViewController = inputViewController
         self.needsInputModeSwitchKey = needsInputModeSwitchKey ?? inputViewController?.needsInputModeSwitchKey ?? false
+        self.hasFullAccess = hasFullAccess ?? inputViewController?.hasFullAccess ?? true
     }
-    
+        
     public var body: some View {
         ZStack(alignment: .bottomLeading) {
             
-            if self.pasteboardItems.isEmpty
+            if !self.hasFullAccess
+            {
+                VStack(spacing: 32) {
+                    VStack(spacing: 16) {
+                        Text("Full Access Required")
+                            .font(.title)
+                        Text("Allow Full Access for this keyboard in Settings to access saved clippings.")
+                            .font(.body)
+                    }
+                    
+                    Button(action: self.openSettings) {
+                        Text("Open Settings")
+                            .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
+                            .foregroundColor(Color(.clipPink))
+                    }
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .padding()
+            }
+            else if self.pasteboardItems.isEmpty
             {
                 VStack(spacing: 16) {
                     Text("No Clippings")
@@ -94,6 +116,23 @@ private extension Keyboard
             self.inputViewController?.advanceToNextInputMode()
         }
     }
+    
+    func openSettings()
+    {
+        // NSExtensionContext.openURL() can only be called from Today extensions.
+        // As a workaround, we can just call UIApplication.openURL(),
+        // but we can't call it directly because it's marked as unavailable for extensions.
+        guard
+            let application = (UIApplication.self as AnyObject).value(forKey: "sharedApplication") as? UIApplication
+        else { return }
+        
+        // UIApplication.openSettingsURLString doesn't work from keyboard extension,
+        // so instead we open Clip which will then open Settings.
+        let openURL = URL(string: "clip://settings")!
+        
+        let selectorName = "openURL:" // Temp variable to avoid deprecation warning about Selectors + string literals.
+        application.perform(Selector(selectorName), with: openURL)
+    }
 }
 
 struct Keyboard_Previews: PreviewProvider
@@ -109,9 +148,12 @@ struct Keyboard_Previews: PreviewProvider
         _ = PasteboardItem.make(item: NSURL(string: "https://rileytestut.com")!, date: date, context: context)
         _ = PasteboardItem.make(item: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." as NSString, date: date, context: context)
                 
-        return Keyboard(inputViewController: nil)
-            .background(Color(.lightGray))
-            .environment(\.managedObjectContext, context)
-            .previewLayout(.fixed(width: 375, height: 500))
+        return Group {
+            Keyboard(inputViewController: nil, needsInputModeSwitchKey: true)
+            Keyboard(inputViewController: nil, needsInputModeSwitchKey: true, hasFullAccess: false)
+        }
+        .background(Color(.lightGray))
+        .environment(\.managedObjectContext, context)
+        .previewLayout(.fixed(width: 375, height: 500))
     }
 }
