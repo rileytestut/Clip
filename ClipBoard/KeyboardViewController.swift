@@ -44,7 +44,7 @@ class KeyboardViewController: UIInputViewController
         
         self.inputView?.allowsSelfSizing = true
         
-        let rootView = Keyboard()
+        let rootView = Keyboard(inputViewController: self)
             .environment(\.managedObjectContext, DatabaseManager.shared.persistentContainer.viewContext)
         
         self.hostingViewController = UIHostingController(rootView: AnyView(rootView))

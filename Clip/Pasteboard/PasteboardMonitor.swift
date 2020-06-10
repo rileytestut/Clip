@@ -18,9 +18,15 @@ private let PasteboardMonitorDidChangePasteboard: @convention(c) (CFNotification
     ApplicationMonitor.shared.pasteboardMonitor.didChangePasteboard()
 }
 
+private let PasteboardMonitorIgnoreNextPasteboardChange: @convention(c) (CFNotificationCenter?, UnsafeMutableRawPointer?, CFNotificationName?, UnsafeRawPointer?, CFDictionary?) -> Void =
+{ (center, observer, name, object, userInfo) in
+    ApplicationMonitor.shared.pasteboardMonitor.ignoreNextPasteboardChange = true
+}
+
 class PasteboardMonitor
 {
     private(set) var isStarted = false
+    fileprivate var ignoreNextPasteboardChange = false
     
     private let feedbackGenerator = UINotificationFeedbackGenerator()
 }
@@ -43,6 +49,7 @@ private extension PasteboardMonitor
     {
         let center = CFNotificationCenterGetDarwinNotifyCenter()
         CFNotificationCenterAddObserver(center, nil, PasteboardMonitorDidChangePasteboard, CFNotificationName.didChangePasteboard.rawValue, nil, .deliverImmediately)
+        CFNotificationCenterAddObserver(center, nil, PasteboardMonitorIgnoreNextPasteboardChange, CFNotificationName.ignoreNextPasteboardChange.rawValue, nil, .deliverImmediately)
         
         #if !targetEnvironment(simulator)
         let pasteboardFramework = Bundle(path: "/System/Library/PrivateFrameworks/Pasteboard.framework")!
@@ -57,6 +64,11 @@ private extension PasteboardMonitor
     
     @objc func pasteboardDidUpdate()
     {
+        guard !self.ignoreNextPasteboardChange else {
+            self.ignoreNextPasteboardChange = false
+            return
+        }
+        
         DispatchQueue.main.async {
             if UIApplication.shared.applicationState != .background
             {

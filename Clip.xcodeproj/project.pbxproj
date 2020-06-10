@@ -30,6 +30,7 @@
 		BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */; };
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
 		BFAC49E022B40EC90011E7C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */; };
+		BFAD46C92490588800451D6F /* UIInputView+Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD46C82490588800451D6F /* UIInputView+Click.swift */; };
 		BFC176FD2399BC4F0058AC51 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A53F2395D44600CF838A /* UserNotifications.framework */; };
 		BFC176FE2399BC4F0058AC51 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A5412395D44700CF838A /* UserNotificationsUI.framework */; };
 		BFC177012399BC4F0058AC51 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC177002399BC4F0058AC51 /* NotificationViewController.swift */; };
@@ -173,6 +174,7 @@
 		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
 		BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		BFAD46C82490588800451D6F /* UIInputView+Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIInputView+Click.swift"; sourceTree = "<group>"; };
 		BFC176FC2399BC4F0058AC51 /* ClipboardReader.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClipboardReader.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC177002399BC4F0058AC51 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		BFC177032399BC4F0058AC51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */,
 				BF235BC0247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift */,
 				BFA2DF68247DD31500E31E4D /* UIColor+Clip.swift */,
+				BFAD46C82490588800451D6F /* UIInputView+Click.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				BFC9E66222B1B03900974663 /* DatabaseManager.swift in Sources */,
 				BF0BDE5122B4414A00E1419D /* UTI.swift in Sources */,
 				BF235BC1247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift in Sources */,
+				BFAD46C92490588800451D6F /* UIInputView+Click.swift in Sources */,
 				BFA2DF61247DD23800E31E4D /* ClippingCell.swift in Sources */,
 				BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */,
 				BFC9E66522B1B04000974663 /* Model.xcdatamodeld in Sources */,
