@@ -37,7 +37,9 @@ private class PersistentContainer: RSTPersistentContainer
 {
     override class func defaultDirectoryURL() -> URL
     {
-        let sharedDirectoryURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: Bundle.main.appGroups[0])!
+        guard let appGroup = Bundle.main.appGroups.first else { return super.defaultDirectoryURL() }
+        
+        let sharedDirectoryURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup)!
         
         let databaseDirectoryURL = sharedDirectoryURL.appendingPathComponent("Database")
         try? FileManager.default.createDirectory(at: databaseDirectoryURL, withIntermediateDirectories: true, attributes: nil)
@@ -129,6 +131,9 @@ public class DatabaseManager
     
     public func purge()
     {
+        // In-memory contexts don't support history tracking.
+        guard let description = DatabaseManager.shared.persistentContainer.persistentStoreDescriptions.first, description.type != NSInMemoryStoreType else { return }
+        
         DatabaseManager.shared.persistentContainer.performBackgroundTask { (context) in
             if let token = self.previousHistoryToken
             {
