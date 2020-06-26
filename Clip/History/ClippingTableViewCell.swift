@@ -16,9 +16,12 @@ class ClippingTableViewCell: UITableViewCell
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
+    @IBOutlet weak var contentButton: UIButton!
     @IBOutlet var contentImageView: UIImageView!
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    
+    var onButtonPressed: (() -> Void)?
     
     override func awakeFromNib()
     {
@@ -29,5 +32,10 @@ class ClippingTableViewCell: UITableViewCell
         
         self.contentImageView.layer.cornerRadius = 10
         self.contentImageView.layer.masksToBounds = true
+    }
+
+    @IBAction func buttonPressed(_ sender: UIButton)
+    {
+        self.onButtonPressed?()
     }
 }
