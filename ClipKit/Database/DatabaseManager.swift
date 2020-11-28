@@ -55,6 +55,11 @@ public class DatabaseManager
     
     public let persistentContainer: RSTPersistentContainer = PersistentContainer(name: "Model", bundle: Bundle(for: DatabaseManager.self))
     
+    public private(set) var isStarted = false
+    
+    private var prepareCompletionHandlers = [(Result<Void, Error>) -> Void]()
+    private let dispatchQueue = DispatchQueue(label: "com.rileytestut.Clip.DatabaseManager")
+    
     private var previousHistoryToken: NSPersistentHistoryToken? {
         set {
             guard let value = newValue else {
@@ -79,13 +84,34 @@ public class DatabaseManager
     
     public func prepare(completionHandler: @escaping (Result<Void, Error>) -> Void)
     {
-        self.persistentContainer.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        func finish(_ result: Result<Void, Error>)
+        {
+            self.dispatchQueue.async {
+                switch result
+                {
+                case .success: self.isStarted = true
+                case .failure: break
+                }
+                
+                self.prepareCompletionHandlers.forEach { $0(result) }
+                self.prepareCompletionHandlers.removeAll()
+            }
+        }
         
-        self.persistentContainer.loadPersistentStores { (description, error) in            
-            let result = Result(description, error).map { _ in () }
-            completionHandler(result)
+        self.dispatchQueue.async {
+            self.prepareCompletionHandlers.append(completionHandler)
+            guard self.prepareCompletionHandlers.count == 1 else { return }
             
-            self.purge()
+            guard !self.isStarted else { return finish(.success(())) }
+            
+            self.persistentContainer.persistentStoreDescriptions.first?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            
+            self.persistentContainer.loadPersistentStores { (description, error) in
+                let result = Result(description, error).map { _ in () }
+                finish(result)
+                
+                self.purge()
+            }
         }
     }
     

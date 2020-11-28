@@ -20,6 +20,7 @@
 		BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7B9EE022B81C980042C873 /* Int+Bytes.swift */; };
 		BF7E6FE3247C4FCD0058F4D4 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6FE2247C4FCD0058F4D4 /* KeyboardViewController.swift */; };
 		BF7E6FE7247C4FCD0058F4D4 /* ClipBoard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BF7E6FE0247C4FCD0058F4D4 /* ClipBoard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BF8F76F3254CC0E0005AF18B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8F76F2254CC0E0005AF18B /* SceneDelegate.swift */; };
 		BFA2DF60247DD21F00E31E4D /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6FF0247C50540058F4D4 /* Keyboard.swift */; };
 		BFA2DF61247DD23800E31E4D /* ClippingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6FF2247C518D0058F4D4 /* ClippingCell.swift */; };
 		BFA2DF62247DD23C00E31E4D /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0AB807247C5D1F0090B43B /* Blur.swift */; };
@@ -168,6 +169,7 @@
 		BF7E6FE4247C4FCD0058F4D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF7E6FF0247C50540058F4D4 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		BF7E6FF2247C518D0058F4D4 /* ClippingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingCell.swift; sourceTree = "<group>"; };
+		BF8F76F2254CC0E0005AF18B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BFA2DF64247DD2B200E31E4D /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		BFA2DF68247DD31500E31E4D /* UIColor+Clip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Clip.swift"; sourceTree = "<group>"; };
 		BFA2DF6A247DE47900E31E4D /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 			children = (
 				BFC9E62C22B18D5900974663 /* Clip.entitlements */,
 				BFC1F39C22AF0D0E003AC21A /* AppDelegate.swift */,
+				BF8F76F2254CC0E0005AF18B /* SceneDelegate.swift */,
 				BFA714B922C53F1700EE7236 /* ApplicationMonitor.swift */,
 				BFC1F3A022AF0D0E003AC21A /* Main.storyboard */,
 				BFAC49D722B2EF170011E7C4 /* History */,
@@ -694,6 +697,7 @@
 				BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */,
 				BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */,
 				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
+				BF8F76F3254CC0E0005AF18B /* SceneDelegate.swift in Sources */,
 				BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
 				BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */,
