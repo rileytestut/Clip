@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import Combine
 
 import ClipKit
 import Roxas
@@ -28,6 +29,7 @@ class HistoryViewController: UITableViewController
     private weak var selectedItem: PasteboardItem?
     private var updateTimer: Timer?
     private var fetchLimitSettingObservation: NSKeyValueObservation?
+    private var cancellables = Set<AnyCancellable>()
     
     private lazy var dateComponentsFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
@@ -52,6 +54,8 @@ class HistoryViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.subscribe()
         
         self.extendedLayoutIncludesOpaqueBars = true
         
@@ -210,6 +214,15 @@ extension HistoryViewController
 
 private extension HistoryViewController
 {
+    func subscribe()
+    {
+        ApplicationMonitor.shared.locationManager.$status
+            .receive(on: RunLoop.main)
+            .compactMap { $0?.error }
+            .sink { self.present($0) }
+            .store(in: &self.cancellables)
+    }
+    
     func makeDataSource() -> RSTFetchedResultsTableViewPrefetchingDataSource<PasteboardItem, UIImage>
     {
         let fetchRequest = PasteboardItem.historyFetchRequest()
@@ -365,6 +378,38 @@ private extension HistoryViewController
     {
         self.updateTimer?.invalidate()
         self.updateTimer = nil
+    }
+}
+
+private extension HistoryViewController
+{
+    func present(_ error: Error)
+    {
+        let nsError = error as NSError
+        
+        let alertController = UIAlertController(title: nsError.localizedFailureReason ?? nsError.localizedDescription,
+                                                message: nsError.localizedRecoverySuggestion, preferredStyle: .alert)
+        
+        if let recoverableError = error as? RecoverableError, !recoverableError.recoveryOptions.isEmpty
+        {
+            alertController.addAction(.cancel)
+            
+            for (index, title) in zip(0..., recoverableError.recoveryOptions)
+            {
+                let action = UIAlertAction(title: title, style: .default) { (action) in
+                    recoverableError.attemptRecovery(optionIndex: index) { (success) in
+                        print("Recovered from error with success:", success)
+                    }
+                }
+                alertController.addAction(action)
+            }
+        }
+        else
+        {
+            alertController.addAction(.ok)
+        }
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
