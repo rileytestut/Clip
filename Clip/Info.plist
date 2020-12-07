@@ -37,6 +37,21 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>INIntentsRestrictedWhileLocked</key>
+	<array>
+		<string>CopyClippingIntent</string>
+		<string>SaveToClipIntent</string>
+	</array>
+	<key>INIntentsRestrictedWhileProtectedDataUnavailable</key>
+	<array>
+		<string>CopyClippingIntent</string>
+		<string>SaveToClipIntent</string>
+	</array>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>CopyClippingIntent</string>
+		<string>SaveToClipIntent</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -45,6 +60,11 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Clip requires location permissions to run in the background. Your location data is never saved.</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>CopyClippingIntent</string>
+		<string>SaveToClipIntent</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

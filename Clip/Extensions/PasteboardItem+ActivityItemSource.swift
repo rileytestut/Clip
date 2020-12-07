@@ -18,10 +18,10 @@ extension PasteboardItem: UIActivityItemSource
         
         switch representation.type
         {
-        case .text: return ""
-        case .attributedText: return NSAttributedString(string: "")
-        case .url: return URL(string: "http://apple.com")!
-        case .image: return Data()
+        case .text: return representation.stringValue ?? ""
+        case .attributedText: return representation.attributedStringValue ?? NSAttributedString(string: "")
+        case .url: return representation.urlValue ?? URL(string: "http://apple.com")!
+        case .image: return representation.imageValue ?? UIImage()
         }
     }
     

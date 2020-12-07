@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import Intents
 
 import ClipKit
 import Roxas
@@ -21,6 +22,9 @@ extension UNNotificationCategory
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    @available(iOS 14, *)
+    private lazy var intentHandler = IntentHandler()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
     {
@@ -72,6 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    @available(iOS 14, *)
+    func application(_ application: UIApplication, handlerFor intent: INIntent) -> Any?
+    {
+        return self.intentHandler
     }
 }
 

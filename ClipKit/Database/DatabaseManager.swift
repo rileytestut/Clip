@@ -216,54 +216,59 @@ public extension DatabaseManager
             guard let itemProvider = UIPasteboard.general.itemProviders.first else { throw PasteboardError.noItem }
             guard !itemProvider.registeredTypeIdentifiers.contains(UTI.clipping) else { throw PasteboardError.duplicateItem } // Ignore copies that we made from the app.
             
-            let context = DatabaseManager.shared.persistentContainer.newBackgroundContext()
-            PasteboardItemRepresentation.representations(for: itemProvider, in: context) { (representations) in
-                do
-                {
-                    guard let pasteboardItem = PasteboardItem(representations: representations, context: context) else { throw PasteboardError.noItem }
-                    print(pasteboardItem)
-                    
-                    let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>
-                    fetchRequest.predicate = NSPredicate(format: "%K == NO", #keyPath(PasteboardItem.isMarkedForDeletion))
-                    fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \PasteboardItem.date, ascending: false)]
-                    fetchRequest.relationshipKeyPathsForPrefetching = ["representations"]
-                    fetchRequest.includesPendingChanges = false
-                    fetchRequest.fetchLimit = 1
-                    
-                    if let previousItem = try context.fetch(fetchRequest).first
-                    {
-                        let representations = pasteboardItem.representations.reduce(into: [:], { ($0[$1.type] = $1.value as? NSObject) })
-                        let previousRepresentations = previousItem.representations.reduce(into: [:], { ($0[$1.type] = $1.value as? NSObject) })
-
-                        guard representations != previousRepresentations else {
-                            throw PasteboardError.duplicateItem
-                        }
-                    }
-                    
-                    guard let _ = pasteboardItem.preferredRepresentation else { throw PasteboardError.unsupportedItem }
-                    
-                    context.transactionAuthor = Bundle.main.bundleIdentifier
-                    try context.save()
-                    
-                    let center = CFNotificationCenterGetDarwinNotifyCenter()
-                    CFNotificationCenterPostNotification(center, .didChangePasteboard, nil, nil, true)
-                    
-                    DispatchQueue.main.async {
-                        completionHandler(.success(()))
-                    }
-                }
-                catch
-                {
-                    DispatchQueue.main.async {
-                        print("Failed to handle pasteboard item.", error)
-                        completionHandler(.failure(error))
-                    }
-                }
-            }
+            self.save(itemProvider, completionHandler: completionHandler)
         }
         catch
         {
             completionHandler(.failure(error))
+        }
+    }
+    
+    func save(_ itemProvider: NSItemProvider, completionHandler: @escaping (Result<Void, Error>) -> Void)
+    {
+        let context = DatabaseManager.shared.persistentContainer.newBackgroundContext()
+        PasteboardItemRepresentation.representations(for: itemProvider, in: context) { (representations) in
+            do
+            {
+                guard let pasteboardItem = PasteboardItem(representations: representations, context: context) else { throw PasteboardError.noItem }
+                print(pasteboardItem)
+                
+                let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>
+                fetchRequest.predicate = NSPredicate(format: "%K == NO", #keyPath(PasteboardItem.isMarkedForDeletion))
+                fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \PasteboardItem.date, ascending: false)]
+                fetchRequest.relationshipKeyPathsForPrefetching = ["representations"]
+                fetchRequest.includesPendingChanges = false
+                fetchRequest.fetchLimit = 1
+                
+                if let previousItem = try context.fetch(fetchRequest).first
+                {
+                    let representations = pasteboardItem.representations.reduce(into: [:], { ($0[$1.type] = $1.value as? NSObject) })
+                    let previousRepresentations = previousItem.representations.reduce(into: [:], { ($0[$1.type] = $1.value as? NSObject) })
+
+                    guard representations != previousRepresentations else {
+                        throw PasteboardError.duplicateItem
+                    }
+                }
+                
+                guard let _ = pasteboardItem.preferredRepresentation else { throw PasteboardError.unsupportedItem }
+                
+                context.transactionAuthor = Bundle.main.bundleIdentifier
+                try context.save()
+                
+                let center = CFNotificationCenterGetDarwinNotifyCenter()
+                CFNotificationCenterPostNotification(center, .didChangePasteboard, nil, nil, true)
+                
+                DispatchQueue.main.async {
+                    completionHandler(.success(()))
+                }
+            }
+            catch
+            {
+                DispatchQueue.main.async {
+                    print("Failed to handle pasteboard item.", error)
+                    completionHandler(.failure(error))
+                }
+            }
         }
     }
 }
