@@ -69,14 +69,14 @@ Clip is very straightforward to compile and run if you're already an iOS develop
 
 1. Clone the repository 
 	``` 
-	https://github.com/rileytestut/Clip.git
+	git clone https://github.com/rileytestut/Clip.git
 	```
 2. Update submodules: 
 	```
 	cd Clip 
 	git submodule update --init --recursive
 	```
-3. Open `Clip.xcworkspace` and select the Clip project in the project navigator. On the `Signing & Capabilities` tab, change the team from `Yvette Testut` to your own account.
+3. Open `Clip.xcodeproj` and select the Clip project in the project navigator. On the `Signing & Capabilities` tab, change the team from `Yvette Testut` to your own account.
 4. Build + run app! 🎉
 
 ## Licensing
