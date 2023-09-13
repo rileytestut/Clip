@@ -214,7 +214,17 @@ public extension PasteboardItemRepresentation
         }
     }
     
-    var stringValue: String? {
+    var rawPasteboardValue: Data? {
+        switch self.type
+        {
+        case .text: return self.string?.data(using: .utf8)
+        case .attributedText: return self.data
+        case .url: return self.url?.absoluteString.data(using: .utf8)
+        case .image: return self.data
+        }
+    }
+    
+    @objc var stringValue: String? {
         switch self.type
         {
         case .text: return self.string
