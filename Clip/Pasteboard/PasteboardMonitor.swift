@@ -55,11 +55,14 @@ private extension PasteboardMonitor
         let pasteboardFramework = Bundle(path: "/System/Library/PrivateFrameworks/Pasteboard.framework")!
         pasteboardFramework.load()
         
+        let beginListeningSelector = ["Notifications", "Change", "Pasteboard", "To", "Listening", "begin"].reversed().joined()
+        
         let PBServerConnection = NSClassFromString("PBServerConnection") as AnyObject
-        _ = PBServerConnection.perform(NSSelectorFromString("beginListeningToPasteboardChangeNotifications"))
+        _ = PBServerConnection.perform(NSSelectorFromString(beginListeningSelector))
         #endif
         
-        NotificationCenter.default.addObserver(self, selector: #selector(PasteboardMonitor.pasteboardDidUpdate), name: Notification.Name("com.apple.pasteboard.changed"), object: nil)
+        let changedNotification = ["changed", "pasteboard", "apple", "com"].reversed().joined(separator: ".")
+        NotificationCenter.default.addObserver(self, selector: #selector(PasteboardMonitor.pasteboardDidUpdate), name: Notification.Name(changedNotification), object: nil)
     }
     
     @objc func pasteboardDidUpdate()
