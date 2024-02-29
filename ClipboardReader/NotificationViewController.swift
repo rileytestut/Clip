@@ -42,9 +42,6 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     
     func didReceive(_ notification: UNNotification)
     {
-        // Dismiss notification ASAP and continue saving in background.
-        self.extensionContext?.dismissNotificationContentExtension()
-        
         if let error = self.databaseError
         {
             self.finish(.failure(error))
@@ -64,11 +61,13 @@ private extension NotificationViewController
 {
     func finish(_ result: Result<Void, Swift.Error>)
     {
+        // Can't dismiss extension too early or else we can't read clipboard.
+        self.extensionContext?.dismissNotificationContentExtension()
+        
         switch result
         {
         case .success: break
         case .failure(PasteboardError.duplicateItem): break
-            
         case .failure(let error):
             let content = UNMutableNotificationContent()
             content.title = NSLocalizedString("Failed to Save Clipboard", comment: "")
