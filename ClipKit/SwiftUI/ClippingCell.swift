@@ -52,9 +52,8 @@ struct ClippingCell: View
             .padding(.horizontal, nil)
             .padding(.vertical, 8)
         }
-        .background(Blur())
+        .background(Color.white)
         .colorScheme(.light)
-        .blurStyle(.extraLight)
         .frame(minWidth: 0, maxWidth: .infinity)
         .cornerRadius(10)
     }

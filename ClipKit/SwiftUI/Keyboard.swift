@@ -70,6 +70,9 @@ public struct Keyboard: View
                         ClippingCell(pasteboardItem: pasteboardItem)
                     }
                     .buttonStyle(PlainButtonStyle())
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(makeInsets())
                 }
             }
             
@@ -95,6 +98,14 @@ public struct Keyboard: View
             
             UITableViewCell.appearance().backgroundColor = .clear
         }
+    }
+    
+    private func makeInsets() -> EdgeInsets
+    {
+        var insets = EdgeInsets()
+        insets.top = 8
+        insets.bottom = 8
+        return insets
     }
 }
 
