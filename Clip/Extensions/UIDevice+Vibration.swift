@@ -9,20 +9,13 @@
 import UIKit
 import AudioToolbox
 
-@_silgen_name("AudioServicesStopSystemSound")
-func AudioServicesStopSystemSound(_ soundID: SystemSoundID)
-
-// vibrationPattern parameter must be NSDictionary to prevent crash when bridging from Swift.Dictionary.
-@_silgen_name("AudioServicesPlaySystemSoundWithVibration")
-func AudioServicesPlaySystemSoundWithVibration(_ soundID: SystemSoundID, _ idk: Any?, _ vibrationPattern: NSDictionary)
-
 public extension UIDevice
 {
     enum FeedbackSupportLevel: Int
     {
-        case unsupported
-        case basic
-        case feedbackGenerator
+        case unsupported // iPhone 6 or earlier, or non-iPhone (e.g. iPad)
+        case basic // iPhone 6s
+        case feedbackGenerator // iPhone 7 and later
     }
 }
 
@@ -52,42 +45,8 @@ public extension UIDevice
         
         switch self.feedbackSupportLevel
         {
-        case .unsupported:
-            AudioServicesStopSystemSound(kSystemSoundID_Vibrate)
-            
-            var vibrationLength = 30
-            
-            if self.modelGeneration.hasPrefix("iPhone6")
-            {
-                // iPhone 5S has a weaker vibration motor, so we vibrate for 10ms longer to compensate
-                vibrationLength = 40;
-            }
-            
-            // Must use NSArray/NSDictionary to prevent crash.
-            let pattern: [Any] = [false, 0, true, vibrationLength]
-            let dictionary: [String: Any] = ["VibePattern": pattern, "Intensity": 1]
-            
-            AudioServicesPlaySystemSoundWithVibration(kSystemSoundID_Vibrate, nil, dictionary as NSDictionary)
-        
+        case .unsupported: break
         case .basic, .feedbackGenerator: AudioServicesPlaySystemSound(1519) // "peek" vibration
         }
-    }
-}
-
-private extension UIDevice
-{
-    var modelGeneration: String {
-        var sysinfo = utsname()
-        uname(&sysinfo)
-        
-        var modelGeneration: String!
-        
-        withUnsafePointer(to: &sysinfo.machine) { pointer in
-            pointer.withMemoryRebound(to: UInt8.self, capacity: Int(Mirror(reflecting: pointer.pointee).children.count), { (pointer) in
-                modelGeneration = String(cString: pointer)
-            })
-        }
-        
-        return modelGeneration
     }
 }
