@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import UniformTypeIdentifiers
 
 import ClipKit
 import Roxas
@@ -28,6 +29,7 @@ class HistoryViewController: UITableViewController
     private weak var selectedItem: PasteboardItem?
     private var updateTimer: Timer?
     private var fetchLimitSettingObservation: NSKeyValueObservation?
+    private var audioPlayingStateObservation: NSKeyValueObservation?
     
     private lazy var dateComponentsFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
@@ -74,6 +76,12 @@ class HistoryViewController: UITableViewController
             self?.updateDataSource()
         }
         
+        self.audioPlayingStateObservation = ApplicationMonitor.shared.audioEngine.observe(\.isPlaying, options: [.initial, .new]) { [weak self] (_, change) in
+            DispatchQueue.main.async {
+                self?.updateAudioPlayingState()
+            }
+        }
+        
         self.navigationBarGradientView = self.makeGradientView()
         self.navigationBarGradientView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -109,6 +117,16 @@ class HistoryViewController: UITableViewController
         }
         
         self.startUpdating()
+        
+        if !UserDefaults.shared.didShowWelcomeAlert
+        {
+            UserDefaults.shared.didShowWelcomeAlert = true
+            
+            let alertController = UIAlertController(title: NSLocalizedString("Welcome to Clip!", comment: ""),
+                                                    message: NSLocalizedString("To run indefinitely in the background, Clip must play audio continuously.\n\nSilent audio will play by default, but you can change this by long-pressing the Play/Pause icon in the top left.", comment: ""), preferredStyle: .alert)
+            alertController.addAction(.ok)
+            self.present(alertController, animated: true)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -366,6 +384,77 @@ private extension HistoryViewController
         self.updateTimer?.invalidate()
         self.updateTimer = nil
     }
+    
+    func updateAudioPlayingState()
+    {
+        let item: UIBarButtonItem.SystemItem
+        
+        if ApplicationMonitor.shared.audioEngine.isPlaying
+        {
+            item = .pause
+        }
+        else
+        {
+            item = .play
+        }
+        
+        let button = UIBarButtonItem(barButtonSystemItem: item, target: self, action: #selector(HistoryViewController.toggleAudioPlayingState))
+        button.tintColor = .white
+        
+        let deferredActions = UIDeferredMenuElement.uncached { completion in
+            let changeSongAction = UIAction(title: NSLocalizedString("Choose File", comment: ""), image: UIImage(systemName: "doc")) { [weak self] _ in
+                self?.chooseAudioFile()
+            }
+            
+            let resetSongAction = UIAction(title: NSLocalizedString("Reset", comment: ""), image: UIImage(systemName: "arrow.uturn.backward"), attributes: .destructive) { _ in
+                ApplicationMonitor.shared.audioEngine.resetAudioFile()
+            }
+            
+            var actions = [changeSongAction]
+            
+            if ApplicationMonitor.shared.audioEngine.preferredAudioFileURL != nil
+            {
+                actions.append(resetSongAction)
+            }
+            
+            completion(actions)
+        }
+        
+        let filename = ApplicationMonitor.shared.audioEngine.preferredAudioFileURL?.lastPathComponent ?? "Silence.m4a"
+        let menu = UIMenu(title: filename, children: [deferredActions])
+        
+        button.menu = menu
+        
+        self.navigationItem.leftBarButtonItem = button
+    }
+    
+    func chooseAudioFile()
+    {
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.audio])
+        documentPicker.delegate = self
+        self.present(documentPicker, animated: true, completion: nil)
+    }
+    
+    @objc func toggleAudioPlayingState()
+    {
+        do
+        {
+            if ApplicationMonitor.shared.audioEngine.isPlaying
+            {
+                ApplicationMonitor.shared.audioEngine.stop()
+            }
+            else
+            {
+                try ApplicationMonitor.shared.audioEngine.start()
+            }
+        }
+        catch
+        {
+            let alertController = UIAlertController(title: NSLocalizedString("Unable to start playing audio.", comment: ""), message: error.localizedDescription, preferredStyle: .alert)
+            alertController.addAction(.ok)
+            self.present(alertController, animated: true)
+        }
+    }
 }
 
 private extension HistoryViewController
@@ -450,5 +539,15 @@ extension HistoryViewController: UIPopoverPresentationControllerDelegate
     func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle
     {
         return .none
+    }
+}
+
+extension HistoryViewController: UIDocumentPickerDelegate
+{
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL])
+    {
+        guard let fileURL = urls.first else { return }
+        
+        ApplicationMonitor.shared.audioEngine.changeAudioFile(to: fileURL)
     }
 }

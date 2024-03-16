@@ -12,41 +12,72 @@ import UserNotifications
 
 import ClipKit
 
-class AudioEngine
+extension UserDefaults
 {
+    @NSManaged
+    fileprivate var preferredAudioFileURL: URL?
+}
+
+class AudioEngine: NSObject
+{
+    @objc dynamic
     private(set) var isPlaying = false
+    
+    public private(set) var preferredAudioFileURL: URL? {
+        get {
+            UserDefaults.shared.preferredAudioFileURL
+        }
+        set {
+            UserDefaults.shared.preferredAudioFileURL = newValue
+        }
+    }
     
     private let audioEngine: AVAudioEngine
     private let player: AVAudioPlayerNode
-    private let audioFile: AVAudioFile
+    private var audioFile: AVAudioFile!
     
     private let queue = DispatchQueue(label: "com.rileytestut.Clip.AudioEngine")
     
-    init()
+    override init()
     {
         self.audioEngine = AVAudioEngine()
-        self.audioEngine.mainMixerNode.outputVolume = 0.0
         
         self.player = AVAudioPlayerNode()
         self.audioEngine.attach(self.player)
         
-        do
-        {
-            let audioFileURL = Bundle.main.url(forResource: "Silence", withExtension: "m4a")!
-            
-            self.audioFile = try AVAudioFile(forReading: audioFileURL)
-            self.audioEngine.connect(self.player, to: self.audioEngine.mainMixerNode, format: self.audioFile.processingFormat)
-            
-            let outputFormat = self.audioEngine.outputNode.outputFormat(forBus: 0)
-            self.audioEngine.connect(self.audioEngine.mainMixerNode, to: self.audioEngine.outputNode, format: outputFormat)
-        }
-        catch
-        {
-            fatalError("Error. \(error)")
-        }
+        let outputFormat = self.audioEngine.outputNode.outputFormat(forBus: 0)
+        self.audioEngine.connect(self.audioEngine.mainMixerNode, to: self.audioEngine.outputNode, format: outputFormat)
+        
+        super.init()
+        
+        self.prepareAudioFile()
         
         NotificationCenter.default.addObserver(self, selector: #selector(AudioEngine.audioSessionWasInterrupted(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
         NotificationCenter.default.addObserver(self, selector: #selector(AudioEngine.applicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    func prepareAudioFile()
+    {
+        do
+        {
+            let fileURL: URL
+            
+            if let preferredAudioFileURL = UserDefaults.shared.preferredAudioFileURL
+            {
+                fileURL = preferredAudioFileURL
+            }
+            else
+            {
+                fileURL = Bundle.main.url(forResource: "Silence", withExtension: "m4a")!
+            }
+                                
+            self.audioFile = try AVAudioFile(forReading: fileURL)
+            self.audioEngine.connect(self.player, to: self.audioEngine.mainMixerNode, format: self.audioFile.processingFormat)
+        }
+        catch
+        {
+            print("Failed to prepare audio file.", error.localizedDescription)
+        }
     }
 }
 
@@ -89,8 +120,57 @@ extension AudioEngine
     
     func reset() throws
     {
+        guard self.isPlaying else { return }
+        
         self.stop()
         try self.start()
+    }
+    
+    func changeAudioFile(to fileURL: URL)
+    {
+        guard fileURL.startAccessingSecurityScopedResource() else { return }
+        defer {
+            fileURL.stopAccessingSecurityScopedResource()
+        }
+        
+        do
+        {
+            let audioDirectory = URL.documentsDirectory.appendingPathComponent("Audio")
+            try FileManager.default.createDirectory(at: audioDirectory, withIntermediateDirectories: true)
+            
+            let destinationURL = audioDirectory.appending(path: fileURL.lastPathComponent)
+            try FileManager.default.copyItem(at: fileURL, to: destinationURL, shouldReplace: true)
+            
+            self.stop()
+            self.preferredAudioFileURL = destinationURL
+            
+            self.prepareAudioFile()
+        }
+        catch
+        {
+            print("Failed to change audio file.", error.localizedDescription)
+        }
+    }
+    
+    func resetAudioFile()
+    {
+        self.stop()
+        
+        if let preferredAudioFileURL = self.preferredAudioFileURL
+        {
+            do
+            {
+                try FileManager.default.removeItem(at: preferredAudioFileURL)
+            }
+            catch
+            {
+                print("Failed to remove preferred audio file.", error.localizedDescription)
+            }
+        }
+        
+        self.preferredAudioFileURL = nil
+        
+        self.prepareAudioFile()
     }
 }
 

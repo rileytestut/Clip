@@ -27,6 +27,8 @@ public extension UserDefaults
     
     @NSManaged var historyLimit: HistoryLimit
     @NSManaged var maximumClippingSize: Int
+    
+    @NSManaged var didShowWelcomeAlert: Bool
 }
 
 public extension UserDefaults
