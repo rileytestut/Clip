@@ -40,11 +40,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Clip requires "Always" location permission to run in the background. Your location data is never saved.</string>
+	<string>Clip requires "Always" location permission to run in the background indefinitely and monitor your clipboard. Your location data is never saved.</string>
 	<key>NSLocationDefaultAccuracyReduced</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Clip requires location permissions to run in the background. Your location data is never saved.</string>
+	<string>Clip requires location permissions to run in the background indefinitely and monitor your clipboard. Your location data is never saved.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
