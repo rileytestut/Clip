@@ -31,7 +31,6 @@
 		BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */; };
 		BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */; };
 		BFAC49E022B40EC90011E7C4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */; };
-		BFAD2C4A257AD4D600FF9532 /* PublishedPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD2C49257AD4D600FF9532 /* PublishedPipeline.swift */; };
 		BFAD46C92490588800451D6F /* UIInputView+Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD46C82490588800451D6F /* UIInputView+Click.swift */; };
 		BFAD46CB249058DE00451D6F /* SwitchKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD46CA249058DE00451D6F /* SwitchKeyboardButton.swift */; };
 		BFC176FD2399BC4F0058AC51 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF69A53F2395D44600CF838A /* UserNotifications.framework */; };
@@ -44,6 +43,7 @@
 		BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A022AF0D0E003AC21A /* Main.storyboard */; };
 		BFC1F3A422AF0D0F003AC21A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */; };
 		BFC1F3A722AF0D0F003AC21A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A522AF0D0F003AC21A /* LaunchScreen.storyboard */; };
+		BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E64922B1974700974663 /* AudioEngine.swift */; };
 		BFC9E65422B1A22700974663 /* ClipKit.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC9E65222B1A22700974663 /* ClipKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BFC9E65722B1A22700974663 /* ClipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9E65022B1A22700974663 /* ClipKit.framework */; };
 		BFC9E65822B1A22700974663 /* ClipKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9E65022B1A22700974663 /* ClipKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -52,11 +52,11 @@
 		BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */; };
 		BFC9E66522B1B04000974663 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4322B0867C0062F474 /* Model.xcdatamodeld */; };
 		BFC9E66622B1B1E600974663 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
+		BFC9E66B22B1CE5B00974663 /* Silence.m4a in Resources */ = {isa = PBXBuildFile; fileRef = BFC9E66A22B1CE5B00974663 /* Silence.m4a */; };
 		BFC9E67222B2C4C500974663 /* Result+Conveniences.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67122B2C4C400974663 /* Result+Conveniences.swift */; };
 		BFC9E67C22B2CA4400974663 /* CFNotification+PasteboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */; };
 		BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B1D22EF7B5000F74113 /* GradientView.swift */; };
 		BFEF44AE2398693300095A92 /* ForwardingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */; };
-		BFF9E4932555F4F40052B1B2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF9E4922555F4F40052B1B2 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,7 +177,6 @@
 		BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClippingTableViewCell.xib; sourceTree = "<group>"; };
 		BFAC49D422B2EDB20011E7C4 /* ClippingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClippingTableViewCell.swift; sourceTree = "<group>"; };
 		BFAC49DF22B40EC90011E7C4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		BFAD2C49257AD4D600FF9532 /* PublishedPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishedPipeline.swift; sourceTree = "<group>"; };
 		BFAD46C82490588800451D6F /* UIInputView+Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIInputView+Click.swift"; sourceTree = "<group>"; };
 		BFAD46CA249058DE00451D6F /* SwitchKeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchKeyboardButton.swift; sourceTree = "<group>"; };
 		BFC176FC2399BC4F0058AC51 /* ClipboardReader.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ClipboardReader.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,14 +192,15 @@
 		BFC1F3A622AF0D0F003AC21A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFC1F3A822AF0D0F003AC21A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BFC9E62C22B18D5900974663 /* Clip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clip.entitlements; sourceTree = "<group>"; };
+		BFC9E64922B1974700974663 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		BFC9E65022B1A22700974663 /* ClipKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ClipKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFC9E65222B1A22700974663 /* ClipKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClipKit.h; sourceTree = "<group>"; };
 		BFC9E65322B1A22700974663 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFC9E66A22B1CE5B00974663 /* Silence.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Silence.m4a; sourceTree = "<group>"; };
 		BFC9E67122B2C4C400974663 /* Result+Conveniences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Conveniences.swift"; sourceTree = "<group>"; };
 		BFC9E67B22B2CA4400974663 /* CFNotification+PasteboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CFNotification+PasteboardListener.swift"; sourceTree = "<group>"; };
 		BFDB5B1D22EF7B5000F74113 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardingNavigationController.swift; sourceTree = "<group>"; };
-		BFF9E4922555F4F40052B1B2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */,
+				BFC9E66A22B1CE5B00974663 /* Silence.m4a */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -307,7 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */,
-				BFF9E4922555F4F40052B1B2 /* LocationManager.swift */,
+				BFC9E64922B1974700974663 /* AudioEngine.swift */,
 			);
 			path = Pasteboard;
 			sourceTree = "<group>";
@@ -350,14 +351,6 @@
 				BFAC49D222B2EDA80011E7C4 /* ClippingTableViewCell.xib */,
 			);
 			path = History;
-			sourceTree = "<group>";
-		};
-		BFAD2C48257AD4CB00FF9532 /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				BFAD2C49257AD4D600FF9532 /* PublishedPipeline.swift */,
-			);
-			path = Types;
 			sourceTree = "<group>";
 		};
 		BFC176FF2399BC4F0058AC51 /* ClipboardReader */ = {
@@ -407,7 +400,6 @@
 				BF0BDE6622B4871400E1419D /* Settings */,
 				BF1D5D4122B083210062F474 /* Pasteboard */,
 				BFDB5B2322EF8F9600F74113 /* Components */,
-				BFAD2C48257AD4CB00FF9532 /* Types */,
 				BF0BDE5422B4568A00E1419D /* Extensions */,
 				BF1D5C8122B038030062F474 /* Resources */,
 				BF1D5C8522B038FE0062F474 /* Supporting Files */,
@@ -664,6 +656,7 @@
 			files = (
 				BFC1F3A722AF0D0F003AC21A /* LaunchScreen.storyboard in Resources */,
 				BFAC49D322B2EDA80011E7C4 /* ClippingTableViewCell.xib in Resources */,
+				BFC9E66B22B1CE5B00974663 /* Silence.m4a in Resources */,
 				BFC1F3A422AF0D0F003AC21A /* Assets.xcassets in Resources */,
 				BFC1F3A222AF0D0E003AC21A /* Main.storyboard in Resources */,
 			);
@@ -704,14 +697,13 @@
 				BFA714BA22C53F1700EE7236 /* ApplicationMonitor.swift in Sources */,
 				BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */,
 				BFC1F39F22AF0D0E003AC21A /* HistoryViewController.swift in Sources */,
-				BFF9E4932555F4F40052B1B2 /* LocationManager.swift in Sources */,
 				BF8F76F3254CC0E0005AF18B /* SceneDelegate.swift in Sources */,
 				BF770E6522BC7688002A40FE /* UIDevice+Vibration.swift in Sources */,
 				BFC1F39D22AF0D0E003AC21A /* AppDelegate.swift in Sources */,
+				BFC9E64A22B1974700974663 /* AudioEngine.swift in Sources */,
 				BFEF44AE2398693300095A92 /* ForwardingNavigationController.swift in Sources */,
 				BF0BDE5622B456A600E1419D /* PasteboardItem+ActivityItemSource.swift in Sources */,
 				BFAC49D522B2EDB20011E7C4 /* ClippingTableViewCell.swift in Sources */,
-				BFAD2C4A257AD4D600FF9532 /* PublishedPipeline.swift in Sources */,
 				BF0BDE5A22B4771300E1419D /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

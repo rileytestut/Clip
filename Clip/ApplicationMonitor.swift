@@ -9,7 +9,6 @@
 import UIKit
 import AVFoundation
 import UserNotifications
-import Combine
 
 private enum UserNotification: String
 {
@@ -31,8 +30,8 @@ class ApplicationMonitor
 {
     static let shared = ApplicationMonitor()
     
+    let audioEngine = AudioEngine()
     let pasteboardMonitor = PasteboardMonitor()
-    let locationManager = LocationManager()
     
     private(set) var isMonitoring = false
     
@@ -46,19 +45,34 @@ extension ApplicationMonitor
         guard !self.isMonitoring else { return }
         self.isMonitoring = true
         
-        self.cancelApplicationQuitNotification() // Cancel any notifications from a previous launch.
-        self.scheduleApplicationQuitNotification()
-        
-        self.pasteboardMonitor.start() { (result) in
+        func finish(_ result: Result<Void, Error>)
+        {
             switch result
             {
             case .success:
-                self.locationManager.start()
                 self.registerForNotifications()
                 
             case .failure(let error):
                 self.isMonitoring = false
                 self.sendNotification(title: NSLocalizedString("Failed to Monitor Clipboard", comment: ""), message: error.localizedDescription)
+            }
+        }
+        
+        self.cancelApplicationQuitNotification() // Cancel any notifications from a previous launch.
+        self.scheduleApplicationQuitNotification()
+        
+        DispatchQueue.global().async {
+            do
+            {
+                try self.audioEngine.start()
+                
+                self.pasteboardMonitor.start() { (result) in
+                    finish(result)
+                }                
+            }
+            catch
+            {
+                finish(.failure(error))
             }
         }
     }
@@ -70,6 +84,8 @@ private extension ApplicationMonitor
     {
         let center = CFNotificationCenterGetDarwinNotifyCenter()
         CFNotificationCenterAddObserver(center, nil, ReceivedApplicationState, CFNotificationName.altstoreRequestAppState.rawValue, nil, .deliverImmediately)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ApplicationMonitor.audioSessionWasInterrupted(_:)), name: AVAudioSession.interruptionNotification, object: AVAudioSession.sharedInstance())
     }
     
     func scheduleApplicationQuitNotification()
@@ -110,6 +126,41 @@ private extension ApplicationMonitor
 
 private extension ApplicationMonitor
 {
+    @objc func audioSessionWasInterrupted(_ notification: Notification)
+    {
+        guard
+            let userInfo = notification.userInfo,
+            let rawType = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+            let type = AVAudioSession.InterruptionType(rawValue: rawType)
+        else { return }
+        
+        switch type
+        {
+        case .began:
+            #if DEBUG
+            self.sendNotification(title: "DEBUG", message: "Audio Session Interrupted")
+            #endif
+            
+            // Begin background task to reduce chance of us being terminated while audio session is interrupted.
+            self.backgroundTaskID = UIApplication.shared.beginBackgroundTask(withName: "com.rileytestut.Clip.delayTermination") {
+                guard let backgroundTaskID = self.backgroundTaskID else { return }
+                UIApplication.shared.endBackgroundTask(backgroundTaskID)
+            }
+            
+        case .ended:
+            #if DEBUG
+            self.sendNotification(title: "DEBUG", message: "Audio Session Resumed")
+            #endif
+            
+            if let backgroundTaskID = self.backgroundTaskID
+            {
+                UIApplication.shared.endBackgroundTask(backgroundTaskID)
+            }
+            
+        @unknown default: break
+        }
+    }
+    
     func receivedApplicationStateRequest()
     {
         guard UIApplication.shared.applicationState != .background else { return }
