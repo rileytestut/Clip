@@ -36,6 +36,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
         guard DatabaseManager.shared.isStarted else { return }
         
         DatabaseManager.shared.refresh()
+        
+        DatabaseManager.shared.savePasteboard { (result) in
+            do
+            {
+                try result.get()
+                print("Saved clipboard upon returning to foreground!")
+            }
+            catch PasteboardError.noItem, PasteboardError.duplicateItem
+            {
+                // Ignore
+            }
+            catch
+            {
+                print("Failed to save clipboard upon returning to app.")
+            }
+        }
     }
     
     func sceneDidEnterBackground(_ scene: UIScene)
