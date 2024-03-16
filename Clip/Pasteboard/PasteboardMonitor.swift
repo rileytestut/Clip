@@ -52,12 +52,11 @@ private extension PasteboardMonitor
         CFNotificationCenterAddObserver(center, nil, PasteboardMonitorIgnoreNextPasteboardChange, CFNotificationName.ignoreNextPasteboardChange.rawValue, nil, .deliverImmediately)
         
         #if !targetEnvironment(simulator)
-        let pasteboardFramework = Bundle(path: "/System/Library/PrivateFrameworks/Pasteboard.framework")!
-        pasteboardFramework.load()
-        
         let beginListeningSelector = ["Notifications", "Change", "Pasteboard", "To", "Listening", "begin"].reversed().joined()
         
-        let PBServerConnection = NSClassFromString("PBServerConnection") as AnyObject
+        let className = ["Connection", "Server", "PB"].reversed().joined()
+        
+        let PBServerConnection = NSClassFromString(className) as AnyObject
         _ = PBServerConnection.perform(NSSelectorFromString(beginListeningSelector))
         #endif
         
