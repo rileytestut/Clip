@@ -24,7 +24,7 @@ private extension PasteboardItemRepresentation.RepresentationType
 }
 
 @objc(PasteboardItem)
-public class PasteboardItem: NSManagedObject
+public class PasteboardItem: NSManagedObject, Identifiable
 {
     /* Properties */
     @NSManaged public private(set) var date: Date

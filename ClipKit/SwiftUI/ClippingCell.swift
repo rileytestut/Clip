@@ -21,11 +21,16 @@ private extension Formatter
     }()
 }
 
-struct ClippingCell: View
+public struct ClippingCell: View
 {
     @ObservedObject var pasteboardItem: PasteboardItem
+    
+    public init(pasteboardItem: PasteboardItem) 
+    {
+        self.pasteboardItem = pasteboardItem
+    }
         
-    var body: some View {
+    public var body: some View {
         let representation = self.pasteboardItem.preferredRepresentation
         let dateString = Formatter.clipFormatter.string(from: self.pasteboardItem.date, to: Date())
 

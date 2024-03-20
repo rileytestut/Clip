@@ -112,6 +112,14 @@ class HistoryViewController: UITableViewController
             }
         }
         
+        if let tabBar = self.navigationController?.tabBarController?.tabBar
+        {
+            let appearance = tabBar.standardAppearance
+            tabBar.scrollEdgeAppearance = appearance
+        }
+        
+        self.navigationController?.tabBarItem.image = UIImage(systemName: "list.bullet")
+        
         self.startUpdating()
     }
     
