@@ -37,6 +37,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
         
         DatabaseManager.shared.refresh()
         
+        guard !UIPasteboard.general.hasImages else {
+            // Our duplicate detection does not work for images,
+            // so don't automatically save images upon returning to foreground.
+            return
+        }
+        
         let location = ApplicationMonitor.shared.locationManager.location
         DatabaseManager.shared.savePasteboard(location: location) { (result) in
             do
