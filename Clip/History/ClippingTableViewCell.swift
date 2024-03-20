@@ -17,6 +17,7 @@ class ClippingTableViewCell: UITableViewCell
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var contentLabel: UILabel!
     @IBOutlet var contentImageView: UIImageView!
+    @IBOutlet var locationButton: UIButton!
     
     @IBOutlet var bottomConstraint: NSLayoutConstraint!
     

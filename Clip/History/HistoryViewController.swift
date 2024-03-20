@@ -9,6 +9,8 @@
 import UIKit
 import MobileCoreServices
 import Combine
+import CoreLocation
+import Contacts
 
 import ClipKit
 import Roxas
@@ -266,6 +268,9 @@ private extension HistoryViewController
                 cell.contentLabel.isHidden = true
             }
             
+            cell.locationButton.isHidden = (item.location == nil)
+            cell.locationButton.addTarget(self, action: #selector(HistoryViewController.showLocation(_:)), for: .primaryActionTriggered)
+            
             if indexPath.row < UserDefaults.shared.historyLimit.rawValue
             {
                 cell.bottomConstraint.isActive = true
@@ -363,6 +368,46 @@ private extension HistoryViewController
         
         UIMenuController.shared.setTargetRect(targetRect, in: cell)
         UIMenuController.shared.setMenuVisible(true, animated: true)
+    }
+    
+    @objc func showLocation(_ sender: UIButton)
+    {
+        let point = self.view.convert(sender.center, from: sender.superview!)
+        guard let indexPath = self.tableView.indexPathForRow(at: point) else { return }
+        
+        let item = self.dataSource.item(at: indexPath)
+        guard let location = item.location else { return }
+        
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            DispatchQueue.main.async {
+                let title: String
+                let message: String?
+                
+                if let placemarks, let placemark = placemarks.first,
+                   let postalAddress = placemark.postalAddress
+                {
+                    let formatter = CNPostalAddressFormatter()
+                    
+                    title = formatter.string(from: postalAddress)
+                    message = nil
+                }
+                else if let error
+                {
+                    title = NSLocalizedString("Unable to Look Up Location", comment: "")
+                    message = error.localizedDescription + "\n\n" + "\(location.coordinate.latitude), \(location.coordinate.longitude)"
+                }
+                else
+                {
+                    title = "\(location.coordinate.latitude), \(location.coordinate.longitude)"
+                    message = nil
+                }
+                
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alertController.addAction(.ok)
+                self.present(alertController, animated: true)
+            }
+        }
     }
     
     func startUpdating()
