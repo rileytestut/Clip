@@ -227,11 +227,12 @@ private extension HistoryViewController
 {
     func subscribe()
     {
-        ApplicationMonitor.shared.locationManager.$status
-            .receive(on: RunLoop.main)
-            .compactMap { $0?.error }
-            .sink { self.present($0) }
-            .store(in: &self.cancellables)
+        //TODO: Uncomment once we can tell user to enable location for background execution.
+        //ApplicationMonitor.shared.locationManager.$status
+        //    .receive(on: RunLoop.main)
+        //    .compactMap { $0?.error }
+        //    .sink { self.present($0) }
+        //    .store(in: &self.cancellables)
     }
     
     func makeDataSource() -> RSTFetchedResultsTableViewPrefetchingDataSource<PasteboardItem, UIImage>
