@@ -394,11 +394,23 @@ private extension HistoryViewController
                 let message: String?
                 
                 if let placemarks, let placemark = placemarks.first,
-                   let postalAddress = placemark.postalAddress
+                   let postalAddress = placemark.postalAddress?.mutableCopy() as? CNMutablePostalAddress
                 {
+                    // The location isn't precise, so don't pretend that it is by showing street address.
+                    postalAddress.street = ""
+                    postalAddress.subLocality = ""
+                    
                     let formatter = CNPostalAddressFormatter()
                     
-                    title = formatter.string(from: postalAddress)
+                    if let sublocality = placemark.subLocality
+                    {
+                        title = sublocality + "\n" + formatter.string(from: postalAddress)
+                    }
+                    else
+                    {
+                        title = formatter.string(from: postalAddress)
+                    }
+
                     message = nil
                 }
                 else if let error
