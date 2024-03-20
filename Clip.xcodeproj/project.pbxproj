@@ -57,6 +57,7 @@
 		BFDB5B1E22EF7B5000F74113 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDB5B1D22EF7B5000F74113 /* GradientView.swift */; };
 		BFEF44AE2398693300095A92 /* ForwardingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */; };
 		BFF9E4932555F4F40052B1B2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF9E4922555F4F40052B1B2 /* LocationManager.swift */; };
+		D5D375192BAB4DF800213D84 /* UNNotification+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D375182BAB4DF800213D84 /* UNNotification+Keys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +202,7 @@
 		BFDB5B1D22EF7B5000F74113 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		BFEF44AB2398693300095A92 /* ForwardingNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardingNavigationController.swift; sourceTree = "<group>"; };
 		BFF9E4922555F4F40052B1B2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		D5D375182BAB4DF800213D84 /* UNNotification+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNNotification+Keys.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +451,7 @@
 				BF235BC0247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift */,
 				BFA2DF68247DD31500E31E4D /* UIColor+Clip.swift */,
 				BFAD46C82490588800451D6F /* UIInputView+Click.swift */,
+				D5D375182BAB4DF800213D84 /* UNNotification+Keys.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				BFA2DF62247DD23C00E31E4D /* Blur.swift in Sources */,
 				BF7B9EE122B81C980042C873 /* Int+Bytes.swift in Sources */,
 				BFC9E66322B1B03C00974663 /* PasteboardItem.swift in Sources */,
+				D5D375192BAB4DF800213D84 /* UNNotification+Keys.swift in Sources */,
 				BFA2DF60247DD21F00E31E4D /* Keyboard.swift in Sources */,
 				BF50E7D922C2BF010070E17B /* Bundle+AppGroups.swift in Sources */,
 			);

@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CoreLocation
 
 import Roxas
 
@@ -203,7 +204,7 @@ public class DatabaseManager
 
 public extension DatabaseManager
 {
-    func savePasteboard(completionHandler: @escaping (Result<Void, Error>) -> Void)
+    func savePasteboard(location: CLLocation?, completionHandler: @escaping (Result<Void, Error>) -> Void)
     {
         do
         {
@@ -221,6 +222,8 @@ public extension DatabaseManager
                 do
                 {
                     guard let pasteboardItem = PasteboardItem(representations: representations, context: context) else { throw PasteboardError.noItem }
+                    pasteboardItem.location = location
+                    
                     print(pasteboardItem)
                     
                     let fetchRequest = PasteboardItem.fetchRequest() as NSFetchRequest<PasteboardItem>

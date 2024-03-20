@@ -97,9 +97,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate
         guard response.notification.request.content.categoryIdentifier == UNNotificationCategory.clipboardReaderIdentifier else { return }
         guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
         
+        let location = ApplicationMonitor.shared.locationManager.location
+        
         // Delay until next run loop so UIPasteboard no longer returns nil items due to being in background.
         DispatchQueue.main.async {
-            DatabaseManager.shared.savePasteboard { (result) in
+            DatabaseManager.shared.savePasteboard(location: location) { (result) in
                 switch result
                 {
                 case .success: break

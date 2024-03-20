@@ -60,6 +60,10 @@ class LocationManager: NSObject, ObservableObject
 {
     @PublishedPipeline({ removeDuplicatesPipeline($0) })
     var status: Status? = nil
+    
+    var location: CLLocation? {
+        return self.locationManager.location
+    }
 
     private let locationManager: CLLocationManager
     

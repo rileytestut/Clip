@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18F203" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E5211a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="PasteboardItem" representedClassName="PasteboardItem" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="isMarkedForDeletion" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="preferredRepresentation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItemRepresentation" inverseName="preferringItem" inverseEntity="PasteboardItemRepresentation" syncable="YES"/>
-        <relationship name="representations" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PasteboardItemRepresentation" inverseName="item" inverseEntity="PasteboardItemRepresentation" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isMarkedForDeletion" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO"/>
+        <relationship name="preferredRepresentation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItemRepresentation" inverseName="preferringItem" inverseEntity="PasteboardItemRepresentation"/>
+        <relationship name="representations" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="PasteboardItemRepresentation" inverseName="item" inverseEntity="PasteboardItemRepresentation"/>
     </entity>
     <entity name="PasteboardItemRepresentation" representedClassName="PasteboardItemRepresentation" syncable="YES">
-        <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="string" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="URI" syncable="YES"/>
-        <attribute name="uti" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItem" inverseName="representations" inverseEntity="PasteboardItem" syncable="YES"/>
-        <relationship name="preferringItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItem" inverseName="preferredRepresentation" inverseEntity="PasteboardItem" syncable="YES"/>
+        <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="string" optional="YES" attributeType="String"/>
+        <attribute name="type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <attribute name="uti" optional="YES" attributeType="String"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItem" inverseName="representations" inverseEntity="PasteboardItem"/>
+        <relationship name="preferringItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PasteboardItem" inverseName="preferredRepresentation" inverseEntity="PasteboardItem"/>
     </entity>
-    <elements>
-        <element name="PasteboardItem" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="PasteboardItemRepresentation" positionX="-54" positionY="-9" width="128" height="150"/>
-    </elements>
 </model>

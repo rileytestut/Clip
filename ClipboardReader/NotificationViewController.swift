@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import UserNotificationsUI
+import CoreLocation
 
 import ClipKit
 import Roxas
@@ -48,8 +49,20 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         }
         else
         {
+            let location: CLLocation?
+            
+            if let latitude = notification.request.content.userInfo[UNNotification.latitudeUserInfoKey] as? Double,
+               let longitude = notification.request.content.userInfo[UNNotification.longitudeUserInfoKey] as? Double
+            {
+                location = CLLocation(latitude: latitude, longitude: longitude)
+            }
+            else
+            {
+                location = nil
+            }
+            
             self.preparationDispatchGroup.notify(queue: .main) {
-                DatabaseManager.shared.savePasteboard { (result) in
+                DatabaseManager.shared.savePasteboard(location: location) { (result) in
                     self.finish(result)
                 }
             }

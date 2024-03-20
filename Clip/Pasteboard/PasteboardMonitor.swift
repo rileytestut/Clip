@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import UserNotifications
+import CoreLocation
 
 import ClipKit
 import Roxas
@@ -89,6 +90,14 @@ private extension PasteboardMonitor
             content.categoryIdentifier = UNNotificationCategory.clipboardReaderIdentifier
             content.title = NSLocalizedString("Clipboard Changed", comment: "")
             content.body = NSLocalizedString("Swipe down to save to Clip.", comment: "")
+            
+            if let location = ApplicationMonitor.shared.locationManager.location
+            {
+                content.userInfo = [
+                    UNNotification.latitudeUserInfoKey: location.coordinate.latitude,
+                    UNNotification.longitudeUserInfoKey: location.coordinate.longitude
+                ]
+            }
             
             let request = UNNotificationRequest(identifier: "ClipboardChanged", content: content, trigger: nil)
             UNUserNotificationCenter.current().add(request) { (error) in

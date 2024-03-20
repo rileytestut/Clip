@@ -8,6 +8,7 @@
 
 import CoreData
 import MobileCoreServices
+import CoreLocation
 
 private extension PasteboardItemRepresentation.RepresentationType
 {
@@ -28,6 +29,21 @@ public class PasteboardItem: NSManagedObject
     /* Properties */
     @NSManaged public private(set) var date: Date
     @NSManaged public var isMarkedForDeletion: Bool
+    
+    public var location: CLLocation? {
+        get {
+            guard let latitude, let longitude else { return nil }
+            
+            let coordinate = CLLocation(latitude: latitude.doubleValue, longitude: longitude.doubleValue)
+            return coordinate
+        }
+        set {
+            self.latitude = newValue?.coordinate.latitude as? NSNumber
+            self.longitude = newValue?.coordinate.longitude as? NSNumber
+        }
+    }
+    @NSManaged private var latitude: NSNumber?
+    @NSManaged private var longitude: NSNumber?
     
     /* Relationships */
     @nonobjc public var representations: [PasteboardItemRepresentation] {

@@ -37,7 +37,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
         
         DatabaseManager.shared.refresh()
         
-        DatabaseManager.shared.savePasteboard { (result) in
+        let location = ApplicationMonitor.shared.locationManager.location
+        DatabaseManager.shared.savePasteboard(location: location) { (result) in
             do
             {
                 try result.get()
