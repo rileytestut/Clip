@@ -75,6 +75,7 @@ class HistoryViewController: UITableViewController
         
         NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.didEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.willEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HistoryViewController.settingsDidChange(_:)), name: SettingsViewController.settingsDidChangeNotification, object: nil)
         
         self.fetchLimitSettingObservation = UserDefaults.shared.observe(\.historyLimit) { [weak self] (defaults, change) in
             self?.updateDataSource()
@@ -268,8 +269,15 @@ private extension HistoryViewController
                 cell.contentLabel.isHidden = true
             }
             
-            cell.locationButton.isHidden = (item.location == nil)
-            cell.locationButton.addTarget(self, action: #selector(HistoryViewController.showLocation(_:)), for: .primaryActionTriggered)
+            if UserDefaults.shared.showLocationIcon
+            {
+                cell.locationButton.isHidden = (item.location == nil)
+                cell.locationButton.addTarget(self, action: #selector(HistoryViewController.showLocation(_:)), for: .primaryActionTriggered)
+            }
+            else
+            {
+                cell.locationButton.isHidden = true
+            }
             
             if indexPath.row < UserDefaults.shared.historyLimit.rawValue
             {
@@ -491,6 +499,11 @@ private extension HistoryViewController
     @objc func willEnterForeground(_ notification: Notification)
     {
         self.startUpdating()
+    }
+    
+    @objc func settingsDidChange(_ notification: Notification)
+    {
+        self.tableView.reloadData()
     }
     
     @IBAction func unwindToHistoryViewController(_ segue: UIStoryboardSegue)

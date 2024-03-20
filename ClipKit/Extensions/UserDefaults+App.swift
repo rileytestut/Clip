@@ -8,6 +8,8 @@
 
 import Foundation
 
+import Roxas
+
 @objc public enum HistoryLimit: Int, CaseIterable
 {
     case _10 = 10
@@ -27,13 +29,17 @@ public extension UserDefaults
     
     @NSManaged var historyLimit: HistoryLimit
     @NSManaged var maximumClippingSize: Int
+    @NSManaged var showLocationIcon: Bool
 }
 
 public extension UserDefaults
 {
     func registerAppDefaults()
     {
-        self.register(defaults: [#keyPath(UserDefaults.historyLimit): HistoryLimit._25.rawValue,
-                                 #keyPath(UserDefaults.maximumClippingSize): 10 * .bytesPerMegabyte])
+        self.register(defaults: [
+            #keyPath(UserDefaults.historyLimit): HistoryLimit._25.rawValue,
+            #keyPath(UserDefaults.maximumClippingSize): 10 * .bytesPerMegabyte,
+            #keyPath(UserDefaults.showLocationIcon): true
+        ])
     }
 }
