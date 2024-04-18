@@ -238,6 +238,7 @@ private extension HistoryViewController
         dataSource.cellConfigurationHandler = { [weak self] (cell, item, indexPath) in
             let cell = cell as! ClippingTableViewCell
             cell.contentLabel.isHidden = false
+            cell.contentButton.isHidden = true
             cell.contentImageView.isHidden = true
             
             self?.updateDate(for: cell, item: item)
@@ -250,7 +251,16 @@ private extension HistoryViewController
                 {
                 case .text: cell.contentLabel.text = representation.stringValue
                 case .attributedText: cell.contentLabel.text = representation.attributedStringValue?.string
-                case .url: cell.contentLabel.text = representation.urlValue?.absoluteString
+                case .url:
+                    cell.contentLabel.isHidden = true
+                    cell.contentButton.isHidden = false
+                    cell.contentButton.setTitle(representation.urlValue?.absoluteString, for: .normal)
+                    cell.onButtonPressed = {
+                        if let url = representation.urlValue
+                        {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }
                 case .image:
                     cell.contentLabel.isHidden = true
                     cell.contentImageView.isHidden = false
