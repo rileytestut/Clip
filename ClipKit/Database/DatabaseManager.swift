@@ -39,13 +39,15 @@ private class PersistentContainer: RSTPersistentContainer
     {
         guard let appGroup = Bundle.main.appGroups.first else { return super.defaultDirectoryURL() }
         
-        let sharedDirectoryURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup)!
-        
-        let databaseDirectoryURL = sharedDirectoryURL.appendingPathComponent("Database")
-        try? FileManager.default.createDirectory(at: databaseDirectoryURL, withIntermediateDirectories: true, attributes: nil)
-        
-        print("Database URL:", databaseDirectoryURL)
-        return databaseDirectoryURL
+        if let sharedDirectoryURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) {
+            let databaseDirectoryURL = sharedDirectoryURL.appendingPathComponent("Database")
+            try? FileManager.default.createDirectory(at: databaseDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+            
+            print("Database URL:", databaseDirectoryURL)
+            return databaseDirectoryURL
+        } else {
+            return super.defaultDirectoryURL()
+        }
     }
 }
 
