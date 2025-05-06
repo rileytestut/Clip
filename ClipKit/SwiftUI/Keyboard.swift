@@ -72,7 +72,7 @@ public struct Keyboard: View
             }
             else
             {
-                List(self.pasteboardItems, id: \.objectID) { (pasteboardItem) in
+                let list = List(self.pasteboardItems, id: \.objectID) { (pasteboardItem) in
                     Button(action: { self.paste(pasteboardItem) }) {
                         ClippingCell(pasteboardItem: pasteboardItem)
                     }
@@ -81,6 +81,16 @@ public struct Keyboard: View
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
                     .listRowInsets(makeInsets())
+                }
+                .scrollContentBackground(.hidden)
+                
+                if #available(iOS 16.4, *)
+                {
+                    list.scrollBounceBehavior(.always, axes: .vertical)
+                }
+                else
+                {
+                    list
                 }
             }
             
