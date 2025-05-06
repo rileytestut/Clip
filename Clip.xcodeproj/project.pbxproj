@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,8 +11,8 @@
 		BF0BDE5622B456A600E1419D /* PasteboardItem+ActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0BDE5522B456A600E1419D /* PasteboardItem+ActivityItemSource.swift */; };
 		BF0BDE5A22B4771300E1419D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0BDE5922B4771300E1419D /* SettingsViewController.swift */; };
 		BF0BDE5E22B47D4900E1419D /* UserDefaults+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0BDE5722B4757100E1419D /* UserDefaults+App.swift */; };
-		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; };
-		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BF1D5C7A22B029E70062F474 /* Roxas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; platformFilter = ios; };
+		BF1D5C7B22B029E70062F474 /* Roxas.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BF1D5C7522B029DC0062F474 /* Roxas.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF1D5C7F22B02BF30062F474 /* PasteboardMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5C7E22B02BF30062F474 /* PasteboardMonitor.swift */; };
 		BF235BC1247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF235BC0247D8B5300CCFCB0 /* UIPasteboard+PasteboardItem.swift */; };
 		BF50E7D922C2BF010070E17B /* Bundle+AppGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF50E7D822C2BF010070E17B /* Bundle+AppGroups.swift */; };
@@ -45,8 +45,8 @@
 		BFC1F3A422AF0D0F003AC21A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A322AF0D0F003AC21A /* Assets.xcassets */; };
 		BFC1F3A722AF0D0F003AC21A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFC1F3A522AF0D0F003AC21A /* LaunchScreen.storyboard */; };
 		BFC9E65422B1A22700974663 /* ClipKit.h in Headers */ = {isa = PBXBuildFile; fileRef = BFC9E65222B1A22700974663 /* ClipKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BFC9E65722B1A22700974663 /* ClipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9E65022B1A22700974663 /* ClipKit.framework */; };
-		BFC9E65822B1A22700974663 /* ClipKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9E65022B1A22700974663 /* ClipKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BFC9E65722B1A22700974663 /* ClipKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9E65022B1A22700974663 /* ClipKit.framework */; platformFilter = ios; };
+		BFC9E65822B1A22700974663 /* ClipKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9E65022B1A22700974663 /* ClipKit.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BFC9E66222B1B03900974663 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4622B0869C0062F474 /* DatabaseManager.swift */; };
 		BFC9E66322B1B03C00974663 /* PasteboardItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4A22B094DB0062F474 /* PasteboardItem.swift */; };
 		BFC9E66422B1B03C00974663 /* PasteboardItemRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1D5D4822B088F40062F474 /* PasteboardItemRepresentation.swift */; };
@@ -767,6 +767,7 @@
 		BF1D5C7D22B029E80062F474 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Roxas;
+			platformFilter = ios;
 			targetProxy = BF1D5C7C22B029E80062F474 /* PBXContainerItemProxy */;
 		};
 		BF7E6FE6247C4FCD0058F4D4 /* PBXTargetDependency */ = {
@@ -786,6 +787,7 @@
 		};
 		BFC9E65622B1A22700974663 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = BFC9E64F22B1A22700974663 /* ClipKit */;
 			targetProxy = BFC9E65522B1A22700974663 /* PBXContainerItemProxy */;
 		};
@@ -1040,9 +1042,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1063,8 +1067,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rileytestut.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
