@@ -76,7 +76,8 @@ public struct Keyboard: View
                     Button(action: { self.paste(pasteboardItem) }) {
                         ClippingCell(pasteboardItem: pasteboardItem)
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .buttonStyle(.plain)
+                    .foregroundStyle(.primary)
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
                     .listRowInsets(makeInsets())
