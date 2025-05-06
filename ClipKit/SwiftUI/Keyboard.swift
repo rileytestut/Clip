@@ -28,6 +28,9 @@ public struct Keyboard: View
     @FetchRequest(fetchRequest: PasteboardItem.historyFetchRequest())
     private var pasteboardItems: FetchedResults<PasteboardItem>
     
+    @Environment(\.horizontalSizeClass)
+    private var horizontalSizeClass
+    
     public init(inputViewController: UIInputViewController?,
                 needsInputModeSwitchKey: Bool? = nil,
                 hasFullAccess: Bool? = nil)
@@ -83,6 +86,7 @@ public struct Keyboard: View
                     .listRowInsets(makeInsets())
                 }
                 .scrollContentBackground(.hidden)
+                .padding(.top, 8) // iPadOS sometimes places List too close to toolbar, so add padding.
                 
                 if #available(iOS 16.4, *)
                 {
@@ -96,6 +100,8 @@ public struct Keyboard: View
             
             if self.needsInputModeSwitchKey
             {
+                let offset = (self.horizontalSizeClass == .regular) ? 16.0 : 8.0
+                
                 SwitchKeyboardButton(inputViewController: self.inputViewController,
                                      tintColor: .clipPink,
                                      configuration: .init(textStyle: .title2))
@@ -105,7 +111,7 @@ public struct Keyboard: View
                     .background(Blur())
                     .blurStyle(.extraLight)
                     .clipShape(Circle())
-                    .offset(x: 8, y: -8)
+                    .offset(x: offset, y: -offset)
             }
         }
         .edgesIgnoringSafeArea(.all)
