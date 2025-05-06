@@ -12,6 +12,13 @@ import UIKit
 
 import Roxas
 
+@objc
+private protocol RSTApplication: AnyObject
+{
+    @objc(openURL:options:completionHandler:)
+    func open(_ url: URL, options: [UIApplication.OpenExternalURLOptionsKey : Any], completionHandler completion: (@MainActor @Sendable (Bool) -> Void)?)
+}
+
 public struct Keyboard: View
 {
     private let inputViewController: UIInputViewController?
@@ -141,8 +148,8 @@ private extension Keyboard
         // so instead we open Clip which will then open Settings.
         let openURL = URL(string: "clip://settings")!
         
-        let selectorName = "openURL:" // Temp variable to avoid deprecation warning about Selectors + string literals.
-        application.perform(Selector(selectorName), with: openURL)
+        let tempApp = unsafeBitCast(application, to: RSTApplication.self)
+        tempApp.open(openURL, options: [:], completionHandler: nil)
     }
 }
 
