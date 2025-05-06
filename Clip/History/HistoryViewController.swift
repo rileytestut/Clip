@@ -181,7 +181,7 @@ class HistoryViewController: UITableViewController
         let settingsViewController = navigationController.viewControllers[0] as! SettingsViewController
         settingsViewController.view.layoutIfNeeded()
         
-        navigationController.preferredContentSize = settingsViewController.tableView.contentSize
+        navigationController.preferredContentSize = CGSize(width: 375, height: settingsViewController.tableView.contentSize.height)
         
         navigationController.popoverPresentationController?.delegate = self
         navigationController.popoverPresentationController?.barButtonItem = sender
