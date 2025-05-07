@@ -43,6 +43,12 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     
     func didReceive(_ notification: UNNotification)
     {
+        guard notification.request.content.userInfo[UNNotification.errorMessageUserInfoKey] == nil else {
+            // This is an error notification, so just dismiss it if user interacts.
+            self.extensionContext?.dismissNotificationContentExtension()
+            return
+        }
+        
         if let error = self.databaseError
         {
             self.finish(.failure(error))
@@ -85,6 +91,8 @@ private extension NotificationViewController
             let content = UNMutableNotificationContent()
             content.title = NSLocalizedString("Failed to Save Clipboard", comment: "")
             content.body = error.localizedDescription
+            content.categoryIdentifier = UNNotificationCategory.clipboardReaderIdentifier
+            content.userInfo[UNNotification.errorMessageUserInfoKey] = error.localizedDescription
             
             let request = UNNotificationRequest(identifier: "SaveError", content: content, trigger: nil)
             UNUserNotificationCenter.current().add(request) { (error) in

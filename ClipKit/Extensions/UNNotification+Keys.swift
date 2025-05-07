@@ -12,4 +12,11 @@ public extension UNNotification
 {
     static let latitudeUserInfoKey: String = "CLPLatitude"
     static let longitudeUserInfoKey: String = "CLPLongitude"
+    
+    static let errorMessageUserInfoKey: String = "CLPErrorMessage"
+}
+
+public extension UNNotificationCategory
+{
+    static let clipboardReaderIdentifier = "ClipboardReader"
 }

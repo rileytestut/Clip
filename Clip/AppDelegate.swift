@@ -12,11 +12,6 @@ import UserNotifications
 import ClipKit
 import Roxas
 
-extension UNNotificationCategory
-{
-    static let clipboardReaderIdentifier = "ClipboardReader"
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
