@@ -85,12 +85,13 @@ public struct Keyboard: View
                     .listRowSeparator(.hidden)
                     .listRowInsets(makeInsets())
                 }
-                .scrollContentBackground(.hidden)
                 .padding(.top, 8) // iPadOS sometimes places List too close to toolbar, so add padding.
                 
                 if #available(iOS 16.4, *)
                 {
-                    list.scrollBounceBehavior(.always, axes: .vertical)
+                    list
+                        .scrollContentBackground(.hidden)
+                        .scrollBounceBehavior(.always, axes: .vertical)
                 }
                 else
                 {
