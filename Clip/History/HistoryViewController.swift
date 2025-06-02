@@ -216,9 +216,12 @@ extension HistoryViewController
     
     @objc func _share(_ sender: Any?)
     {
-        guard let item = self.selectedItem else { return }
+        guard let item = self.selectedItem, let indexPath = self.dataSource.fetchedResultsController.indexPath(forObject: item) else { return }
+        
+        let cell = self.tableView.cellForRow(at: indexPath)
         
         let activityViewController = UIActivityViewController(activityItems: [item], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceItem = cell
         self.present(activityViewController, animated: true, completion: nil)
     }
 }
