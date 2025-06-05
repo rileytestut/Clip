@@ -47,7 +47,7 @@ public struct Keyboard: View
             {
                 VStack(spacing: 32) {
                     VStack(spacing: 16) {
-                        Text("Full Access Required")
+                        Text("Full Access Disabled")
                             .font(.title)
                         Text("Allow Full Access for this keyboard in Settings to access saved clippings.")
                             .font(.body)
@@ -55,6 +55,12 @@ public struct Keyboard: View
                     
                     Button(action: self.openSettings) {
                         Text("Open Settings")
+                            .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
+                            .foregroundColor(Color(.clipPink))
+                    }
+                    
+                    Button(action: self.pasteUUID) {
+                        Text("Paste Random UUID")
                             .font(Font(UIFont.preferredFont(forTextStyle: .title3)))
                             .foregroundColor(Color(.clipPink))
                     }
@@ -139,13 +145,24 @@ private extension Keyboard
     func paste(_ pasteboardItem: PasteboardItem)
     {
         guard let text = pasteboardItem.preferredRepresentation?.stringValue else { return }
-        self.inputViewController?.textDocumentProxy.insertText(text)
         
         let center = CFNotificationCenterGetDarwinNotifyCenter()
         CFNotificationCenterPostNotification(center, .ignoreNextPasteboardChange, nil, nil, true)
         
         UIPasteboard.general.copy(pasteboardItem)
         
+        self.paste(text)
+    }
+    
+    func pasteUUID()
+    {
+        let uuid = UUID().uuidString
+        self.paste(uuid)
+    }
+    
+    func paste(_ text: String)
+    {
+        self.inputViewController?.textDocumentProxy.insertText(text)
         self.inputViewController?.inputView?.playInputClick()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {

@@ -23,6 +23,14 @@ class KeyboardViewController: UIInputViewController
         
         if DatabaseManager.shared.persistentContainer.persistentStoreCoordinator.persistentStores.isEmpty
         {
+            if !self.hasFullAccess
+            {
+                // Use temporary in-memory store if we don't have full access.
+                let inMemoryStoreDescription = NSPersistentStoreDescription()
+                inMemoryStoreDescription.type = NSInMemoryStoreType
+                DatabaseManager.shared.persistentContainer.persistentStoreDescriptions = [inMemoryStoreDescription]
+            }
+            
             DatabaseManager.shared.persistentContainer.shouldAddStoresAsynchronously = false
             DatabaseManager.shared.prepare { (result) in
                 switch result
